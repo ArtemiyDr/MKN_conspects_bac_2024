@@ -26,10 +26,43 @@
     inset: 10pt,
 )
 
+#let proposition = mathblock(
+    blocktitle: "Предложение",
+    counter: none,
+    fill: oklch(91.23%, 0.103, 128.85deg),
+    inset: 10pt,
+)
+
 #let definition = mathblock(
     blocktitle: "Определение",
     counter: none, 
     fill: blue.lighten(80%),
+    inset: 10pt,
+    radius: 5pt,
+)
+
+#let remark = mathblock(
+    blocktitle: "Замечание",
+    counter: none, 
+    fill: blue.lighten(90%),
+    inset: 10pt,
+    radius: 5pt,
+)
+
+#let example = mathblock(
+    blocktitle: "Пример",
+    counter: none, 
+    fill: oklch(87.86%, 0.121, 129.16deg),
+    inset: 10pt,
+    radius: 5pt,
+)
+
+#let problemCounter = counter("problem")
+
+#let problem = mathblock(
+    blocktitle: "Задача",
+    counter: problemCounter, 
+    fill: oklch(87.86%, 0.121, 129.16deg),
     inset: 10pt,
     radius: 5pt,
 )
@@ -45,7 +78,8 @@
 #align(center + horizon)[
     #show title: set text(size: 24pt, weight: "bold")
     #title()
-
+    #v(1.5em)
+    #text(18pt)[Лектор: Белов Юрий Сергеевич]
     #v(1.5em)
     #text(18pt)[Автор: Артемий Дружинин]
     #v(1em)
@@ -56,7 +90,7 @@
 
 #pagebreak()
 
-#lecture("11.02.2026")
+#align(center)[= Теория представлений конечных групп.]
+#v(2em)
 
-#align(center)[= ]
- 
+#lecture("12.02.2026")
