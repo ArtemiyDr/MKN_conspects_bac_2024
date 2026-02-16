@@ -2,9 +2,10 @@
 #import "@preview/fletcher:0.5.8": *
 
 #set document(
-    title: "Конспект по математическому анализу",
+    title: "Конспект по комплексному анализу",
 )
 #set page("a4")
+#set page(margin: 1.5cm)
 #set text(12pt)
 #set par(justify: true)
 #set heading(numbering: "1.")
@@ -44,7 +45,7 @@
 #let remark = mathblock(
     blocktitle: "Замечание",
     counter: none, 
-    fill: blue.lighten(90%),
+    fill: oklch(83.83%, 0.012, 264.5deg),
     inset: 10pt,
     radius: 5pt,
 )
@@ -90,7 +91,5 @@
 
 #pagebreak()
 
-#align(center)[= Теория представлений конечных групп.]
-#v(2em)
-
 #lecture("12.02.2026")
+ (still in progress)
