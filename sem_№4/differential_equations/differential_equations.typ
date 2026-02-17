@@ -206,7 +206,7 @@ $x_0 in M, space O^+(x_0, F) = {x_k in M :k gt.eq 0}: space x_k = f_k (x_0)$
 #v(1em)
 
 Пусть $M = RR^n$, $F = {A_k, k gt.eq 0}$, где $A_k$ - матрица, $f_k (x) = A_k x+g_k$, рассматривается однородная задача $g_k eq.triple 0$.\
-Определим $x_(k+1)= A_k x_k$, $space x_k = A_(k-1) dot ... dot A_0 x_0, space A_(k-1) dot ... dot A_0 = Phi_k$  
+Определим $O^+(x_0, {A_k}) = {x_k}, space$ где $x_(k+1)= A_k x_k$, $space x_k = A_(k-1) dot ... dot A_0 x_0, space A_(k-1) dot ... dot A_0 = Phi_k$  
 
 #theorem[  
     Пусть $Phi_k$, $k gt.eq 0$ - оператор, тогда следующие условия эквивалентны:\
@@ -237,5 +237,5 @@ $x_0 in M, space O^+(x_0, F) = {x_k in M :k gt.eq 0}: space x_k = f_k (x_0)$
     Возьмем $epsilon = 1$, тогда $exists delta > 0$ такое что $forall y_0, space |y_0|<delta ==> |y_k| = |Phi_k y_0|<1$ и $lim_limits(k-->oo) |Phi_k y_0| = 0$.\
     Возьмем $x_0, space |x_0| = 1$, тогда для $y_0 = delta/2 x_0$ имеем $|Phi_k y_0|<1$ и $lim_limits(k-->oo) |Phi_k y_0| = 0$, значит $||Phi_k|| = sup_limits(|x_0|=1) |Phi_k x_0| = 2/delta sup_limits(|y_0|=delta/2) |Phi_k y_0| --> 0$.\
     $(3)==>(1)$ \ 
-    Фиксируем $epsilon>0$, пусть $x_0: space |y_0-x_0|<delta$. Тогда $|y_k-x_k| = |Phi_k (y_0-x_0)| lt.eq ||Phi_k|| |y_0-x_0| lt.eq M delta, space $ выберем $delta = epsilon/M, space $ получим $M delta< epsilon$ а значит $|y_k-x_k| --> 0$.
+    Фиксируем $epsilon>0$, пусть $x_0: space |y_0-x_0|<delta$. Тогда $|y_k-x_k| = |Phi_k (y_0-x_0)| lt.eq ||Phi_k|| |y_0-x_0| lt.eq M delta, space $ выберем $delta = epsilon/M, space $ получим $M delta = epsilon$ а значит $|y_k-x_k| --> 0$.
 ]
