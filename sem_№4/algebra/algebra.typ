@@ -7,7 +7,6 @@
 #set page("a4")
 #set page(margin: 1.5cm)
 #set text(12pt)
-#set par(justify: true)
 #set heading(numbering: "1.")
 
 #show: great-theorems-init
@@ -91,16 +90,20 @@
 
 #pagebreak()
 
-#align(center)[= Теория представлений конечных групп.]
+#align(center)[#text(size: 20pt)[= Теория представлений конечных групп.]]
 #v(2em)
 
 #lecture("11.02.2026")
 
+#v(2em)
+== Простые модули. 
+#v(1em)
+
 Вспомним несколько важных определений и теорем из предыдущего семестра:
 
-#theorem[(Машке) 
+#theorem[(Машке\u{0301}) 
     Пусть $k$ - поле, $G$ - конечная группа, $"char" k divides.not |G|$, $V$ - $k[G]$-модуль, 
-    тогда найдется подмодуль $U$, такой что $V = U plus.o W$ для некоторого подмодуля $W$.
+    тогда для любого подмодуля $W$ найдется подмодуль $U$, такой что $V = U plus.o W$.
 ]
 
 #definition[

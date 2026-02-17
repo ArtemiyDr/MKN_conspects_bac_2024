@@ -7,7 +7,6 @@
 #set page("a4")
 #set page(margin: 1.5cm)
 #set text(12pt)
-#set par(justify: true)
 #set heading(numbering: "1.")
 
 #show: great-theorems-init
