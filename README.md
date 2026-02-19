@@ -9,4 +9,4 @@
   - [ДУДС](/sem_№4/differential_equations/differential_equations.pdf)
   - [Функциональный анализ](sem_№4/functional_alalysis/functional_analysis.pdf)
   - [Алгебра](sem_№4/algebra/algebra.pdf)
-  - [Комплексный анализ](sem_№4/analysis/analysis.pdf)
+  - [Комплексный анализ](sem_№4/analysis/analysis.pdf) (приостановлено) 
