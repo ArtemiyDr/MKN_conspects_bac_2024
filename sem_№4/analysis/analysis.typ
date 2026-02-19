@@ -141,4 +141,4 @@
 
 *В этот самый момент до меня дошло, что конспект 2023 годда Магина и Семидетнова в точности до тривиальных примеров и замечаний повторяет текущий курс, в связи с этим больше не вижу смысла продолжать.*\ 
 #show link: set text(fill: blue)
-#link("https://docs.yandex.ru/docs/view?url=ya-disk-public%3A%2F%2FioKxrC%2FtYk%2BjzR9b3JM8Kcci%2BX7OgdBj0Ch%2Bui3mjryHCHjg80ODzTx%2FlGErGaPIq%2FJ6bpmRyOJonT3VoXnDag%3D%3D%3A%2F2-semester-2022S%2FMathematical-Analysis%2FMA_Abstract.pdf&name=MA_Abstract.pdf")[ссылка на конспект]
+#link("https://docs.yandex.ru/docs/view?url=ya-disk-public%3A%2F%2FioKxrC%2FtYk%2BjzR9b3JM8Kcci%2BX7OgdBj0Ch%2Bui3mjryHCHjg80ODzTx%2FlGErGaPIq%2FJ6bpmRyOJonT3VoXnDag%3D%3D%3A%2F4-semester-2023S%2FComplex-Analysis%2FCA_Abstract.pdf&name=CA_Abstract.pdf")[ссылка на конспект] (может не работать если смотреть с гитхаба, рекомендую скачать пдф)
