@@ -165,13 +165,13 @@
 #align(center)[#text(size: 20pt)[= Устойчивость.]]
 #v(2em)
 
-== Основные определения и свойства.
+== Основные определения.
 #v(1em)
 
 Рассмотрим нормальную систему диф уравнений $dot(x) = f(t,x)$, $f in C$, $I(t,xi)$ - максимальный промежуток для решения $x(t,tau,xi)$
 #definition[
     $x(t,tau,xi_0) - " решение", space I(t,xi_0)supset[tau, oo)$, *устойчиво по Ляпунову*, если $forall epsilon gt 0 space exists delta gt 0$: 
-    + $forall xi$, $|xi - xi_0| ==> I(t,xi_0)supset[tau, oo)$
+    + $forall xi$, $|xi - xi_0| < delta ==> I(t,xi_0)supset[tau, oo)$
     + $|x(t,tau,xi) - x(t,tau,xi_0)|<epsilon, space t gt.eq tau$
 
     Решение *неустойчиво* если оно не устойчиво.
@@ -185,18 +185,18 @@
 ]
 
 
-Пусnь $(M, d)$ - метрическое пространство, $F = {f_k:M -> M, k gt.eq 0}, space f_k in C(M)$\
+Пусnь $(M, d)$ - метрическое пространство, рассмотрим счетное семейство непрерывных функций: $F = {f_k:M -> M, k gt.eq 0}, space f_k in C(M)$, для него определим орбиту элемента:\
 $x_0 in M, space O^+(x_0, F) = {x_k in M :k gt.eq 0}: space x_k = f_k (x_0)$
 
 #definition[
-    $O^+(x_0, F)$ - *устойчивое по Ляпунову* множество, если 
+    $O^+(x_0,F)$ - *устойчиво по Ляпунову*, если 
     $
     forall epsilon>0 space exists delta > 0: space forall y_0 in M, space d(x_0, y_0)<delta ==> O^+(y_0,F) = {y_k}, space d(x_k,y_k)< epsilon, space k gt.eq 0
     $
 ]
 
 #definition[
-    $O^+(x_0, F)$ - *асимптотически устойчивое* множество, если оно устойчивое по Ляпунову и 
+    $O^+(x_0,F)$ - *асимптотически устойчиво*, если есть устойчивость по Ляпунову и 
     $
     exists delta > 0 space forall y_0 in M, space d(x_0, y_0)<delta ==> lim_limits(k-->oo) d(x_k,y_k) = 0
     $
@@ -205,21 +205,27 @@ $x_0 in M, space O^+(x_0, F) = {x_k in M :k gt.eq 0}: space x_k = f_k (x_0)$
 #v(2em)
 == Линейная устойчивость.
 #v(1em)
-
+Разберем сначала простой случай линейных систем:\  
 Пусть $M = RR^n$, $F = {A_k, k gt.eq 0}$, где $A_k$ - матрица, $f_k (x) = A_k x+g_k$, рассматривается однородная задача $g_k eq.triple 0$.\
-Определим $O^+(x_0, {A_k}) = {x_k}, space$ где $x_(k+1)= A_k x_k$, $space x_k = A_(k-1) dot ... dot A_0 x_0, space A_(k-1) dot ... dot A_0 = Phi_k$  
+Определим $O^+(x_0, {Phi_k}) = {x_k}, space$ где $x_(k+1)= A_k x_k, space space x_k = A_(k-1) dot ... dot A_0 x_0,$
+$
+Phi_k = A_(k-1) dot ... dot A_0, space Phi_0 = E
+$  
+
+#pagebreak()
 
 #theorem[  
     Пусть $Phi_k$, $k gt.eq 0$ - оператор, тогда следующие условия эквивалентны:\
-    + $forall x_0 space O^+(x_0, {A_k})$ - устойчивое по Ляпунову множество
-    + $O^+(0, {A_k})$ - устойчивое по Ляпунову множество
-    + $exists M > 0$ : $|Phi_k x_0| < M$ для всех $k gt.eq 0$
+    + $forall x_0 space O^+(x_0, {Phi_k})$ - устойчивое по Ляпунову
+    + $O^+(0, {Phi_k})$ - устойчивое
+    + $exists M > 0$ : $|Phi_k x_0| < M|x_0|$ для всех $k gt.eq 0$
 ]
 #proof[\
     $(1) ==> (2)$ - очевидно\
     $(2) ==> (3)$ \ 
     Возьмем $epsilon = 1$, тогда $exists delta > 0$ такое что $forall y_0, space |y_0|<delta ==> |y_k| = |Phi_k y_0|<1$.\
     Возьмем $x_0, space |x_0| = 1$, тогда для $y_0 = delta/2 x_0$ имеем $|Phi_k y_0|<1$, значит $|Phi_k x_0| = 2/delta |Phi_k y_0| < 2/delta = M$.\
+    Общий случай очевидно получаем из верности утверждения для векторов вида $x_0 / (|x_0|)$ \
     $(3)==>(1)$ \ 
     Пусть $x_0: space |y_0-x_0|<delta$. Тогда $|y_k-x_k| = |Phi_k (y_0-x_0)| < M delta, space$ что и требовалось.
 ]
@@ -228,9 +234,9 @@ $x_0 in M, space O^+(x_0, F) = {x_k in M :k gt.eq 0}: space x_k = f_k (x_0)$
 
 #theorem[  
     Пусть $Phi_k$, $k gt.eq 0$ - оператор, тогда следующие условия эквивалентны:\
-    + $forall x_0 space O^+(x_0, {A_k})$ - асимптотически устойчивое множество
-    + $O^+(0, {A_k})$ - асимптотически устойчивое множество
-    + $||Phi_k||-->0$ при $k-->oo$
+    + $forall x_0 space O^+(x_0, {Phi_k})$ - асимптотически устойчивое
+    + $O^+(0, {Phi_k})$ - асимптотически устойчивое
+    + $||Phi_k||-->0$ при $k-->oo space$ (где под $||dot||$  имеется ввиду операторная норма)
 ]
 #proof[\
     $(1) ==> (2)$ - очевидно\
@@ -238,5 +244,118 @@ $x_0 in M, space O^+(x_0, F) = {x_k in M :k gt.eq 0}: space x_k = f_k (x_0)$
     Возьмем $epsilon = 1$, тогда $exists delta > 0$ такое что $forall y_0, space |y_0|<delta ==> |y_k| = |Phi_k y_0|<1$ и $lim_limits(k-->oo) |Phi_k y_0| = 0$.\
     Возьмем $x_0, space |x_0| = 1$, тогда для $y_0 = delta/2 x_0$ имеем $|Phi_k y_0|<1$ и $lim_limits(k-->oo) |Phi_k y_0| = 0$, значит $||Phi_k|| = sup_limits(|x_0|=1) |Phi_k x_0| = 2/delta sup_limits(|y_0|=delta/2) |Phi_k y_0| --> 0$.\
     $(3)==>(1)$ \ 
-    Фиксируем $epsilon>0$, пусть $x_0: space |y_0-x_0|<delta$. Тогда $|y_k-x_k| = |Phi_k (y_0-x_0)| lt.eq ||Phi_k|| |y_0-x_0| lt.eq M delta, space $ выберем $delta = epsilon/M, space $ получим $M delta = epsilon$ а значит $|y_k-x_k| --> 0$.
+    Фиксируем $epsilon>0$, пусть $x_0: space |y_0-x_0|<delta$. Тогда $|y_k-x_k| = |Phi_k (y_0-x_0)| lt.eq ||Phi_k|| |y_0-x_0| lt.eq ||Phi_k|| delta --> 0, space$ при $k --> oo space$ (устойчивость по Ляпунову следует из предыдущей теоремы, так как очевидно $||Phi_k||$ должно быть ограничены).
 ]
+
+#lecture("24.02.2026")
+
+#remark[
+    Заметим, что если $A_k = A, space forall k gt.eq 0$, то $Phi_k = A^k, space J = S^(-1)A S$  - жорданова форма, $J_m$ - клетка размера $m$ тогда:
+    $
+       "асимптотическая устойчивость" <==> ||J_m^k|| --> 0 <==>|lambda|<1 "(где "lambda" - собственное число клетки)"\
+       "устойчивость по Ляпунову" <==> ||J_m^k|| " - ограничено" <==>|lambda| = 1, space m = 1
+    $
+]
+
+#v(2em)
+== Дискретные функции Ляпунова.
+#v(1em)
+
+Пусть $f$ - непрерывное отображение в метрическом пространстве $(M,d)$, $space B(a,x)$ - замкнутый шар с центром в $x$ и радиуса $a$ - в метрическом пространстве компактен. Будем смотреть на неподвижные точки $f(p)=p$.
+
+#definition[
+    $V(x)$ - непрерывная функция на $(M,d)$ называется *дискретной функцией Ляпунова* для функции $f$ и неподвижной точки $p$, если:
+    + $V(x)gt.eq 0 space forall x in M$
+    + $V(x) = 0 <==> x=p$
+]
+
+#lemma[
+    $x_k in B(r,p), space x_k --> p <==> V(x_k) --> 0$
+]
+#proof[\
+    1) $==>$: - очевидно по непрерывности $V$\
+    2) $<==$: Допустим противное, тогда так как шар - компакт, существует сходящаяся подпоследовательность $X_k_m --> q$, тогда $V_k_m --> V(q) = 0$ по условию, а значит $q = p$.
+]
+
+#theorem[(об устойчивости)\
+    Пусть $V$ - дискретная функция Ляпунова для $f$ и $p$. Тогда если $exists rho >0,$\
+    $ space forall x in B(rho,p) space V(f(x)) lt.eq V(x)$, то $p$ - устойчиво 
+    (то есть $O^+(p, {f^k})$ - устойчиво)
+]
+#proof[
+    Возьмем $epsilon>0$ так, чтобы образ замкнутого шара $f(B(epsilon,p))$ лежал в области определения $V$, тогда найдем такое $delta$, что $V(x)<delta ==> x in B(epsilon, p)$.\
+    Пусть такого $delta$ нет, тогда есть последовательность ${x_k}, space V(x_k) --> 0, space d(x_k,p) gt.eq epsilon$ - что невозможно по лемме. Заметим, что существует $tau in (0,epsilon)$, что $x in B(tau, p) ==> V(x)<delta$. \
+    Пусть $x_0 in B(tau, p)$, тогда $f(x_0)=x_1$ лежит в области определения $V$, тогда $V(x_1)lt.eq V(x_0) < delta$.
+    Продолжим рассуждение по индукции (все будет работать, так как $V(x_n)<delta ==> x_n in B(epsilon,p)$ по определению $delta$), получим что траектория $X_0$ не покинет $B(epsilon,p)$ - что и требовалось.
+]
+
+Докажем аналогичную теорему для асимптотической устойчивости:
+#theorem[ (об асимптотической устойчивости)\
+    Пусть $V$ - дискретная функция Ляпунова для $f$ и $p$. \ Тогда если $exists rho >0, space (forall x in B(rho,p), space x eq.not p ==> V(f(x)) < V(x)) ==> p$ - асимптотичски устойчиво (то есть $O^+(p, {f^k})$ - асимптотически устойчиво)
+]
+#proof[
+    $epsilon < rho, space exists delta>0, space x_0 in B(delta,p), space x_k = f^k (x_0) in B(epsilon,p)$\
+    $x_k --> p, space s_k eq.not p, space v_k = V(x_k)>0, space v_k --> a, space a>0$\
+    $X = {y: exists k_m --> oo, space x_(k_m) --> y}$, тогда $V(y) = a, space forall a in X, f(y) in X$ \
+    (в процессе)
+]
+
+#pagebreak()
+
+Теперь выведем условия для неустойчивости:
+#theorem[(о неустойчивости)
+    $exists S$ - замкнутое, а также $V$ - непрервына на $S, space r>0$ тогда если:
+    + $p in S, space V(p) = 0$
+    + $exists p>0, space x in B(q,p) inter S ==> f(x) in B(r,p)inter S, space V(f(x)) > f(x)$
+    + $forall delta >0 space exists x in B(delta, p) inter S, space V(x)>0$ для $x eq.not p$
+    Тогда $p$ - неустойчиво.
+]
+#proof[
+    $
+      "Допустим противное: "epsilon = q, space exists delta >0 space forall x_0 in B(delta, p) space f^k (x_0) in B(epsilon, p) = B(q, p) "тогда:"\
+      exists x_0 in B(delta, p) inter S: space V(x_0)>0\
+      v_k = V(x_k), space x_0 eq.not p, space x_k in B(r,p)inter S, space v_0<v_1< dots ==> exists lim v_k = u>0 
+    $ 
+    Аналогично предыдущей теореме рассмотрим  $X = {lim x_k_m}, space X eq.not emptyset, space forall y in X space f(y) = a ==> V(a) = V(f(y)) > V(y) = a$ для $f(y)in X$!??
+]
+#v(2em)
+
+Теперь рассмотрим частный случай:
+пусть $f: RR^n -> RR^n, space f in C^1, space f(0)=0$
+#proposition[
+    $m in NN, space 0$ - устойчиво (асимптотичски) для $f ==> 0$ - устойчиво (асимптотически) для $f^n$
+]
+#proof[
+    $f(x) = A x + F(x), space F(0) = 0, space (partial F)/(partial x) (0) = 0, space A = D f(0)$
+]
+
+#theorem[ (об асимптотической устойчивости)
+    $forall lambda_i$ - собственного числа $A, space |lambda_i|< 1 ==> 0$ - асимптотически устойчиво
+]
+#proof[
+ (в процессе)
+]
+
+#theorem[ (о неустойчивости)
+    $exists lambda$ - собственное число $A, space |lambda_i|> 1 ==> 0$ - неустойчиво (в этой теореме предполагаем что $A$ - диагонализируемая)
+]
+#proof[
+    $|lambda_j|>lambda>1$ для $j = 1,dots,l$, а все остальные $lt.eq 1$\
+    Введем две функции $X_1 (x)= |x_1| + dots +|x_l|$ и $X_2 = |x_(l+1)| + dots + |x_n|, space X=X_1+X_2$ - норма,\
+    $S= {x: X_2(x)lt.eq X_1(x)}, space V(x) = X_1(x) - X_2(x)$ - непрерывно, $gt.eq 0$ на $S$.\
+    $
+    exists C>0," что "|x|lt.eq c X(x), " а также "exists mu >0, space 2 mu n< lambda-1, "ну и"\
+     exists p> 0 space |x|lt.eq q ==> F(x)lt.eq M/c|x|lt.eq mu X(x) space (f(B(q,0)) subset B(1,0))\
+    x in S inter B(q, 0), space x eq.not 0, space V(x)>0 ==> V(f(x)) > 0 ==> X_1(f(x))-X_2(f(x))>0 ==> f(x) in S
+    $  
+    Возьмем $x in S, space X_1(x)>0:$
+    $
+     f(x) = (f_1(x), dots, f_n (x)), space F(x) = (F_1(x), dots, F_n (x)), space f_i (x) = lambda_i x_i + F_i (x) " (из диагонализируемости)"\
+     |f_i (x)| gt.eq lambda_i |x_i| - |F_i (x)| gt.eq lambda_i |x_i| - 2mu X_1(x)\
+     |f_i (x)| lt.eq |x_i| + 2mu X_1(x)\
+     X_1(f(x)) gt.eq lambda X_1(x) - 2l mu X_1(x)\
+     X_2(f(x)) <= X_2(x) + 2(n-l)mu X_1(x)\
+     V(f(x)) = X_1 (f(x)) - X_2 (f(x)) gt.eq  V(x) + (lambda-1-2mu n)X_1(x) > V(x) " (так как "lambda-1-2mu n>0")"
+    $
+]
+ 
