@@ -185,7 +185,7 @@
 ]
 
 
-Пусnь $(M, d)$ - метрическое пространство, рассмотрим счетное семейство непрерывных функций: $F = {f_k:M -> M, k gt.eq 0}, space f_k in C(M)$, для него определим орбиту элемента:\
+Пусnь $(M, d)$ - метрическое пространство, рассмотрим счетное семейство непрерывных функций: $F = {f_k:M -> M, k gt.eq 0}, space f_k in C(M)$, для него определим траекторию элемента:\
 $x_0 in M, space O^+(x_0, F) = {x_k in M :k gt.eq 0}: space x_k = f_k (x_0)$
 
 #definition[
@@ -286,54 +286,65 @@ $
     Возьмем $epsilon>0$ так, чтобы образ замкнутого шара $f(B(epsilon,p))$ лежал в области определения $V$, тогда найдем такое $delta$, что $V(x)<delta ==> x in B(epsilon, p)$.\
     Пусть такого $delta$ нет, тогда есть последовательность ${x_k}, space V(x_k) --> 0, space d(x_k,p) gt.eq epsilon$ - что невозможно по лемме. Заметим, что существует $tau in (0,epsilon)$, что $x in B(tau, p) ==> V(x)<delta$. \
     Пусть $x_0 in B(tau, p)$, тогда $f(x_0)=x_1$ лежит в области определения $V$, тогда $V(x_1)lt.eq V(x_0) < delta$.
-    Продолжим рассуждение по индукции (все будет работать, так как $V(x_n)<delta ==> x_n in B(epsilon,p)$ по определению $delta$), получим что траектория $X_0$ не покинет $B(epsilon,p)$ - что и требовалось.
+    Продолжим рассуждение по индукции (все будет работать, так как $V(x_n)<delta ==> x_n in B(epsilon,p)$ по определению $delta$), получим что траектория $x_0$ не покинет $B(epsilon,p)$ - что и требовалось.
 ]
 
 Докажем аналогичную теорему для асимптотической устойчивости:
 #theorem[ (об асимптотической устойчивости)\
     Пусть $V$ - дискретная функция Ляпунова для $f$ и $p$. \ Тогда если $exists rho >0, space (forall x in B(rho,p), space x eq.not p ==> V(f(x)) < V(x)) ==> p$ - асимптотичски устойчиво (то есть $O^+(p, {f^k})$ - асимптотически устойчиво)
 ]
-#proof[
-    $epsilon < rho, space exists delta>0, space x_0 in B(delta,p), space x_k = f^k (x_0) in B(epsilon,p)$\
-    $x_k --> p, space s_k eq.not p, space v_k = V(x_k)>0, space v_k --> a, space a>0$\
-    $X = {y: exists k_m --> oo, space x_(k_m) --> y}$, тогда $V(y) = a, space forall a in X, f(y) in X$ \
-    (в процессе)
+#proof[\
+    По предыдущей теореме если выбрать $epsilon < rho, space exists delta>0, space x_0 in B(delta,p), space x_k = f^k (x_0) in B(epsilon,p)$\
+    Рассмотрим последовательность $x_k --> p, space x_k eq.not p,  space v_k = V(x_k)>0, " тогда "space v_k --> a,"пусть" a>0$\
+    Обозначим $X = {y: exists k_m --> oo, space x_(k_m) --> y}$ - оно не пусто по компактности (${x_k} subset B(epsilon,p)$), тогда $V(y) = a, space forall y in X, f(y) in X ==> a = V(f(y)) < V(y) = a$ (неравенство выполнено так как из $a>0$ следует $y eq.not p$) - противоречие.
 ]
 
 #pagebreak()
 
 Теперь выведем условия для неустойчивости:
 #theorem[(о неустойчивости)
-    $exists S$ - замкнутое, а также $V$ - непрервына на $S, space r>0$ тогда если:
+    Пусть $f$ - непрерывна, $p$ - неподвижная точка, \ если $exists S$ - замкнутое, $V$ - непрервына на $S, space r>0$, а также:
     + $p in S, space V(p) = 0$
-    + $exists p>0, space x in B(q,p) inter S ==> f(x) in B(r,p)inter S, space V(f(x)) > f(x)$
-    + $forall delta >0 space exists x in B(delta, p) inter S, space V(x)>0$ для $x eq.not p$
+    + $exists rho>0, space x in B(rho,p) inter S ==> f(x) in B(r,p)inter S, space V(f(x)) > f(x)$
+    + $forall delta >0 space exists x in B(delta, p) inter S, space V(x)>0$
     Тогда $p$ - неустойчиво.
 ]
 #proof[
     $
-      "Допустим противное: "epsilon = q, space exists delta >0 space forall x_0 in B(delta, p) space f^k (x_0) in B(epsilon, p) = B(q, p) "тогда:"\
+      "Допустим противное: "epsilon = q, space exists delta >0 space forall x in B(delta, p) space f^k (x) in B(epsilon, p) = B(q, p) "тогда:"\
       exists x_0 in B(delta, p) inter S: space V(x_0)>0\
-      v_k = V(x_k), space x_0 eq.not p, space x_k in B(r,p)inter S, space v_0<v_1< dots ==> exists lim v_k = u>0 
+      v_k = V(x_k), space x_0 eq.not p, space x_k in B(r,p)inter S, space v_0<v_1< dots ==> exists lim v_k = a, " пусть">0 
     $ 
-    Аналогично предыдущей теореме рассмотрим  $X = {lim x_k_m}, space X eq.not emptyset, space forall y in X space f(y) = a ==> V(a) = V(f(y)) > V(y) = a$ для $f(y)in X$!??
+    Аналогично предыдущей теореме рассмотрим  $X = {lim x_k_m}, space X eq.not emptyset, space forall y in X space f(y) in X ==> a = V(f(y)) > V(y) = a$ для $f(y)in X$!??
 ]
 #v(2em)
 
 Теперь рассмотрим частный случай:
 пусть $f: RR^n -> RR^n, space f in C^1, space f(0)=0$
 #proposition[
-    $m in NN, space 0$ - устойчиво (асимптотичски) для $f ==> 0$ - устойчиво (асимптотически) для $f^n$
+    $m in NN, space 0$ - устойчиво (асимптотичски) для $f <==> 0$ - устойчиво (асимптотически) для $f^n$
 ]
 #proof[
-    $f(x) = A x + F(x), space F(0) = 0, space (partial F)/(partial x) (0) = 0, space A = D f(0)$
+    Очевидно, если последовательность ${f^k (x_0)}$ - ограничена то и ${f^(n k) (x_0)}$ тоже, аналогчино со сходимостью к нулю и наоборот.
 ]
 
+#v(1em)
+Данную дифф функцию $f$ можно мыслить: $f(x) = A x + F(x), space F(0) = 0, space (partial F)/(partial x) (0) = 0, space A = D f(0)$
+
 #theorem[ (об асимптотической устойчивости)
-    $forall lambda_i$ - собственного числа $A, space |lambda_i|< 1 ==> 0$ - асимптотически устойчиво
+    $forall lambda_i$ - собственного числа $A, space |lambda_i|< 1 ==> 0$ - асимптотически устойчиво для $f$. 
 ]
 #proof[
- (в процессе)
+    Из условия напрямую следует что $||A^m|| --> 0$ при $m --> oo$\
+    $
+    f^m (x) = A^m x + F_m (x), space F_m (0) = 0, space (partial F_m)/(partial x) (0) = 0, space ||A^m|| = mu<1
+    $
+    Рассмотрим $mu_1 in (mu,1),space exists rho > 0 space 
+    |x| < rho ==> |F_m (x)|lt.eq (mu_1 - mu)|x|$, фиксируем $x eq.not 0$ \
+    $ 
+      V(f^m (x)) = |f^m (x)| = |A^m (x) + F_m (x)| lt.eq |A^m x| + |F_m (x)|lt.eq mu|x|+(mu_1 - mu)|x| < |x| = V(x)
+    $
+    По предыдущему утверждению и теореме об асимптотической устойчивости получаем требуемое.
 ]
 
 #theorem[ (о неустойчивости)

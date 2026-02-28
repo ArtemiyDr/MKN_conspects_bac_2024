@@ -330,7 +330,7 @@ $
 ]
 
 Рассмотрим некоторые свойства характеров:\
-Пусть $k$ - алгебраически замкнуто, $V$ - $k[G]$-модуль, $"char"k divides.not |G|, space  "char"k divides.not m$ рассмотрим $g in G, space g^m = 1$, пусть $phi$ - представление, тогда $phi(g)^m = 1 space$ (по гомоморфности)\
+Пусть $k$ - алгебраически замкнуто, $V$ - $k[G]$-модуль, $"char" k divides.not |G|, space  "char" k divides.not m$ рассмотрим $g in G, space g^m = 1$, пусть $phi$ - представление, тогда $phi(g)^m = 1 space$ (по гомоморфности)\
 Рассмотрим многочлен $t^m - 1 = product (t- xi_i), space xi_i^m=1$, подставим $phi(g)$:\
 $
 phi(g)^m-I = 0 ==> product (phi(g)-xi_i I)=0
