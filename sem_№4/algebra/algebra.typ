@@ -19,6 +19,14 @@
     radius: 5pt,
 )
 
+#let corollary = mathblock(
+    blocktitle: "Следствие",
+    counter: none,
+    fill: color.linear-rgb(75.29%, 70.84%, 56.47%), 
+    inset: 10pt,
+    radius: 5pt,
+)
+
 #let lemma = mathblock(
     blocktitle: "Лемма",
     counter: none,
@@ -62,7 +70,7 @@
 #let problem = mathblock(
     blocktitle: "Задача",
     counter: problemCounter, 
-    fill: oklch(87.86%, 0.121, 129.16deg),
+    fill: oklch(86.32%, 0.097, 331.52deg),
     inset: 10pt,
     radius: 5pt,
 )
@@ -412,4 +420,83 @@ $
 
 #problem[
     Найти все неприводимые представления для группы $Q_8$
+]
+
+#lecture("04.03.2026")
+
+#proposition[
+    Пусть $k$ - алгебраически замкнуто, $k subset D$, $D$ - тело, $dim_k D <oo ==> D=k$
+]
+#proof[
+    Так как размерность $D$ конечна, есть базис, рассмотрим для каждого базисного $d in D, space k subset {(f(d)) / (g(d)), space f,g in k[x], space g(d) eq.not 0} = l subset D$, по алгебраической замкнутости $l=k$, тогда базис $D$ лежит в $k$, что дает нам требуемое.  
+]
+
+#remark[
+    Для алгеьраически замкнутого $k, space k[G] = product_(i=1)^n M_d_i (K)$, где $ M_d_i (K) tilde.eq (K^(d_i))^(d_i), space K^(d_i)$ - пространство столбцов.\
+    Из этого также следует, что $|G| = sum_(i=1)^n d_i^2$  
+]
+
+#example[
+    Вспомним разбор представлений $S_4$: мы находили 5 представлений (2 одномерных, 1 двумерное, 2 трехмерных), а тогда по формуле:
+    $
+      24 = 1^2 + 1^2 + 2^2 + 3^2 + 3^2
+    $
+]
+
+#example[
+    Если группа $G$ абелева, все ее представления - одномерные, а тогда $k[G] = product_(i=1)^(|G|)  k$, где $k$ - алгебраически замкнуто 
+]
+
+#example[
+    Пусть $k = QQ, space G= <sigma>$ - циклическая группа простого порядка $p$, есть эпиморфизм $phi:k[x] -> k[G], space x |-> sigma$, тогда $k[x] slash_(x^p-1) tilde.eq k[G]$. Заметим, что 
+    $
+      x^p-1 = (x-1)(x^(p-1)+...+x+1), " тогда"\
+      k[G] = k[x] slash_(x-1) times k[x] slash_(x^(p-1)+ dots + x+1)
+    $ 
+    И сразу можно видеть что $k[x] slash_(x-1) tilde.eq k$
+]
+
+Заметим, что из формулы $k[G] = product^s_(i=1) M_d_i (k)$ следует также, что $k[G]$ раскладывается как модуль: 
+$
+  k[G] tilde.eq  plus.o L_i^d_i, " где "L_i" - модуль cтолбцов высоты "d_i""
+$
+Поймем что $chi_(N plus.o M)=chi_N + chi_M$ (как матрицы) - действительно, можно выбрать в каждом модуле свой базис, тогда главная дианональ будет состоять из диагоналей соответствующих матриц, и след будет равен сумме следов. 
+$
+  chi_(k[G]) = sum_limits(i=1)^s d_i chi_L_i " - регулярный характер "(chi_("reg"))
+$
+Тогда $d_i$ - степень $i$-ого представления.
+Опять вернемся к формуле, заметим что $dim_k Z(k[G]) = s$ - число неприводимых представлений.\
+#v(2em)
+Возьмем в $k[G]$ базис - само $G$.\
+$chi_("reg") (g) = |G|$, если $g = 1$, и $0$ иначе\
+Тогда:
+$
+  chi_i (e_i) = delta_(i j) d_i, space (delta_(i j) = 0, " если " i eq.not j " и " 1 " иначе"), space
+  e_i = sum_(sigma in G) a_sigma sigma, " где " a_sigma in k," тогда":\
+  chi_"reg" (e_i tau^(-1)) = sum_(sigma in G) a_sigma chi_"reg" (sigma tau ^(-1)) = a_tau|G| ==> chi_"reg" = sum_(i=1)^s d_i chi_i, " и соответственно" \
+  a_tau = (sum d_i chi_i (e_i tau ^(-1)))/(|G|) = (d_i chi_i (tau^(-1))) / (|G|), " ну а тогда:"\
+  e_i = sum_(tau in G) (d_i chi_i (tau^(-1)))/(|G|) tau = d_i/(|G|) sum_(tau in G) chi_i (tau^(-1))
+$
+
+#corollary[
+    $"char" k divides.not d_i$
+]
+
+#theorem[
+    Неприводимые характеры $chi_1, chi_2, dots, chi_s$ - линейно независимы над $k$.
+]
+#proof[\
+    Пусть $alpha_1 chi_1 + dots + alpha_s chi_s = 0, space alpha_i in K$, тогда 
+    $
+    alpha_1 chi_1 (e_i) + dots + alpha_s chi_s (e_i) = 0 ==> a_i chi_i (e_i) = 0 ==> a_i d_i = 0,space forall i
+    $ ну и так как $"char" k divides.not d_i ==> a_i = 0$
+]
+
+#remark[
+    Рассмотрим ${f: G -> K, space forall g,h in G, space f(g h g^(-1)) = f(h)}$ - число классов сопряженных элементов равно $s$, что также равно размерности пространства функций на классах сопряженных элементов. Тогда по теореме любое такое $f$ - линейная комбинация неприводимых характеров.
+]
+
+#problem[
+    + Доказать, что группа порядка 24 не может совпадать со своим коммутантом. 
+    + Доказать что любая группа порялка 24 разрешима.
 ]
