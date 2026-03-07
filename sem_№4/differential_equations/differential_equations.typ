@@ -19,6 +19,14 @@
     radius: 5pt,
 )
 
+#let corollary = mathblock(
+    blocktitle: "Следствие",
+    counter: none,
+    fill: color.linear-rgb(75.29%, 70.84%, 56.47%), 
+    inset: 10pt,
+    radius: 5pt,
+)
+
 #let lemma = mathblock(
     blocktitle: "Лемма",
     counter: none,
@@ -279,7 +287,7 @@ $
 
 #theorem[(об устойчивости)\
     Пусть $V$ - дискретная функция Ляпунова для $f$ и $p$. Тогда если $exists rho >0,$\
-    $ space forall x in B(rho,p) space V(f(x)) lt.eq V(x)$, то $p$ - устойчиво 
+    $ space forall x in B(rho,p) space V(f(x)) lt.eq V(x)$, то $p$ - устойчива 
     (то есть $O^+(p, {f^k})$ - устойчиво)
 ]
 #proof[
@@ -291,7 +299,7 @@ $
 
 Докажем аналогичную теорему для асимптотической устойчивости:
 #theorem[ (об асимптотической устойчивости)\
-    Пусть $V$ - дискретная функция Ляпунова для $f$ и $p$. \ Тогда если $exists rho >0, space (forall x in B(rho,p), space x eq.not p ==> V(f(x)) < V(x)) ==> p$ - асимптотичски устойчиво (то есть $O^+(p, {f^k})$ - асимптотически устойчиво)
+    Пусть $V$ - дискретная функция Ляпунова для $f$ и $p$. \ Тогда если $exists rho >0, space (forall x in B(rho,p), space x eq.not p ==> V(f(x)) < V(x)) ==> p$ - асимптотичски устойчива (то есть $O^+(p, {f^k})$ - асимптотически устойчиво)
 ]
 #proof[\
     По предыдущей теореме если выбрать $epsilon < rho, space exists delta>0, space x_0 in B(delta,p), space x_k = f^k (x_0) in B(epsilon,p)$\
@@ -307,7 +315,7 @@ $
     + $p in S, space V(p) = 0$
     + $exists rho>0, space x in B(rho,p) inter S ==> f(x) in B(r,p)inter S, space V(f(x)) > f(x)$
     + $forall delta >0 space exists x in B(delta, p) inter S, space V(x)>0$
-    Тогда $p$ - неустойчиво.
+    Тогда $p$ - неустойчива.
 ]
 #proof[
     $
@@ -322,7 +330,7 @@ $
 Теперь рассмотрим частный случай:
 пусть $f: RR^n -> RR^n, space f in C^1, space f(0)=0$
 #proposition[
-    $m in NN, space 0$ - устойчиво (асимптотичски) для $f <==> 0$ - устойчиво (асимптотически) для $f^n$
+    $m in NN, space 0$ - устойчива (асимптотичски) для $f <==> 0$ - устойчива (асимптотически) для $f^n$
 ]
 #proof[
     Очевидно, если последовательность ${f^k (x_0)}$ - ограничена то и ${f^(n k) (x_0)}$ тоже, аналогчино со сходимостью к нулю и наоборот.
@@ -332,7 +340,7 @@ $
 Данную дифф функцию $f$ можно мыслить: $f(x) = A x + F(x), space F(0) = 0, space (partial F)/(partial x) (0) = 0, space A = D f(0)$
 
 #theorem[ (об асимптотической устойчивости)
-    $forall lambda_i$ - собственного числа $A, space |lambda_i|< 1 ==> 0$ - асимптотически устойчиво для $f$. 
+    $forall lambda_i$ - собственного числа $A, space |lambda_i|< 1 ==> 0$ - асимптотически устойчива для $f$. 
 ]
 #proof[
     Из условия напрямую следует что $||A^m|| --> 0$ при $m --> oo$\
@@ -348,7 +356,7 @@ $
 ]
 
 #theorem[ (о неустойчивости)
-    $exists lambda$ - собственное число $A, space |lambda_i|> 1 ==> 0$ - неустойчиво (в этой теореме предполагаем что $A$ - диагонализируемая)
+    $exists lambda$ - собственное число $A, space |lambda_i|> 1 ==> 0$ - неустойчива (в этой теореме предполагаем что $A$ - диагонализируемая)
 ]
 #proof[
     $|lambda_j|>lambda>1$ для $j = 1,dots,l$, а все остальные $lt.eq 1$\
@@ -370,3 +378,131 @@ $
     $
 ]
  
+#lecture("03.03.2026")
+
+#example[
+    Рассмотрим $f(x)=x+ a x^3, space f(0)=0, space D f (0)=1$ \
+    + Если $a = 0$ функция устойчива но не асимптотически.
+    + $a>0$, тогда $S = RR, space V(x)=|x|, space V(f(x)) = |x+ a x^3|>|x|$ - не устойчива,\
+    + $a<0, space x eq.not 0 ==> V(f(x))< V(x)$ - значит есть асимптотическая устойчивость.  
+]
+
+#v(2em)
+== Устойчивость автономных систем.
+#v(1em)
+
+Пусть есть автономная система в $RR^n: space $ $dot(x) = X(x), space X in C^1, space X(0)=0$\
+Также есть $phi(t,x) " - решение с начальным значением "x: space phi(0,x)= x, space I(0)=RR$, по теореме об интегральной непрерывности:
+$
+  exists R>0 space forall x_0, space |x_0|<R, space [0,1] subset I(x_0), space f(x)= phi(1,x), space |x|< R\
+  k >= 0, space f^k (x) = phi(k,x), space f^(k+1)(x)=phi(k+1,x) = phi (k,phi(1,x)) \ " (это групповое свойство, доказывали его когда впервые определяли автономные системы)"
+$
+
+#theorem[
+    Решение $x eq.triple 0$ - устойчиво (асимптотически) $<==>$ точка 0 устойчива (асимптотически) для дискретной функции $f$ (уже было, то есть $O^+(0, {f^k})$ - устойчиво (асимптотически))
+]
+#proof[
+    + $<==$:\
+        Пусть $epsilon>0 space exists epsilon_1 < R$, что $|x|<epsilon_1 ==> [0,1] subset I(x), space |phi(t,x)|<epsilon, space t in [0,1]$\
+        $exists delta > 0, space forall x_0, space |x_0|< delta ==> |f^k (x_0)|< epsilon_1 space forall k in NN$, тогда для любого $t>=0$ представим его как $t = k + tau, space tau,k >=0, space k$ - целая часть. Тогда:
+        $
+        |phi(t,x_0)| = |phi(tau, phi(k,x_0))| = |phi(tau, f^k (x_0))| < epsilon " (по выбору "epsilon_1") "forall t >=0
+        $
+        А это и означает устойчивость решения. Асимптотическая устойчивость доказываетсяс точностью аналогично.
+    + $==>:$ аналогично, развернем доказательство.
+]
+
+#definition[
+    Матрица, у которой для всех собственных чисел $lambda_i:  "Re"lambda_i<0$ называется *Гурвицевой*.
+]
+
+#theorem[(Ляпунова об устойчвости по первому приближению)\
+    $dot(x) = A x + g(t,x), space x in RR^n, space g(t,0) eq.triple 0 space t>= 0$ Тогда если $A$ - гурвицецева, $(|g(t,x)|)/(|x|) arrows.rr 0$ при $|x|-->0$ на $[0, oo) ==> x eq.triple 0$ асимптотически устойчиво.
+]
+#proof[
+    $-lambda>"Re"lambda_i,space lambda>=0, space space exists k>=1 space ||e^(A t)||<=k e^(-lambda t), space t>=0$\
+    $x(t): space dot(x(t)) = A x(t) + g(t, x(t)), space x(t) = e^(A t) x(0) + integral_0^t e^(A(t-s)) g(s,x(s)) d s, space t>=0$\
+    Тогда $|x(t)| <= k e^(-lambda t)|x(0)|+k integral_0^t e^(-lambda(t-s)) |g(s,x(s))| d s$\
+    Пусть $delta in (0,lambda), space exists tau >0 space |x|<=tau ==> |g(t,x)|<=delta/k|x|, space t>=0$\
+    $|x(0)|< tau/k ==> |x(t)|<tau, space t>=0$, пусть не так, тогда:
+    $
+      exists T>0 space |x(t)|<=tau, space t in (0,T)\
+      |x(t)|<= k e^(-lambda t)|x(0)|+delta integral_0^t e^(-lambda(t-s)) |x(s)| d s, space phi(t) = |x(t)|e^(lambda t)\
+      0<= phi(t)<=k|x(0)|+delta integral phi(s) d s, space phi(t)<=k |x_0| e^(delta t)\
+      |x(t)|<=tau e^((delta - lambda)t) -->0 " (так как "delta - lambda<0") " ==> |x(T)|< tau??!
+    $
+]
+
+#definition[
+    *Функцией Ляпунова в шаре* $|x|< r$ называется такая $V in C^1, space V(x)>=0, V(x)=0<==>x=0$\
+    $x, space y = phi(t,x) space dot(V) = partial/(partial t)(V(phi(t,x))) = (partial V)/(partial x) (phi(t,x)) dot partial/(partial t) (phi (t,x))$ то есть $dot(V) = (partial V)/(partial x) (y) X(y)$,\
+    Тогда $dot(V)$ - *производная* $V$
+]
+
+#theorem[(об устойчивости)\
+    $|x|<r, space dot(V)<=0 ==> x eq.triple 0$ - устойчиво.
+]
+#proof[
+    $exists rho >0, space forall x, |x|<rho space |phi(t,x)|<r, space t in [0,1]$\
+    $V(f(x)) = V(x) + integral_0^1 dot(V)(phi(s,x)) d s, space V(f(x))<=V(x)$ 
+]
+
+#theorem[(об асимптотической устойчивости)\
+    $|x|<r, space dot(V)<0, space x eq.not 0 ==> x eq.triple 0$ - асимптотически устойчиво.
+]
+#proof[
+    $phi(t,x) eq.not 0 " на " [0,1] ==> V(f(x))<= V(x), space x eq.not 0$
+]
+
+#theorem[(о неустойчивости)\
+    Если $exists S_0$ и функция $V(x)in C^1$ на $S inter {|x|<r}$, а также:
+    + $S = overline(S)_0 ==> 0 in S \\ S_0, space dot(V)(x)>0$ на $S_0 inter {|x|<r}$
+    + $x in partial S_0 inter {|x|<r} ==> V(x)=0$
+    + $forall delta>0 space exists x_0 in S_0, space |x_0|<delta, space V(x_0)>0 $
+    Тогда $x eq.triple 0$ - неустойчиво.
+]
+#proof[
+    $rho > 0 ,space forall x, |x|< rho, space |phi(t,x)|<r, space t in [0,1] space delta < rho$\
+    $phi(t, x_0) in S_0, space t in [0,1], space V(phi(t,x_0)) = V(x_0) + integral_0^t dot(V)(phi(s,x_0)) d s$, заметим что интеграл $>0$, \
+    $V(phi(t,x_0)) = V(x_0) + integral_0^t dot(V)(phi(s,x_0)) d s > V(x_0)>0, space S^* = S inter {x: V(x)>= V(x_0)}, space x_k = f^k (x_0), space v_k = V(x_k)$, дальше как в дискретном случае.
+]
+
+#v(2em)
+#align(center)[#text(size: 20pt)[= Динамические системы.]]
+#v(2em)
+
+Пусть $X$ - топологическое пространство, $f: X-> X$ - гомеоморфизм\
+$f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots compose f^alpha$ ($m$ раз), где $alpha = 1$, если $m>0$ и $alpha = -1$, если $m<0$.
+
+#definition[
+    $phi: ZZ times X -> X, space phi(m,x) = f^m (x)$ - *динамическая система с дискретным временем*, если:
+    + $phi(0,x) = x$
+    + $phi(m_1 + m_2, x) = phi(m_1,x) + phi(m_2,x)$
+    + $phi(m, dot)$ - непрерывна для любого $m$
+]
+
+#definition[
+    Для функции $f$ *траекторией* точки $x in X$ будем называть 
+    $
+    O(x,f) = {f^k (x), space k in ZZ}\
+    O^+(x, f) = {f^k (x), space k >= 0}\
+    O^-(x, f) = {f^k (x), space k <= 0}
+    $
+]
+
+#definition[
+    Множество $I$ *инвариантно* относительно $f$, если $forall x in I space O(x,f) subset I $
+]
+
+#lemma[
+    $I$ - инвариантно $<==>$ $f(I) = I$ (очевидно)
+]
+
+#corollary[
+    Если $I, J$ - инвариантны $==> overline(I), partial I, "Int" I, I union J, I inter J$ - инвариантны.
+]
+
+Перечислим виды траекторий:
++ Тракетория неподвижной точки $f (x) = x$
++ Периодическая точка: $m>0, space x, f(x), dots , f^(m-1)(x)$ - различны, $f^m (x)=x$ \ (можем сразу заметить, что $O(x,f)$ - конечно $<==> space x$ - периодическая)
++ $f^k (x) eq.not f^n (x)$ при $k eq.not n$
