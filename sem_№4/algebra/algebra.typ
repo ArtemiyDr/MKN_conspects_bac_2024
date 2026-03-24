@@ -584,3 +584,101 @@ $sum_(k=1)^s chi_k (g) chi_k (h^(-1)) = |Z(g)|$
 #problem[
     Составить таблицу характеров для $A_4, D_4, Q_8$
 ]
+
+#lecture("18.03.2026")
+
+#remark[
+    Пусть $chi_1, space chi_2$ - неприводимые характеры, тогда:
+    $
+      <chi_1,chi_2> = 1/(|G|) sum_(tau in G) chi_1(tau) chi_2(tau^(-1)) = cases(0: space chi_1 eq.not chi_2, 1: space chi_1 = chi_2)
+    $
+]
+
+#remark[
+    Пусть $chi$ - характер, 
+    $
+      chi = sum n_i chi_i, " где "chi_i" различные неприводимые, "n_i in NN\
+      <chi, chi> = sum n_i^2
+    $
+]
+
+#remark[
+    Пусть ${e_i}$ - базис $V, space g in S_n, space g(e_i) = e_(g(i))$
+    $
+      V = <e_1+...+e_n> plus.o U\
+      U = {sum alpha_i e_i | sum alpha_i = 0}
+    $ 
+    Пусть $Phi$ - представление, тогда $chi_Phi = chi + tilde(chi)$ - характер представления перестановки $g$, то есть $tr(dot g)$
+]
+
+#proposition[
+    $<chi_Phi, chi_Phi> = 2$
+]
+#proof[
+    Действие $G = S_n$ на ${1,...,n}$ транзитивно, пусть $N(g)$ - количество неподвижных элементов при перестановке $g in G$. По лемме Бернсайда 
+    $
+      sum_(g in G) N(g) = 1 dot |S_n|
+    $ 
+    Так как число орбит ровно 1.\
+    Пусть $G_i = {g in G: space g(i) = i}, space g in G_n, space N^prime (g)$ - число неподвижных элементов среди ${1,...,n-1}$. Тогда $N^prime (g) = N(g) - 1$ и 
+    $
+      sum_(g in G_n) (N(g) - 1)=|G_n| ==> sum_(g in G_n) N(g) = 2 |G_n|
+    $
+    Аналогично для любого $i$ кроме $n$. Тогда:
+    $
+      sum_(i=1)^n sum_(g in G_n) N(g) = 2n|G_n| = 2|S_n|
+    $ 
+    Каждый $g$ посчитали в сумме ровно $N(g)$ раз, а тогда 
+    $
+      sum_(g in union G_i) N^2(g) = 2|S_n| ==> sum_(g in G) N^2(g) = 2|S_n|
+    $
+    Ну и к характерам:
+    $
+      <chi_Phi, chi_Phi> = 1/(|G|) sum_(tau in G) chi_Phi(tau) chi_Phi(tau^(-1)) = 1/(|G|) sum_(tau in G)  N(g)^2 = 2
+    $
+    Так как след матрицы перестановки - буквально количество неподвижных элементов, и у обратной перестановки те же неподвижные элементы.
+]
+
+#corollary[
+    $tilde(chi)$ - неприводим
+]
+
+#remark[
+    $G,H$ - конечные группы, $U$ - $G$-модуль, $V$ - $H$-модуль. \
+    Тогда $U times.o V$ - $G times H$-модуль, где
+    $
+      (g,h) (u times.o v) = g(u) times.o g(v)
+    $
+]
+
+#problem[
+    Доказать что эта формула задает структуру $G times H$-модуля на $U times.o V$
+]
+
+#remark[
+    Характер $U times.o V$ - $chi times.square rho$:
+    $
+      <chi_1 times.square rho_1,chi_2 times.square rho_2> = sum_(g,h) (chi_1 times.square rho_1) (g,h) dot (chi_2 times.square rho_2) (g,h)^(-1) = \ = 1/(|G|dot|H|) sum_(g,h) chi_1(g) rho_1(h) chi_2 (g^(-1)) rho_2(g^(-1)) = \ = 1/(|G|dot|H|) (sum_g chi_1(g) chi_2(g^(-1))) dot (sum_h rho_1(h) rho_2(h^(-1)))= <chi_1,chi_2> <rho_1,rho_2>
+    $
+    В частности из этой формулы следует, что если $chi, rho$ - неприводимы, то и $chi times.square rho$ тоже неприводим.
+]
+
+#problem[
+    Доказать что $(chi times.square rho) (g,h) = chi(g) dot rho(h)$
+]
+
+#v(1cm)
+
+Рассмотрим групповое кольцо $ZZ[G]$. Поймем что из $k[G_1] tilde.eq k[G_2]$ не следует $G_1 tilde.eq G_2$ (есть контрпример).\
+В случае если $G_1, G_2$ - абелевы, есть импликация $k[G_1] tilde.eq k[G_2] ==> G_1 tilde.eq G_2$
+
+#theorem[
+    $G$ - конечная абелева группа, $a in ZZ[G]^*, "ord"(a)<oo ==> exists g in G, space a = plus.minus g$
+]
+
+#corollary[
+    $G_1,G_2$ - абелевы, тогда $k[G_1] tilde.eq k[G_2] ==> G_1 tilde.eq G_2$
+]
+#proof[\
+     Заметим что $ZZ[G_1] tilde.eq ZZ[G_2] ==> ZZ[G_1]^* tilde.eq ZZ[G_2]^*$,  тогда $G_1 times ZZ slash_(2ZZ) tilde.eq G_2 times ZZ slash_(2ZZ) ==> G_1 tilde.eq G_2$ 
+]
