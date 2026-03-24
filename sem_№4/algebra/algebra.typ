@@ -573,7 +573,7 @@ $sum_(k=1)^s chi_k (g) chi_k (h^(-1)) = |Z(g)|$
     $V = <e_1-e_2, e_2-e_2>, space chi_2 (1,2) = tr mat(-1,1;0,1) = 0$\
     И для $(1,2,3)$: $space chi_2 (1,2,3) = tr mat(0,-1;1,-1) = -1$
     $
-      "Тогда: " sum_(tau in S_3) chi^prime_1 (tau) chi_2 (tau^(-1)) = 1dot 2+ 3 dot (-1) dot 0 + 2 dot 1 dot (-1) = 0 " - проверили неприводимость"
+      "Тогда: " sum_(tau in S_3) chi^prime_1 (tau) chi_2 (tau^(-1)) = 1dot 2+ 3 dot (-1) dot 0 + 2 dot 1 dot (-1) = 0 " - проверили неизоморфность"
     $
 ]
 
