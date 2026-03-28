@@ -669,16 +669,83 @@ $sum_(k=1)^s chi_k (g) chi_k (h^(-1)) = |Z(g)|$
 
 #v(1cm)
 
-Рассмотрим групповое кольцо $ZZ[G]$. Поймем что из $k[G_1] tilde.eq k[G_2]$ не следует $G_1 tilde.eq G_2$ (есть контрпример).\
-В случае если $G_1, G_2$ - абелевы, есть импликация $k[G_1] tilde.eq k[G_2] ==> G_1 tilde.eq G_2$
+Рассмотрим групповое кольцо $ZZ[G]$. Поймем что из $k[G_1] tilde.eq k[G_2]$ не следует $G_1 tilde.eq G_2$, например можно взять две разные абелевы группы одинокового порядка, их групповые кольца изоморфны $k^n$.\
+В случае если $G_1, G_2$ - абелевы, есть следующее утверждение:
 
 #theorem[
     $G$ - конечная абелева группа, $a in ZZ[G]^*, "ord"(a)<oo ==> exists g in G, space a = plus.minus g$
 ]
 
 #corollary[
-    $G_1,G_2$ - абелевы, тогда $k[G_1] tilde.eq k[G_2] ==> G_1 tilde.eq G_2$
+    $G_1,G_2$ - абелевы, тогда $ZZ[G_1] tilde.eq ZZ[G_2] ==> G_1 tilde.eq G_2$
 ]
 #proof[\
      Заметим что $ZZ[G_1] tilde.eq ZZ[G_2] ==> ZZ[G_1]^* tilde.eq ZZ[G_2]^*$,  тогда $G_1 times ZZ slash_(2ZZ) tilde.eq G_2 times ZZ slash_(2ZZ) ==> G_1 tilde.eq G_2$ 
+]
+
+#lecture("25.03.2026")
+
+#proof[
+    Докажем теорему: $ZZ[G] tilde.eq ZZ^(plus.o n)$, пусть ${e_i}_(i=1)^n$ - центральные идемпотенты. Тогда:
+    $
+      a =sum_(sigma in G) a_sigma sigma = sum_(i=1)^n beta_i e_i
+    $
+    Но у $a$ конечный порядок, обозначим его за $m$, значит $beta^m_i = 1$. \
+    Пусть $tau$ - такой элемент группы, что $a_tau eq.not 0$. Тогда:
+    $
+      sum_(sigma in G) a_sigma sigma tau^(-1) = sum_(i=1)^n beta_i e_i tau^(-1)
+    $ 
+    Применм регулярный характер и получим:
+    $
+      n a_tau = sum_(i=1)^n beta_i e_i tau^(-1) chi_"reg" (e_i tau^(-1)) = sum_(i=1)^n beta_i chi_i (tau^(-1)) 
+    $
+    Но $|beta_i chi_i (tau^(-1))|=1 ==> beta_i chi_i (tau^(-1)) = a_tau = plus.minus 1$ то есть $beta_i = plus.minus chi_i (tau)$, ну и так как ${e_i}$ - базис, \ $a = plus.minus tau$
+]
+
+#v(1cm)
+
+#lemma[
+    $A$ - кольцо, $M$ - конечнопорожденный $A$-модуль, $phi in "End"_A (M)$, тогда $phi$ - корень унитарного многочлена. 
+]
+#proof[
+    #align(center, diagram({
+	node((-1, -1), [$A^n$])
+	node((0, -1), [$A^n$])
+	node((-1, 0), [$M$])
+	node((0, 0), [$M$])
+	edge((-1, -1), (0, -1), [$tilde(phi)$], label-side: left, "->")
+	edge((-1, -1), (-1, 0), "->")
+	edge((-1, 0), (0, 0), [$phi$], label-side: left, "->")
+	edge((0, -1), (0, 0), "->")}))
+    Так как $tilde(phi)$ обнуляется своим характеристическим многочленом, $phi$ тоже им обнуляется.
+]
+
+#theorem[
+    $k$ - алгебраически замкнутое поле, $"char" k = 0, space d$ - степень неприводимого представления, тогда $d divides n$
+]
+#proof[\
+    Заметим что $n/(d_i) = sum_(tau in G) chi_i (tau^(-1)) tau$. Пусть $r = n/(d_i)$, умножим на $e_i$:
+    $
+      n/(d_i) e_i = sum_(tau in G) chi_i (tau^(-1)) tau e_i
+    $
+    Рассмотрим абелеву группу $A$, порожденную $zeta_n^k sigma e_i$. Рассмотрим в $A$ эндоморфизм умножения на $r$. Поймем что это действительно эндоморфизм:
+    $
+      r zeta_n^k sigma e_i = sum_(tau in G) zeta_n^k sigma chi_i (tau^(-1)) tau e_i
+    $
+    Значит $f(r)a=0$ для какого-то унитарного многочлена с целыми коэффицентами и любого $a in M ==> f eq.triple 0$ (если взять $a = e_i$) 
+]
+
+#v(1cm)
+
+#theorem[ (Бернсайда)\
+    Пусть $p,q$ - различные простые, $|G| = p^a q^b$ тогда $G$ - разрешима.
+]
+
+Перед теоремой докажем несколько вспомогательных утверждений:
+
+#proposition[
+    Пусть $G$ - конечная группа, $k = CC, space V$ - неприводимый $G$-модуль, тогда найдется гомоморфизм $omega:ZZ(k[G]) --> k, space z v = omega(z)v$
+]
+#proof[
+    Пусть $alpha$ - собственное число $z, space V_alpha$ - собственное подпространство $V$. Докажем что $V_alpha = V$: если $g in G, space v in V_alpha, space z g v = g z v = alpha g v$ то есть $V_alpha$ - $G$-подмодуль, но $V$ - неприводимый модуль, тогда $V = V_alpha$.  
 ]
