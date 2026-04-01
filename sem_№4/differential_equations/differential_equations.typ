@@ -780,9 +780,10 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
     И пусть $exists q in W^s (p) inter W^u (p), space p eq.not q$ -  траектория между такими точками называется *двоякоасимптотической* или *гомоклинической* и они образуют хаотичную фигуру из петель (цитата Пуанкаре о связи с проблемой трёх тел)
 ]
 
-#v(2cm)
-== Хаос
-#v(1cm)
+#v(2em)
+#align(center)[#text(size: 20pt)[= Теория Хаоса.]]
+#v(2em)
+
 
 #definition[
     Пусть $I$ - инвариантное множество гомеоморфизма $f$, оно обладает *свойством чувствительности к начальным данным*, если:
@@ -815,12 +816,105 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
     Будем рассматривать минимальные периоды точек отрезка\
     Period 3 implies chaos (1973)
 ]
-Пусть $f:[0,1]-->[0,1]$ - непрерывно, заметим что у него есть неподвижная точка ($f(x)-x$ имеет разные знаки на концах). Пусть есть точка периода 2\
-$f(a)=b, space f(b) = c, space f(c) = a, space a<b<c$, есть $q: space f(q)=b$\
+#lemma[
+    Пусть $f:[0,1]-->[0,1]$ - непрерывно, пусть есть точка периода 3, тогда есть точка любого минимального периода.
+]
+#proof[
+    В процессе
+    // $f(a)=b, space f(b) = c, space f(c) = a, space a<b<c$, если порядок другой, возьмём подходящую степень $f$, для $f^k$ можем брать точки периода $k n$.\
+    // Пусть $n>3: space A_0 = [b,c] = I_1, space I_0 = [a,b], space f(I_0)supset I_1, space f(I_1) supset I_0  $ построим из них последовательность вложенных отрезков $A_(n-1) subset A_(n-2) subset ... subset A_0, space f^k (A_k) = I_(mod_2 (k-1)), space k>=1$ итеративно ($A_1$ выберем как часть $I_1$, что $f(A_1)=I_0$):\
+    // Пусть $f^(i) (A_(i)) = I_0$ тогда имеем $A_(i+1) subset A_(i)$, что $f^(i+1) (A_(i+1)) = I_1 subset f(I_0)$ (и аналогично для четных $i$).\
+    // Тогда пусть $n$ - нечетно, иначе возьмем вместо $f - f^2^l, space n = 2^l h, space h$-нечетно, $f^n (A_(n-1)) = f(I_0) supset I_1 supset ... supset A_(n-1) ==>$ у отображения $f^n$ есть неподвижная точка ($f^n (x)-x$ имеет разные знаки на концах). Тогда $exists p in A_(n-1): f^n (p) = p$, поймем что это минимальный период: пусть есть $m<n$ - минимальный период $p$ тогда $m$ - нечетно (так как делит $n$), тогда $p in A_m ==> f^m (p) in I_0 ==> p in I_0 inter I_1 ==> p = b ==> A_(n-3) = [a,c] ??!$
+]
+ #lecture("31.03.2026")
 
-Случай 1: есть неподвижная точка больше $q$
+== Аттракторы
 
-Случай 2: нет неподвижных точек больше $q: space f^2(q)-q=c-q>0, space f^2(q)-1<=0$\
+#v(1cm)
 
-Ну и при $n>=3: space A_(n-2) subset A_(n-3) subset ... subset A_0, space f(A_k) = A_(k-1)$ где $A_k$ - отрезки, $A_0 = [b,c] = I_1, space I_0 = [a,b]$ так как $f^(n-2) (A_(n-2)) = A_0 = I_1$ и есть $A_(n-1) subset A_(n-2), space f(A_(n-1))=I_0$\
- (critical ошибка)
+#definition[
+    Пусть $f: X--> X$ - гомеоморфизм метрических пространств $(X,d)$,\
+    $I eq.not emptyset$ - компактное, $f(I)=I$ называется *устойчивым по Ляпунову*, если: 
+    $
+      forall V supset I " - открытое, " exists U supset I " - открытое, " f^k (U) subset V, space k>=0
+    $
+    И также $I$ *аттрактор*, если он устойчив по ляпунову и:
+    $
+      exists W supset I " - открытое, " forall x in W, space d(f^k (x), I) -->0, space k-->oo
+    $
+    Ну и наконец $I$ - *глобальный аттрактор*, если:
+    $
+      D(I) = {x in X: space d(f^k (x),I)-->0, space k-->oo} = X
+    $
+    $D(I)$ называется *областью притяжения*.
+]
+
+#proposition[
+    $D(I)$ - открыто, где $I$ - аттрактор 
+]
+#proof[ \
+    $x in D(I): space exists n>=0, space f^n (x) in W $ (открыто, из определения аттрактора)$==> exists N$ - окрестность $x, space f^n (N)subset W ==> N subset D(I)$
+]
+
+#theorem[ 
+    Если $exists U$ - открытое, $overline(U)$ - компактное,  $
+    exists N>0: space f^(N) (overline(U)), f^(N+1) (overline(U)) subset U$, тогда:
+    $
+      I =  inter.big_(k>=0) f^(k N) (overline(U)) " - аттрактор, " overline(U) subset D(I), space f^((k+1)N) (overline(U))subset f^(k N) (overline(U))
+    $ 
+]
+#proof[
+    Докажем, что $I$ - атрактор: $I eq.not emptyset, space I$ - компакт,\
+    +  Инвариантность: $space f^(N+1) (I) = inter.big_(k>=0) f^(k N(N+1)) (overline(U)) = I, space f^N (I) = I ==> f(I) = I$
+    + Устойчивость по ляпунову: $space Y supset I$ - открытое, $exists V_0 supset I$ - открытое, $V_0,f(V_0),...,f^(N-1) (V_0) subset Y$ $ exists m_0: space f^(m_0 N) (overline(U)) subset V_0$ - пусть не так, тогда $exists m_k -->oo, space x_k in f^(m_k N) (overline(U)) \\ V_0 ==> x_k in overline(U) \\ V_0$ - компакт, а тогда $x_k --> x in overline(U) \\ V_0$. $x_k subset f^(m_k N) (overline(U)) subset f^(l N) (overline(U))$ - можем выбрать такое $l$, что $m_k > l$ для больших $k$. Тогда $x in f^(l N) (overline(U)) subset I$. \ Пусть $V = f^(m_0 N) (U), space k>=0, space k = l N + l_1, space 0<=l_1<=N-1$ тогда: $
+    f^k (V) = f^(l_1) (f^(l N) (V)) = f^(l_1) (f^((m_0+l)N) (U)) subset Y
+    $ Фиксируем $epsilon>0, space exists epsilon_1: space d(x,I)<epsilon_1 ==>d(f^k (x), I)< epsilon, space 0<=k<=N-1$.\ Пусть $V_1$ -- $epsilon_1$-окрестность $I ==> exists m_0: space f^(m_0 N) (overline(U)) subset V_1$\ $x in overline(U), space l>=m_0 N, space l = m N+k, space 0<=k<=N-1 ==> f^(m N) (x) in V_1, space f^l (x) = f^k (f^(m N) (x)), space f^(m N) (x) in V_1$ - это и есть что нам надо.
+]
+
+#v(1cm)
+
+Перейдем к $X=RR^n, space D_r = {x: space |x|<r}, space r>0$
+
+#definition[
+    $f$ (пототчечно) *диссипативный*, если $
+    exists R>0, space forall x in RR^n, space exists k(x): space f^k (x)in D_r, space k>=k(x)
+    $
+]
+
+#theorem[
+    Диссипативный $f$ обладает глобальным аттрактором.
+]
+#proof[
+    + $exists h>0, space f^k (overline(D_R)) subset D_h, space k>=0$ - пусть не так, тогда $exists h_i --> oo, space x_i in overline(D_R), space k_i: space f^(k_i) (x_i) in.not D_h_i, space h_i>R$. Рассмотрим первое $k<=k_i$, что $f^k (x_i) in.not overline(D_R)$. Заметим, что $x_i --> x_0$ (из компактности замыкания шара) тогда:$
+      exists k_0: space f^(k_0) (x_0) in D_R, space exists M>0, space f^k (x_0) in D_M, space 0<=k<=k_0 
+    $ Для больших $i$: $f^k (x_i) in D_M, space 0<=k<=k_0, space h_i>M, space f^(k_0) (x_i) in D_R, space k_i<k_0$ - имеем противоречие
+    + $overline(D_(h+1)), space forall x in overline(D_(h+1)): space exists k(x): space f^k (x) in D_R, space k>= k(x)$\ $forall x in overline(D_(h+1)), space exists V(x): space f^(k(x)) (V(x)) subset D_R, space f^k (V(x)) in D_R, space k>=k(x)$. \ Пусть $kappa = max(k_1,k_2,...,k_m)$, где $k_i$ - соответствует $V_i$ - конечному покрытию компакта. \ Тогда: $ f^kappa (overline(D_(h+1))) subset D_h subset D_(h+1), space f^(kappa+1) (overline(D_(h+1))) subset D_(h+1)$\ Тогда $exists I$ - аттрактор (по предыдущей теореме).
+]
+
+#remark[
+    Можно предположить, что $I$ из нашей теоремы должно лежать в $D_R$, но есть контрпример: возьмем пространство траекторий похожее на гавайскую серьгу - где диссипативность будет достигаться в круге малого радиуса вокруг нуля, но аттрактор такой системы будет, например, один из дисков серьги - он может "вылезать" за малый круг в нуле.
+]
+
+#v(1cm)
+
+Рассмотрим систему $dot(x) = X(x), space x in RR^n, space phi(t,x)$ - динамическая система с непрерывным временем,\
+$exists U$ - открытое, $overline(U)$ - компактное. $exists T>0: space phi(t,x) in U, space t>= T, space x in overline(U)$\
+$
+ Phi_tau = union.big_(x in overline(U)\ t>=tau) phi(t,x), space tau^prime > tau ==> Phi_(tau^prime) subset Phi_tau
+$
+тогда имеем аналогичную теорему:
+
+#theorem[
+    $I = inter.big_(tau>=T) overline(Phi_tau)$ - аттрактор.
+]
+Доказывается аналогично.\
+#definition[
+    $phi$ - *диссипатично*, если $
+    exists R>0, space forall x in RR^n, space exists t(x): space phi(t,x) in D_r, space t>=t(x)
+    $
+]
+
+И аналогично же есть следующее утверждение:
+#proposition[
+    У диссипатичного потока есть глобальный аттрактор.
+]
