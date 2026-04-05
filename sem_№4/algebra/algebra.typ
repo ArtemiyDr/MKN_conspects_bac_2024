@@ -752,6 +752,8 @@ $sum_(k=1)^s chi_k (g) chi_k (h^(-1)) = |Z(g)|$
     Пусть $alpha$ - собственное число $z, space V_alpha$ - собственное подпространство $V$. Докажем что $V_alpha = V$: если $g in G, space v in V_alpha, space z g v = g z v = alpha g v$ то есть $V_alpha$ - $G$-подмодуль, но $V$ - неприводимый модуль, тогда $V = V_alpha$.  
 ]
 
+#pagebreak()
+
 #lecture("30.03.2026")
 
 #definition[
