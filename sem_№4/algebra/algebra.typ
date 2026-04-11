@@ -877,7 +877,7 @@ $
 #theorem[(Гильберт о нулях)\
     Для алгебраически замкнутого поля $K$, $L = K[t_1,...,t_n], space f_1,...,f_m,h in L$:
     $
-      (cases(f_1(alpha_1,...,alpha_n) = 0, ..., f_m (t_1,...,t_n) = 0) ==> h(alpha_1,...,alpha_n) = 0) ==> exists s in NN, space h^s in (f_1,...,f_m)
+      (cases(f_1(alpha_1,...,alpha_n) = 0, ..., f_m (alpha_1,...,alpha_n) = 0) ==> h(alpha_1,...,alpha_n) = 0) ==> exists s in NN, space h^s in (f_1,...,f_m)
     $
 ]
 #proof[
