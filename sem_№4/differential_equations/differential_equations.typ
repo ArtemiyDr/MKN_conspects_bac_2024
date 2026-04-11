@@ -745,7 +745,7 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
     *Подкова Смейла*:\
     Рассмотрим отображение $f_1:[0,1]^2 --> [0,1/4] times [0,4]$ - простое сжатие по одной координате и растяжение по другой, а также $f_2$, которая отображает $[0,1/4] times [0,4]$ в "подкову", заходящую "ножками" на квадрат (далее $Q$) так, что в пересечении дает два вертикальных прямоугольника - $Q_0, Q_1 space (f = f_1 compose f_2)$:
     $
-      f(Q)inter Q = Q_1 union Q_2
+      f(Q)inter Q = Q_0 union Q_1
     $
     Заметим что образ $f^2(Q_0)$ тоже пересекается с $Q$ по двум прямоугольникам - это будут прямоугольники второго ранга, и так далее. Таким образом $f^n (Q) inter Q$ дает $2^n$ вертикальных прямоугольничков $n$ ранга.
 
@@ -781,8 +781,8 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
 ]
 
 #v(2em)
-#align(center)[#text(size: 20pt)[= Теория Хаоса.]]
-#v(2em)
+== Хаос
+#v(1cm)
 
 
 #definition[
@@ -819,13 +819,16 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
 #lemma[
     Пусть $f:[0,1]-->[0,1]$ - непрерывно, пусть есть точка периода 3, тогда есть точка любого минимального периода.
 ]
-#proof[
-    В процессе
-    // $f(a)=b, space f(b) = c, space f(c) = a, space a<b<c$, если порядок другой, возьмём подходящую степень $f$, для $f^k$ можем брать точки периода $k n$.\
-    // Пусть $n>3: space A_0 = [b,c] = I_1, space I_0 = [a,b], space f(I_0)supset I_1, space f(I_1) supset I_0  $ построим из них последовательность вложенных отрезков $A_(n-1) subset A_(n-2) subset ... subset A_0, space f^k (A_k) = I_(mod_2 (k-1)), space k>=1$ итеративно ($A_1$ выберем как часть $I_1$, что $f(A_1)=I_0$):\
-    // Пусть $f^(i) (A_(i)) = I_0$ тогда имеем $A_(i+1) subset A_(i)$, что $f^(i+1) (A_(i+1)) = I_1 subset f(I_0)$ (и аналогично для четных $i$).\
-    // Тогда пусть $n$ - нечетно, иначе возьмем вместо $f - f^2^l, space n = 2^l h, space h$-нечетно, $f^n (A_(n-1)) = f(I_0) supset I_1 supset ... supset A_(n-1) ==>$ у отображения $f^n$ есть неподвижная точка ($f^n (x)-x$ имеет разные знаки на концах). Тогда $exists p in A_(n-1): f^n (p) = p$, поймем что это минимальный период: пусть есть $m<n$ - минимальный период $p$ тогда $m$ - нечетно (так как делит $n$), тогда $p in A_m ==> f^m (p) in I_0 ==> p in I_0 inter I_1 ==> p = b ==> A_(n-3) = [a,c] ??!$
-]
+#proof[\  
+    Пусть $f(a)=b, space f(b) = c, space f(c) = a, space a<b<c$, случай другого порядка аналогичен.\
+    Сразу заметим, чте есть неподвижная точка ($f(x)-x$ имеет разные знаки на концах).\
+    Докажем что есть точка периода 2: $f(b)=c>b$ и $f(c)=a<b$, значит есть точка $q, space f(q)=b$. Рассмотрим 2 случая:
+    + Есть неподвижная минимальная точка $d>q$, тогда заметим что есть неподвижная точка $e in (b,q)$ так как $f(b)>b$ и $f(q)<q$. Теперь заметим, что $f(q)<e, space f(d)>e$ тогда есть $h in (q,d), space f(h)=e$. Тогда заметим, что $f^2(q)>q, space f^2(d)<d$ тогда есть точка $m in (q,d)$, неподвижная при $f^2$, и так как она меньше $d$, она не может быть неподвижной при $f$, значит ее период 2.
+    + Пусть нет неподвижной минимальной точки $d>q$, тогда $f^2(q)>q, space f^2(1)<=1$ тогда есть корень $f^2(x)=x$, причем эта точка не будет неподвижной по предположению.
+    Теперь найдем точку периода $n>3: space A_0 = [b,c] = I_1, space I_0 = [a,b], space f(I_0)supset I_1, space f(I_1) supset I_0  $ построим последовательность $A_(n-1) subset A_(n-2) subset ... subset A_0, space f (A_(k+1)) = A_k, space k>=1$ итеративно ($A_(i+1)$ выберем как часть $A_i$, что $f(A_(i+1))=A_i$) и выберем $A_(n-1) subset A_(n-2), space f^(n-1) (A_(n-1)) = I_0$ - можем так сделать, потому что $f^(n-1) (A_(n-2)) = f(I_1) = [a,c] supset I_0$\
+    Заметим, что $f^n (A_(n-1)) = f(I_0)supset I_1 supset A_(n-1)$, у функции $f^n$ по предыдущим рассуждениям есть неподвижная точка $p$ в $A_(n-1)$, причем это точка действительно периода $n$, 
+    так как $p,f(p),...,f^(n-2) (p) in I_1$, а $f^(n-1) (p) in I_0$ - таким образом, период может быть меньше $n$ только если $f^(n-1) (p) in I_1 ==> f^(n-1) (p) = b$, но тогда $f^n (p) = c = p$ - но это невозможно, так как тогда $a = f(c) in f(A_(n-1)) subset f(A_(n-2)) = A_(n-3) subset I_1$?!! ($n$>3 поэтому $A_(n-3)$ существует)
+    ]
  #lecture("31.03.2026")
 
 == Аттракторы
@@ -860,15 +863,18 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
     Если $exists U$ - открытое, $overline(U)$ - компактное,  $
     exists N>0: space f^(N) (overline(U)), f^(N+1) (overline(U)) subset U$, тогда:
     $
-      I =  inter.big_(k>=0) f^(k N) (overline(U)) " - аттрактор, " overline(U) subset D(I), space f^((k+1)N) (overline(U))subset f^(k N) (overline(U))
+      I =  inter.big_(k>=0) f^(k N) (overline(U)) " - аттрактор, " overline(U) subset D(I)
     $ 
 ]
 #proof[
     Докажем, что $I$ - атрактор: $I eq.not emptyset, space I$ - компакт,\
-    +  Инвариантность: $space f^(N+1) (I) = inter.big_(k>=0) f^(k N(N+1)) (overline(U)) = I, space f^N (I) = I ==> f(I) = I$
-    + Устойчивость по ляпунову: $space Y supset I$ - открытое, $exists V_0 supset I$ - открытое, $V_0,f(V_0),...,f^(N-1) (V_0) subset Y$ $ exists m_0: space f^(m_0 N) (overline(U)) subset V_0$ - пусть не так, тогда $exists m_k -->oo, space x_k in f^(m_k N) (overline(U)) \\ V_0 ==> x_k in overline(U) \\ V_0$ - компакт, а тогда $x_k --> x in overline(U) \\ V_0$. $x_k subset f^(m_k N) (overline(U)) subset f^(l N) (overline(U))$ - можем выбрать такое $l$, что $m_k > l$ для больших $k$. Тогда $x in f^(l N) (overline(U)) subset I$. \ Пусть $V = f^(m_0 N) (U), space k>=0, space k = l N + l_1, space 0<=l_1<=N-1$ тогда: $
-    f^k (V) = f^(l_1) (f^(l N) (V)) = f^(l_1) (f^((m_0+l)N) (U)) subset Y
-    $ Фиксируем $epsilon>0, space exists epsilon_1: space d(x,I)<epsilon_1 ==>d(f^k (x), I)< epsilon, space 0<=k<=N-1$.\ Пусть $V_1$ -- $epsilon_1$-окрестность $I ==> exists m_0: space f^(m_0 N) (overline(U)) subset V_1$\ $x in overline(U), space l>=m_0 N, space l = m N+k, space 0<=k<=N-1 ==> f^(m N) (x) in V_1, space f^l (x) = f^k (f^(m N) (x)), space f^(m N) (x) in V_1$ - это и есть что нам надо.
+    + Инвариантность:\ заметим что из условия следует $f^(N(k+1)) (overline(U)) subset f^(N k) (overline(U))$, тогда очевидно $f^(N+1) (I) = inter.big_(k>=0) f^(k N(N+1)) (overline(U)) = I, space f^N (I)= inter.big_(k>=0) f^(k N^2) (overline(U)) = I ==> f(I) = I$ (любая подпоследовательность вложенных подмножеств имеет одинаковый предел в пересечении)
+    + Устойчивость по ляпунову:\ фиксируем $space Y supset I$ - открытое, возьмем такое $V_0 supset I$ - открытое, что (оно существует так как $I$ - инвариантно): $
+      V_0, space f(V_0), ..., space f^(N-1) (V_0) subset Y 
+    $ \ Докажем, что $ exists m_0: space f^(m N) (overline(U)) subset V_0, space m>=m_0$ - пусть не так, тогда $exists m_k -->oo, space x_k in f^(m_k N) (overline(U)) \\ V_0 ==> x_k in overline(U) \\ V_0$ - компакт, а тогда у $x_k$ есть точка сгущения $x in overline(U) \\ V_0$ - по вложенности нашей последовательности $f^(m_k N) (overline(U))$ эта точка будет точкой сгущения для любого $m_k$, а тогда по компактности $x in f^(m_k N) (overline(U))$ и $x in I inter overline(U) \\ V_0 = emptyset$ - противоречие.\ Пусть $V = f^(m_0 N) (U), space k>=0, space k = l N + l_1, space 0<=l_1<=N-1$ тогда: $
+    f^k (V) = f^(l_1) (f^(l N) (V)) = f^(l_1) (f^((m_0+l)N) (U)) subset Y " - по свойству "V_0
+    $
+    + Докажем cвойство аттрактора:\ фиксируем $epsilon>0$ и возьмем $epsilon_1$ (опять же, есть по инвариантности $I$)$: space d(x,I)<epsilon_1 ==>d(f^k (x), I)< epsilon, space 0<=k<=N-1$.\ Пусть $V_1$ -- $epsilon_1$-окрестность $I ==> exists m_0: space f^(m N) (overline(U)) subset V_1, space m>=m_0$ (доказывается аналогично $V_0$)\ Пусть $x in overline(U), space l>=m_0 N, space l = m N+k, space 0<=k<=N-1, space m>=m_0 ==> f^(m N) (x) in V_1, space f^l (x) = f^k (f^(m N) (x))<epsilon$ - значит $U$ подходит как требуемая в определении окрестность.
 ]
 
 #v(1cm)
@@ -877,7 +883,7 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
 
 #definition[
     $f$ (пототчечно) *диссипативный*, если $
-    exists R>0, space forall x in RR^n, space exists k(x): space f^k (x)in D_r, space k>=k(x)
+    exists R>0, space forall x in RR^n, space exists k(x): space f^k (x)in D_R, space k>=k(x)
     $
 ]
 
@@ -885,10 +891,10 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
     Диссипативный $f$ обладает глобальным аттрактором.
 ]
 #proof[
-    + $exists h>0, space f^k (overline(D_R)) subset D_h, space k>=0$ - пусть не так, тогда $exists h_i --> oo, space x_i in overline(D_R), space k_i: space f^(k_i) (x_i) in.not D_h_i, space h_i>R$. Рассмотрим первое $k<=k_i$, что $f^k (x_i) in.not overline(D_R)$. Заметим, что $x_i --> x_0$ (из компактности замыкания шара) тогда:$
+    + $exists h>0, space f^k (overline(D_R)) subset D_h, space k>=0$ - пусть не так, тогда $exists h_i --> oo, space x_i in overline(D_R), space k_i: space f^(k_i) (x_i) in.not D_h_i, space h_i>R$. Поймем что $x_i$ сначала лежит в $overline(D_R)$, затем сколько-то $k$ не лежит, а потом снова лежит по диссипатичности. Заметим, что $x_i --> x_0$ (из компактности замыкания шара) тогда:$
       exists k_0: space f^(k_0) (x_0) in D_R, space exists M>0, space f^k (x_0) in D_M, space 0<=k<=k_0 
-    $ Для больших $i$: $f^k (x_i) in D_M, space 0<=k<=k_0, space h_i>M, space f^(k_0) (x_i) in D_R, space k_i<k_0$ - имеем противоречие
-    + $overline(D_(h+1)), space forall x in overline(D_(h+1)): space exists k(x): space f^k (x) in D_R, space k>= k(x)$\ $forall x in overline(D_(h+1)), space exists V(x): space f^(k(x)) (V(x)) subset D_R, space f^k (V(x)) in D_R, space k>=k(x)$. \ Пусть $kappa = max(k_1,k_2,...,k_m)$, где $k_i$ - соответствует $V_i$ - конечному покрытию компакта. \ Тогда: $ f^kappa (overline(D_(h+1))) subset D_h subset D_(h+1), space f^(kappa+1) (overline(D_(h+1))) subset D_(h+1)$\ Тогда $exists I$ - аттрактор (по предыдущей теореме).
+    $ Для больших $i$: $f^k (x_i) in D_M, space 0<=k<=k_0, space h_i>M, space f^(k_0) (x_i) in D_R, space k_i<k_0$ - имеем противоречие - траектории ограничены.
+    + $overline(D_(h+1)), space forall x in overline(D_(h+1)): space exists k(x): space f^k (x) in D_R, space k>= k(x)$\ $forall x in overline(D_(h+1)), space exists V(x): space f^(k(x)) (V(x)) subset D_R, space f^k (V(x)) subset D_R, space k>=k(x)$. \ Пусть $kappa = max(k_1,k_2,...,k_m)$, где $k_i$ - соответствует $V_i$ - конечному покрытию выделенного из покрытия компакта $overline(D_(h+1))$ всеми возможными $V(x)$. \ Тогда: $ f^(kappa) (overline(D_(h+1))) subset D_R subset D_h subset D_(h+1), space f^(kappa+1) (overline(D_(h+1))) subset D_(h+1)$ - из доказанного нами в пункте 1 утверждения.\ Тогда $exists I$ - аттрактор (по предыдущей теореме) и он глобален из свойства диссипатичности.
 ]
 
 #remark[
@@ -897,7 +903,7 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
 
 #v(1cm)
 
-Рассмотрим систему $dot(x) = X(x), space x in RR^n, space phi(t,x)$ - динамическая система с непрерывным временем,\
+Рассмотрим систему $dot(x) = F(x), space x in RR^n, space phi(t,x)$ - динамическая система с непрерывным временем,\
 $exists U$ - открытое, $overline(U)$ - компактное. $exists T>0: space phi(t,x) in U, space t>= T, space x in overline(U)$\
 $
  Phi_tau = union.big_(x in overline(U)\ t>=tau) phi(t,x), space tau^prime > tau ==> Phi_(tau^prime) subset Phi_tau
@@ -907,7 +913,10 @@ $
 #theorem[
     $I = inter.big_(tau>=T) overline(Phi_tau)$ - аттрактор.
 ]
-Доказывается аналогично.\
+#proof[
+    Доказывается аналогично, кроме инвариантности: пусть $x in I$ тогда $x = lim phi(tau_k,y_k), space y_k in overline(U), space tau_k -->oo$. Пусть $x^prime = phi(theta,x), space x^prime = lim phi(theta + tau_k,y_k) in I$;\ обратное включение очевидно.
+]
+
 #definition[
     $phi$ - *диссипатично*, если $
     exists R>0, space forall x in RR^n, space exists t(x): space phi(t,x) in D_r, space t>=t(x)
@@ -917,4 +926,90 @@ $
 И аналогично же есть следующее утверждение:
 #proposition[
     У диссипатичного потока есть глобальный аттрактор.
+]
+
+#lecture("07.04.2026")
+
+#theorem[(достаточное условие диссипатичности)\
+    Пусть $phi$ - динамическая система для $dot(x) = F(x)$, если $exists V (x), space x in RR^n, space V in C^1$ и \ $exists rho>0, space B(r), space C(r)" - функции, при" space r>=rho$:
+    + $B(r) --> oo, space r --> oo, space V(x)>=B(|x|), space |x|>=rho$
+    + $C$ - непрерывно, положительно, $dot(V) = (partial V(x))/(partial x) F(x)<=-C(|x|), space |x|>=rho$
+    Тогда $phi$ - диссипативна.
+]
+#proof[
+    Пусть $a=sup_(x in overline(D_rho)) V(x), space exists R>rho, space B(r)>=a, space r>=R, space S = partial D_rho$, проверим что все траектории заходят в $D_R$ за конечное время:\
+    + $x_0 in D_rho$ если $phi(t,x_0) in overline(D_rho), space t>=0$ то траектории уже в шаре. Если $phi(t,x_0) in.not overline(D_rho)$, то $exists theta >=0, space phi(theta, x_0) = y_0 in S$. Пусть в $[theta, theta+epsilon]$ имеем $phi(t,x_0) in.not D_rho$ тогда:$
+      B(|phi(t,y_0)|)<=V(phi(t,y_0))<=V(y_0)<=a ==> |phi(t,y_0)|<R, space t>=theta " - что и требовалось"
+    $
+    + $x_0 in.not D_rho$ опять же, интересен только случай $phi(t,x_0) in.not D_rho$. Заметим что $V$ убывает вдоль траектории и следовательно не больше $V(x_0)$, а тогда $B(|phi(t,x_0)|)<=V(phi(t,x_0))<=V(x_0)$, а так как $B(r)-->oo$ при $r-->oo$, то $exists T>0, space B(|phi(T,x_0)|)>V(x_0)$ - противоречие.]
+
+#pagebreak()
+
+#example[\
+    *Система Лоуренса*:\
+    $
+      cases(dot(x) = -sigma x + sigma y, dot(y) = r x-y-x z, dot(z) = -b z + x y) 
+    $
+    Возьмем $sigma = 10, space r = 28, space b = 8/3$ тогда подходят:
+    $
+      V = 1/2(x^2+y^2+(z-sigma-r)^2)", тогда"\
+      dot(V) = x(-sigma x+ sigma y) + y(r x-y-x z)+(z-sigma-r) (-b z+x y) = \
+      = -sigma x^2+x(sigma y+r y- y z+y z- sigma y-z y)-y^2-b z(z-sigma-r) = \ 
+      =-sigma x^2-y^2 - b(z-(sigma+r)/2)^2+b/4(sigma+r)^2
+    $
+    Заметим что $V/(x^2+y^2+z^2) --> 1/2, space x^2+y^2+z^2-->oo$, тогда $V>=1/4(x^2+y^2+z^2) = B$ вне шара и \
+    $
+      exists delta>0, space dot(V)<=-delta(x^2+y^2+z^2) " вне шара"
+    $
+    Из чего следует диссипатичность системы Лоуренса.
+]
+
+#v(2em)
+== Гиперболичность
+#v(0.5cm)
+
+Пусть $M$ - гладкое многообразие, $f$ - диффеоморфизм $in C^1, space T_x M$ - касательное подпространство.
+
+#definition[
+    $Lambda subset M$ - гиперболическое множество, если $Lambda$ - компакт и $f$-инвариантно, а также
+    $exists C>=1, space lambda in(0,1), space exists S(x),U(x)subset T_x M$ - линейные подпространства, что:
+    + $D f(x) S(x) = S(f(x)), space D f(x) U(x) = U(f(x))$
+    + $S(x) plus.o U(x) = T_x M$
+    + $|D f^k (x)|<=C lambda^k |v|, space k>=0, v in S(x)$
+    + $|D f^(-k) (x)|<=C lambda^k |v|, space k>=0, v in U(x)$
+]
+
+#proposition[
+    $M=RR^n, space L$ - линейный автоморфизм $x|->A x$, тогда ${0}$ - гиперболическое, если $forall lambda_i$ - собственное число, $|lambda_i|eq.not 1$
+]
+#proof[
+    Пусть $lambda_1,...,lambda_m<1$ и $lambda_(m+1),...,lambda_n>1$ Рассмотрим жорданову форму $J = T^(-1)A T = G plus.o F$, где $G$ - сумма жордановых клеток собственных чисел до $m$, а $F$ соответственно от $m+1$ до $n$. \
+    Тогда $|G^k|<=C_1 lambda^k, space k>=0$ для некоторого $lambda in (0,1)$ и $|F^(-k)|<=C_2 lambda^k, space k>=0$ для того же $lambda$, тогда $S = T G, space U = T F$ - искомые пространства - действительно, нетрудно видеть что вcе условия выполняются. 
+]
+
+#example[
+    Гиперболический автоморфизм тора имеет собственные числа $(3 - sqrt(5))/2, space 2/(3 + sqrt(5))$ и следовательно гиперболичен (действительно, его главное свойство содержится в названии)
+]
+
+#v(1cm)
+
+#definition[
+    Гомеоморфизмы $f:M-->M, space g:N-->N$ - *топологически сопряжены*, если $exists h:M-->N$ - гомеоморфзим, что $forall k in ZZ: space h compose f^k = g^k compose h$ \
+    
+    Пусть $I,J$ - инвариантные множества $f,g$ соответственно, $I,J$ *локально топологически сопряжены*, если $exists U supset I, space V supset J$ - окрестности и гомеоморфизм $h:U-->V$, что:
+    + $h(I) = J$
+    + $h(f^k (x)) = g^k (h(x)), space x in U, space k in K(x,U) = {n>0: space f^k (x) in U, space 0<=k<=n} union {n<=0: space f^k (x) in U, space n<=k<=0}$
+]
+
+Пусть $L$ - гиперболический лин. автоморфизм $RR^n, space L: x|->A x, space A = mat(B,0;0,C), space ||B||,||C||<1$\
+возьмем такое $delta>0, space |A x|>=delta|x|$ и рассмотрим $f(x) = A x+F(x)$:
++ $F(0)=0$
++ $exists epsilon>0, space "Lip"F<=epsilon$
++ $|F(x)|-->0, space |x|-->oo$
+
+#theorem[(Гробмана-Хартмана)\
+    В наших условиях, если:
+    + $epsilon<delta$
+    + $c<=max(||B||,||C^(-1)||)+epsilon+epsilon||C^(-1)||<1$
+    тогда $L,f$ - топологически сопряженные в $RR^n$.
 ]
