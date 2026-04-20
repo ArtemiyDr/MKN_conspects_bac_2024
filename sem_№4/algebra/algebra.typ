@@ -887,3 +887,83 @@ $
       sum f_i tilde(g_i) = h^s, " где "s" - степень общего знаменателя"
     $
 ]
+
+#lecture("15.04.2026")
+
+#definition[
+    Для коммутативного кольца $A$ *размерностью* называется такое максимальное $n$, что:
+    $
+      exists p_1 subset.neq p_2 subset.neq ... subset.neq p_n subset A - " цепочка простых идеалов длины "n
+    $
+]
+
+#example[
+   + $A$ - поле $<==> dim(A) = 0$
+   + $A$ - область главных идеалов $<==> dim(A) = 1$
+   + $A$ - нетерово $<==> dim(A) < oo$
+   + $A = K[t_1,...,t_n] ==> dim(A) >= n$, - так как $(t_1) subset (t_1,t_2) subset ... subset (t_1,...,t_n)$
+]
+
+#problem[
+    $A subset B$ - кольца, докажите что $dim(A) <= dim(B)$.
+]
+
+#problem[
+    Докажите что $dim(K[t_1,...,t_n]) = n$.
+]
+
+#problem[
+    Вычислите $dim(Z[x])$.
+]
+
+#theorem[
+    Пусть $A$ - нетерово, тогда $dim(A[x]) = dim(A) + 1$
+]
+(Без доказательства)
+
+#v(2em)
+#align(center)[#text(size: 20pt)[= Полилинейная алгебра.]]
+#v(2em)
+
+#definition[
+    Для поля $K, space$*$K$-алгеброй* называется векторное пространство $A$ над $K$ с определенной на нем ассоциативной операцией умножения, согласованной с умножением на скаляр, то есть:
+    $
+      forall lambda in K, space a,b in A: space lambda (a b) = (lambda a) b = a (lambda b)
+    $
+    *Градуировкой* $K$-алгебры называется разложение $A = plus.o.big_(n=0)^oo S_n$ - разбиение в прямую сумму векторных пространств, таких что $S_i S_j subset S_(i+j) space forall i,j$.
+]
+
+#problem[
+    Обозначим $V^(times.o n) = V times.o V times.o ... times.o V$ ($n$ раз), докажите что $V^(times.o n) times.o V^(times.o m) = V^(times.o (n+m))$ 
+]
+
+#example[
+    + $K[t_1,...,t_n]$ - градуированная алгебра, где $S_n$ - пространство однородных многочленов степени $n$.
+    + Тензорная алгебра $T(V) = plus.o.big_(n=0)^oo V^(times.o n) space (V^(times.o 0) = K)$  - градуированная алгебра, где $S_n = V^(times.o n)$
+]
+
+#definition[
+    Идеал $I subset A$ называется *однородным*, если он является подпространством градуировки, то есть $I = plus.o.big_(n=0)^oo I_n, space (I_n subset S_n)$.
+]
+
+#remark[
+    + Если $I = (a_alpha)_(alpha in A) subset A$ где $a_alpha in S_i_alpha$ то $I$ - однородный идеал.
+    + Для однородного идеала $I subset A, space A slash_I = plus.o.big_(n=0)^oo S_n slash_I_n$ - градуированная алгебра.
+]
+
+#problem[
+    Докажите что идеал в $T(v)$ порожденный тензорными произведениями вида $...times.o v times.o ... times.o v times.o ...$, порожден также и произведениями вида $...times.o v times.o v times.o ...$
+]
+
+#definition[
+    Если $T(V) supset I = (...v times.o v...)$ то $T(V) slash_I$ называется *внешней алгеброй* или *алгеброй Грассмана*, обозначим ее $Lambda(V): space Lambda(V) = plus.o.big_(n=0)^oo Lambda^n (V), space Lambda^n (V)$ - *внешние степени* $V$.\
+    Также обозначим за $v_1 and v_2 and ... and v_n = overline(v_1 times.o v_2 times.o ... times.o v_n)$
+]
+
+#remark[
+    + $forall v in V: space v and v = 0$ 
+    + Если $v_i=v_j$ то $v_1 and ... and v_n = 0$
+    + $v and u = - u and v$
+    + Если $sigma in S_n ==> v_1 and ... and v_n = "sign"(sigma)dot v_(sigma(1)) and ... and v_(sigma(n))$
+    + Если $v_1 ... v_n$ порождают $V$, то всевозможные $w_1 and ... and w_m, space w_i in {v_i}$ порождают $Lambda^m (V)$
+]
