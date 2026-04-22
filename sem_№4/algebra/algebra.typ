@@ -973,10 +973,99 @@ $
     + $v and u = - u and v$
     + Если $sigma in S_n ==> v_1 and ... and v_n = "sign"(sigma)dot v_(sigma(1)) and ... and v_(sigma(n))$
     + Если $v_1 ... v_n$ порождают $V$, то всевозможные $w_1 and ... and w_m, space w_i in {v_i}$ порождают $Lambda^m (V)$
+    + Если $v_1...v_n$ порождают $V$, то всевозможные $v_i_1 and ... and v_i_m, space i_1<...<i_m$ порождают $Lambda^m (V)$
 ]
 
 #lecture("20.04.2026")
-(в процессе)
+
+#proposition[
+    Если $v_1...v_n$ порождают $V$, то $v_1 and ... and v_m eq.not 0 in Lambda^m (V)$
+]
+#proof[\
+    Чтобы доказать что $m_1 times.o m_2 eq.not 0,space m_1 in M_1, space m_2 in M_2$ нужно рассмотреть билинейную $f: M_1 times M_2 --> M_3, space f(m_1,m_2)eq.not 0$
+    и так как существует $tilde(f) space (f = tilde(f) compose times.o):$
+    #align(center, diagram({
+        node((-1, 0), [$M_1 times M_2$])
+        node((0, 1), [$M_3$])
+        node((1, 0), [$M_1 times.circle M_2$])
+        edge((-1, 0), (0, 1), [$f$], label-side: right, "->")
+        edge((-1, 0), (1, 0), [$times.circle$], label-side: left, "->")
+        edge((1, 0), (0, 1), [$tilde(f)$], label-side: left, "->")
+    }))
+    $tilde(f) (m_1 times.o m_2) eq.not 0 ==>m_1 times.o m_2 eq.not 0$ - для случая $v_1,..,v_n$ аналогично.\
+    Возьмём в качестве такой функции $det:V^n --> K$ (для фиксированного базиса $v_1,...,v_n$) - по полилинейности $det: V^(times n) --> K$ и $det(...times.o v times.o...times.o v times.o...)=0$
+    так что $det:Lambda^n (V) --> K$ и $det(v_1,..,v_n)=1eq.not 0$
+]
+
+#v(1cm)
+
+#definition[
+    Обозначим ${1,2...,n} = [n], space I subset [n]$ будем называть *мультипликаторами*. Для $I$ фиксируем вид
+    ${i_1<i_2<...<i_k}$ и определим $v_I = v_i_1 and ... and v_i_k in Lambda^k (V)$
+]
+
+#proposition[
+    Если $v_1...v_n$ порождают $V$, то $v_I$ для всех $|I|=m$ составляют базис $Lambda^m (V)$
+]
+#proof[
+    Порождаемость уже доказано, осталось показать линейную независимость. Пусть $sum_(|I|=m) alpha_I v_I = 0$, 
+    фиксируем $I_0$ и домножим на $v_([n]\\I_0)$, для $I eq.not I_0: space v_I and v_([n]\\I_0)=0$
+    так что в сумме останется $a_I_0 v_I_0 and v_([n]\\I_0) = plus.minus a_(I_0) v_[n]$ поэтому равенство нулю означает $a_I_0=0$ что и требовалось.
+]
+
+#proposition[
+    Если $dim V = n, space m<=n, space  u_1 and...and u_m=0 <==>{u_i}$ - линейно независимый набор.
+]
+#proof[
+    + $==>: space$ Пусть зависимы, тогда $u_i = sum_(j eq.not i) alpha_j u_j$ и $u_1 and...and u_m = sum_(j eq.not i) alpha_j u_j and u_2 and...and u_m = 0$?!!\
+    + $<==: space$ Пусть $u_i$ - линейно независимый набор, у пусть $u_1 and...and u_m eq.not 0$, дополним набор до базиса: $u_1,...,u_n$ порождают $V$ и по предыдущему предложению $u_1 and...and u_n eq.not 0?!!$
+]
+
+#lemma[
+    Пусть $e_1,...,e_n$ - базис $V$, тогда для любого $u_1,...,u_n in V$ (они образуют матрицу $U$ размера $n times n$):
+    $
+      u_1 and...and u_n = det(U) dot e_1 and...and e_n
+    $
+]
+#proof[
+    Рассмотрим $f: Lambda^n (V)-->K$ - линейное отображение, заданное $f(e_1,...,e_n)=1$,
+    тогда $f:K^(n times n)-->K$ - полилинейная на столбцах функция, зануляющаяся при совпадении столбцов,
+    причем $f(E_n) = 1$ то есть $f$ удовлетовряет аксиоме определителя. Значит $f(U) = det(U)$, а тогда $f(u_1 and...and u_n) = det(U)$, что дает искомое по линейности $f$.
+]
+
+#theorem[(формула Бине-Коши)\
+    Пусть для $B in K^(k times n), space c in K^(n times k):$
+    $
+      det(B C) = cases(0: space k>n, det(B) dot det(С): k=n, sum_(I subset [n], |I|=k) det(B_I) dot det(C^I): space k<n)
+    $
+    Где $B_I$ состоит только из столбцов из $I$ а $C^I$ - только из строк из $I$.
+]
+#proof[
+    Пусть $e_1,...,e_k$ - базис $U = K^k, space B= (b_(i j)), space C = (c_(i j))$.\
+    Возьмем 
+    $
+      u_i = sum_(i=1)^k b_(i j) e_j, space v_r = sum_(j=1)^n c_(j r) u_j ==> v_r = sum_(1<=j<=n, space 1<=i<=k,) c_(j r) b_(i j) e_i
+    $
+    То есть $(v_1,..,v_k) = (B C)(e_1,...,e_k)$ и $v_1 and ... and v_k = det(B C) dot e_1 and...and e_k$.\
+    С другой стороны: 
+    $
+      v_1 and... and v_k = sum_(|I|=k) det(C^I)u^I, " а " u^I = det(B_I) dot e_1 and...and e_k
+    $ 
+    Откуда и следует искомое.
+]
+
+#v(1cm)
+
+#definition[
+    Элемент $omega in Lambda (V)$ называется *разложимым*, если он представим в виде $v_1 and...and v_n$ для некоторых $v_i in V$
+]
+#remark[
+    Для любого $omega in Lambda^n (V), space n = dim V$ - он разложим в базисе.
+]
+
+#problem[
+    Докажите что $forall omega in Lambda^(n-1) (V), space n = dim V$ - разложим (в случае если $n>=4$).
+]
 
 #lecture("22.04.2026")
 
@@ -1045,7 +1134,7 @@ $
     + $==>: space omega = x and y==> omega and omega = x and y and x and y = 0$
     + $<==: space$ пусть $dim U = n, space e_1,..,e_n$ - базис, докажем индукцией по $n$ (базис $omega = 0$): \ Пусть $omega = omega^prime + v and e_n$, тогда:$
       0 = (omega^prime + v and e_n) and (omega^prime + v and e_n) = omega^prime and omega^prime + 2omega^prime and v and e_n
-    $ Так как $omega^prime and omega^prime$ линейно независим от второго слагаемого, применим индукционное прпедположение ($omega^prime = x and y$) и по линейной зависимости $omega^prime$ и $v: space v = alpha x + beta y$:
+    $ Так как $omega^prime and omega^prime$ линейно независим от второго слагаемого, применим индукционное предположение ($omega^prime = x and y$) и по линейной зависимости $omega^prime$ и $v: space v = alpha x + beta y$:
     $
       omega = x and y+v and e_n = x and y + alpha x and e_n + beta y and e_n = (x- beta e_n)and(y+alpha e_n) - " искомое разложение."
     $
