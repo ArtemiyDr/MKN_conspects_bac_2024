@@ -925,6 +925,10 @@ $
 #align(center)[#text(size: 20pt)[= Полилинейная алгебра.]]
 #v(2em)
 
+#v(1em)
+== Основные определения.
+#v(1em)
+
 #definition[
     Для поля $K, space$*$K$-алгеброй* называется векторное пространство $A$ над $K$ с определенной на нем ассоциативной операцией умножения, согласованной с умножением на скаляр, то есть:
     $
@@ -933,9 +937,12 @@ $
     *Градуировкой* $K$-алгебры называется разложение $A = plus.o.big_(n=0)^oo S_n$ - разбиение в прямую сумму векторных пространств, таких что $S_i S_j subset S_(i+j) space forall i,j$.
 ]
 
+
 #problem[
     Обозначим $V^(times.o n) = V times.o V times.o ... times.o V$ ($n$ раз), докажите что $V^(times.o n) times.o V^(times.o m) = V^(times.o (n+m))$ 
 ]
+
+#pagebreak()
 
 #example[
     + $K[t_1,...,t_n]$ - градуированная алгебра, где $S_n$ - пространство однородных многочленов степени $n$.
@@ -966,4 +973,80 @@ $
     + $v and u = - u and v$
     + Если $sigma in S_n ==> v_1 and ... and v_n = "sign"(sigma)dot v_(sigma(1)) and ... and v_(sigma(n))$
     + Если $v_1 ... v_n$ порождают $V$, то всевозможные $w_1 and ... and w_m, space w_i in {v_i}$ порождают $Lambda^m (V)$
+]
+
+#lecture("20.04.2026")
+(в процессе)
+
+#lecture("22.04.2026")
+
+== Разложение определителя по группе столбцов.
+#v(1em)
+
+Рассмотрим $V, space dim V = n, space e_1,..,.,e_n$ - базис. $B$ - матрица $n times k, space C$ - матрица $n times n-k$\
+Определим $A = (B|C)$ - матрица $n times n$. Тогда:
+$
+  (e_1,...,e_n) B = (b_11e_1 +...+b_(n 1)e_n,...,b_(1 k)e_1+...+b_(n k)e_n) = (u_1,..,u_k)\
+  (e_1,...,e_n) C = (c_11e_1 +...+c_(n 1)e_n,...,c_(1 n-k)e_1+...+c_(n n-k)e_n) = (v_1,..,v_(n-k))
+$
+И посчитаем $ Lambda^n (V) in.rev u_1 and...and u_k and v_1 and...and v_(n-k) = (det A)dot e_1 and e_2 and...and e_n$:
+$
+  u_1 and...and u_k = sum_(i_1<i_2<...<i_k) det(B^([i_1<i_2<...<i_k]))dot e_i_1 and e_i_2 and...and e_i_k\
+  v_1 and...and v_(n-k) = sum_(j_1<j_2<...<j_(n-k)) det(C^([j_1<j_2<...<j_(n-k)]))dot e_j_1 and e_j_2 and...and e_j_(n-k)
+$
+Где $B^([i_1<i_2<...<i_k])$ и $C^([j_1<j_2<...<j_(n-k)])$ - матрицы полученные выбором только строк соответствующих индексов. Ну и посчитаем произведение:
+$
+  u_1 and...and u_k and v_1 and...and v_(n-k) = sum_(I - "набор")"sign"(i_1,...i_k,j_1,...,j_(n-k)) dot det(B^I) dot det(C^([n]\\I)) e_1 and...and e_n
+$
+Очевидно, пересекающиеся наборы дадут ноль, остаются непересекающиеся - приведем их к нормальному виду домножив на знак перестановки индексов. Посчитаем знак перестановки:
+$
+  "sign"(i_1,...i_k,j_1,...,j_(n-k)) = (-1)^(i_1+...+i_k+k(k+1)/2) ==>\ ==> det(A) = sum_(I - "набор") (-1)^(i_1+...+i_k+k(k+1)/2)  dot det(B^I) dot det(C^([n]\\I)) 
+$
+Такая формула и называется *разложением по группе столбцов*. Ну и если $k=1$ формула превращается в разложение по первому столбцу:
+$
+  sum_i (-1)^(i+1) a_(i 1) M_(i 1) (C)dot det(B^([n]-i)) 
+$
+
+#problem[(теорема Лапласса)\
+    Пусть есть матрица $A$ размера $n times n$, тогда:
+    $
+      Phi J subset [n], space det(A) = sum_(I subset[n]) (-1)^(|I|+|J|) dot M_(I J) dot M_(overline(I) overline(J)),
+    $
+    Где $overline(I) = [n]\\I, space overline(J)=[n]\\J, space M_(I J)$ - определитель матрицы со строками $I$ и столбцами $J$
+]
+
+#v(1cm)
+
+Пусть $M$ - модуль над $A, space T = M times.o_A M times.o_A ... times.o_A M = M^(times.o p)$\
+Если есть какой-то полилинейный $phi:M times...times M = M^p -->N$ то по полилинейному $psi:M^p --> T$ существует единственный гомоморфизм $f:T-->N$
+
+#proposition[
+    Рассмотрим функцию $h:U^p --> and^p U: space (u_1,...,u_p)|-> u_1 and...and u_p$ - такое отображение будет полилинейным и кососиметрическим, и если есть еще $g:U^p --> V$ - тоже полилинейное и кососиметическое то $exists! f:and^p U-->V$ - гомоморфизм векторных пространств. 
+    
+]
+#proof[
+    Действительно, возьмем композицию $g compose h^(-1) $ покажем корректность: пусть в $(u_1,...,u_n): space u_i=u_j==>$ по кососиметричности $g: space g(...,u_i,...,u_j,...) = -g(...,u_j,...,u_i,...) = 0$ 
+    #align(center, (diagram({
+	node((-1, -1), [$U^p$])
+	node((0, 0), [$and^p U$])
+	node((1, -1), [$V$])
+	edge((-1, -1), (0, 0), [$h$], label-side: right, "->")
+	edge((-1, -1), (1, -1), [$g$], label-side: left, "->")
+	edge((0, 0), (1, -1), [$exists!f$], label-side: right, "->")})))
+]
+
+#lemma[
+    Пусть есть векторное пространство $U, space and^2 U, space "char"F eq.not 2$ тогда:
+    $
+      omega in and^2 U" - разложим"<==> omega and omega=0 in and^4 U
+    $
+]
+#proof[
+    + $==>: space omega = x and y==> omega and omega = x and y and x and y = 0$
+    + $<==: space$ пусть $dim U = n, space e_1,..,e_n$ - базис, докажем индукцией по $n$ (базис $omega = 0$): \ Пусть $omega = omega^prime + v and e_n$, тогда:$
+      0 = (omega^prime + v and e_n) and (omega^prime + v and e_n) = omega^prime and omega^prime + 2omega^prime and v and e_n
+    $ Так как $omega^prime and omega^prime$ линейно независим от второго слагаемого, применим индукционное прпедположение ($omega^prime = x and y$) и по линейной зависимости $omega^prime$ и $v: space v = alpha x + beta y$:
+    $
+      omega = x and y+v and e_n = x and y + alpha x and e_n + beta y and e_n = (x- beta e_n)and(y+alpha e_n) - " искомое разложение."
+    $
 ]
