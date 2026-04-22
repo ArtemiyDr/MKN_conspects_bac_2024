@@ -987,9 +987,9 @@ $
     #align(center, diagram({
         node((-1, 0), [$M_1 times M_2$])
         node((0, 1), [$M_3$])
-        node((1, 0), [$M_1 times.circle M_2$])
+        node((1, 0), [$M_1 times.o M_2$])
         edge((-1, 0), (0, 1), [$f$], label-side: right, "->")
-        edge((-1, 0), (1, 0), [$times.circle$], label-side: left, "->")
+        edge((-1, 0), (1, 0), [$times.o$], label-side: left, "->")
         edge((1, 0), (0, 1), [$tilde(f)$], label-side: left, "->")
     }))
     $tilde(f) (m_1 times.o m_2) eq.not 0 ==>m_1 times.o m_2 eq.not 0$ - для случая $v_1,..,v_n$ аналогично.\
