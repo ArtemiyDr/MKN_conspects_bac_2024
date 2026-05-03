@@ -179,7 +179,7 @@
 Рассмотрим нормальную систему диф уравнений $dot(x) = f(t,x)$, $f in C$, $I(t,xi)$ - максимальный промежуток для решения $x(t,tau,xi)$
 #definition[
     $x(t,tau,xi_0) - " решение", space I(t,xi_0)supset[tau, oo)$, *устойчиво по Ляпунову*, если $forall epsilon gt 0 space exists delta gt 0$: 
-    + $forall xi$, $|xi - xi_0| < delta ==> I(t,xi_0)supset[tau, oo)$
+    + $forall xi$, $|xi - xi_0| < delta ==> I(t,xi)supset[tau, oo)$
     + $|x(t,tau,xi) - x(t,tau,xi_0)|<epsilon, space t gt.eq tau$
 
     Решение *неустойчиво* если оно не устойчиво.
@@ -964,14 +964,14 @@ $
     Из чего следует диссипатичность системы Лоуренса.
 ]
 
-#v(2em)
+#v(2cm)
 == Гиперболичность
 #v(0.5cm)
 
 Пусть $M$ - гладкое многообразие, $f$ - диффеоморфизм $in C^1, space T_x M$ - касательное подпространство.
 
 #definition[
-    $Lambda subset M$ - гиперболическое множество, если $Lambda$ - компакт и $f$-инвариантно, а также
+    $Lambda subset M$ - *гиперболическое множество*, если $Lambda$ - компакт и $f$-инвариантно, а также
     $exists C>=1, space lambda in(0,1), space exists S(x),U(x)subset T_x M$ - линейные подпространства, что:
     + $D f(x) S(x) = S(f(x)), space D f(x) U(x) = U(f(x))$
     + $S(x) plus.o U(x) = T_x M$
@@ -1012,4 +1012,292 @@ $
     + $epsilon<delta$
     + $c<=max(||B||,||C^(-1)||)+epsilon+epsilon||C^(-1)||<1$
     тогда $L,f$ - топологически сопряженные в $RR^n$.
+]
+
+#lecture("14.03.2026")
+
+#lemma[
+    Пусть $g:RR^n-->RR^n$ - непрерывно, инъективно и $|g(x)|-->oo, space x-->oo$ - 
+    тогда $g$ - гомеоморфизм. 
+]
+#proof[
+    Очевидно, так как дело в $RR^n, space g$ - гомеоморфизм на свой образ $"Im" g$ - значит он открыт.
+    Докажем что он также замкнут: пусть  ${y_n}subset "Im" g$ - сходитя к $y$, рассмотрим
+    ${x_n}$ - прообраз последовательности. Так как ${y_n}$ - ограничены, по условию ${x_n}$ 
+    тоже должны быть ограничены, тогда ${x_n}-->x in RR^n ==> g(x)$ - предел ${y_n}$. 
+]
+#v(1cm)
+
+#proof[ (Гробмана-Хартмана)\
+Проверим, что $f$ - инъективно:
+$
+  |f(x_1)-f(x_2)| = |A(x_1-x_2) + F(x_1)-F(x_2)|>=|A(x_1-x_2)| - |F(x_1)-F(x_2)| >=\
+  >= delta|x_1-x_2| - epsilon|x_1-x_2|>0 " (по условию)"
+$
+Также видим что $|f(x)|-->oo, space |x|-->oo$ а тогда по лемме $f$ - гомеоморфизм.\
+Пусть $H$ - множество непрерывных $g:RR-->RR^n$, что: 
+$
+  g(0)=0, space |g(x)|-->oo, space x-->oo
+$ 
+Найдем $h$ в виде $h = x+g, space g in H$: введем норму:
+$
+  "Пусть "rho(g,g^prime) = sup|g_1-g_1^prime| + sup|g_2-g_2^prime|, " где "g = (g_1,g_2) 
+$ 
+В котором каждая часть отвечает за подпространства на которых $A$ действует как $mat(B;0), space mat(0;C)$ соответственно.\
+Нужно $g$ такое, что: 
+$
+  (id+g)compose L = f compose (id + g) <==>L + g compose L = (F+L)compose(id+g) <==>\
+  <==> g compose L = L compose g + F compose (id+g) <==> g(A x) = A g(x) + F(x+g(x)) <==>\
+  <==> cases(g_1(A x) = B g_1(x) + F(x+g(x)), g_2(A x) = C g_2(x) + F(x+g(x))) <==> 
+  cases(g_1(x) = B g_1(A^(-1) x) + F(A^(-1)x+g(A^(-1)x)), g_2(x) = C^(-1) g_2(A x) - C^(-1)F(x+g(x))) 
+$
+Пусть $T:g -->(B g_1(A^(-1) x) + F(A^(-1)x+g(A^(-1)x)), C^(-1) g_2(A x) - C^(-1)F(x+g(x)))$\
+Проверим, что $T$ - сжатие на $H$ - действительно: $T(g)(0)=0, space |T(g)(x)|-->0, space x-->+oo$ и очевидно неперывно. Проверим само сжатие: 
+Пусть $g,g^prime in H$, разность первых компонент:
+$
+  (y = A^(-1)x), space B(g_1(y)-g_1^prime (y))+ F_1(y+g(y))-F_2(y+g^prime (y)),<=||B||sup|g_1-g_1^prime| + epsilon sup|g-g^prime|
+$
+И аналогично разность вторых:
+$
+  <=||C^(-1)||sup|g_2-g_2^prime| + epsilon||C^(-1)||sup|g-g^prime|
+$
+Ну и в сумме это $<rho(g,g^prime)$ - значит $T$ - сжимающее и у него есть неподвижная точка $g$ - единственное решение $(id+g)compose L = f compose (id + g)$.\
+Осталось проверить что $h = x+g$ - гомеоморфизм: он непрерывен, $|h(x)|-->oo, space |x|-->oo$, проверим инъективность: пусть $h(x_1)=h(x_2) ==> h compose L^k (x_1) = h compose L^k (x_2):$
+$
+  A^k x_1 + g(A^k x_1) = A^k x_2 + g(A^k x_2) <==>A^k (x_1-x_2) = g(A^k x_1) - g(A^k x_2)
+$
+Заметим, что $g$ ограничена, как непрерывная и стремящаяся к нулю на бесконечности, тогда $A^k (x_1-x_2)$ - ограничена, но мы можем устремить $k-->plus.minus oo$?!! Тогда $x_1=x_2$
+]
+
+#v(1cm)
+
+#definition[
+    Пусть $f:M^n-->M^n space - C^1$-диффеоморфизм, $p$ - устойчивая точка. Тогда $p$ - *гиперболически неподвижная точка*, если $d f$ - гиперболическое отображение. 
+]
+
+#theorem[ (локальная Гробмана-Хартмана)\
+    Если $f:RR^n-->RR^n space - C^1$-диффеоморфизм и $p$ - его гиперболически неподвижная точка, то существуют такие окрестности $p:$ $V,N$ и диффеоморфизм $h:V-->N$ сопрягающий $f, d f$ 
+]
+
+#lemma[(о распространении)\
+    Пусть $N_0 subset RR^n$ - окрестность нуля, $g in C^1(N_0), space g(0)=0, space d g = 0$, тогда для любого $epsilon>0$ есть $N subset N_0$ и $tilde(g)in C(RR^n)$, что $g|_N = tilde(g)|_N, space ||d tilde(g)||<=epsilon$ на $RR^n$
+]
+#proof[
+    Пусть $nu in C^1$ - 0 на $(2,+oo]$, убывает на $(1,2]$ ($|nu^prime|<2$) и 1 на $(-oo,1]$. \
+    Пусть $delta>0$, пусть $g_delta (x) = g(x)dot nu((|x|^2)/delta)$ - докажем что при малом $delta$ такая функция подойдет:\
+    Если $|x|^2>2delta$, то $g_delta (x)=0$ и если $|x|^2<delta$, то $g_delta (x)=g$. Поймем, что:
+    $
+      (partial g_delta)/(partial x_i) = (partial g)/(partial x_i) dot nu + g dot nu^prime dot 2x/delta
+    $
+    В малой окрестности нуля модуль первого слагаемого меньше $epsilon$ ну и так как $g = O(|x|)$ и $n^prime$ - ограничено:
+    $
+      g dot nu^prime dot 2x/delta = O(1) - " в некоторой окрестности меньше "epsilon
+    $
+    Ну а тогда и $|(partial g_delta)/(partial x_i)|<epsilon$
+]
+#v(1cm)
+
+#proof[(теоремы)\
+    Рассмотрим $f$ в карте вокруг $0$ (для удобства $p=0$). Пусть $f = A x+ F, space F(0)=0, space d F|_0 = 0$\
+    По лемме есть $tilde(f):RR^n-->RR^n$, что в малой окрестности нуля $tilde(f)=f$ и $||d tilde(F)||$ мало.\
+    При малом $||d tilde(F)||, space (<||A^(-1)||^(-1)) space tilde(f)$ - диффеоморфизм и по глобальной теореме Гробмана-Хартмана $tilde(f)=f$ сопряжено с $L:x|->A x$ - что и требовалось.
+]
+
+#lecture("21.03.2026")
+
+#definition[
+    $W^s_"loc" (p) = {x in M: space forall k: space f^k (x)in U, space f^k (x)-->p, space k-->oo}$ - *локально устойчивое многообразие $p$*
+    Аналогично $W^n_"loc" (p) = {x in M: space forall k: f^k (x)in U, space f^k (x)-->p, space k-->-oo}$ - *локально неустойчивое многообразие $p$*
+]
+
+#definition[
+    $W^s (p) = {x in M: space f^k (x)-->p, space k-->oo}$ - *устойчивое многообразие $p$*
+    Аналогично $W^n (p) = {x in M: space f^k (x)-->p, space k-->-oo}$ - *неустойчивое многообразие $p$*
+]
+
+#proposition[
+    $W^s (p)= {x in M: space exists k in ZZ: space f^k (x)in W^s_"loc" (p)}$ 
+]
+#proof[
+    + $subset: space exists k_0: f^k (x)in N, space k>=k_0==>f^(k_0) (x)in W^s_"loc" (p)$ 
+    + $supset: space exists k_0: f^k (x)in W^s_"loc" (p), space k>=k_0==>f^k (x)-->p, k-->oo$ - а это буквально определение
+]
+
+$f^l = chi^(-1) compose f^l compose chi, space chi(p_i) = f^(j-i) (p_i) = f^j (f^(-i) (p_i)) = f^j (p_0) = p_j$\
+$D f^i (p_i) = D f^j (p_i)compose D f^l (p_i) compose D chi(p_i)$ - тогда имеем: $W^s (p_i) = {x: space f^(k l) (x)-->p_i, space k-->oo}$,\
+ну и если $W^s (p_i) inter W^s (p_j) eq.not 0 ==>$ последовательность $f^n (x)$ стремится к разным точкам??!\
+И тогда $W^s (p) = union W^s (p_i)$ дизъюнктно.
+
+Пусть $dot(x) = F(x), space x in RR^n, space F in C^1, p$ - точка покоя ($F(p)=0$)
+#definition[
+    $p$ - *гиперболическая точка покоя*, если $
+    forall lambda_j -" собственного числа " (partial F)/(partial x) (p), space "Re"lambda eq.not 0
+    $
+]
+
+
+Пусть $p=0, space (partial F)/(partial x) (0) = "diag"(P_1,P_2)=P$.\
+У $P_1: "Re"lambda_j <0, space P_2: "Re"lambda_j >0$ тогда $Phi (t) = "diag"(e^(P_1 t),e^(P_2 t)), space ||e^(P_1 t)|| -->0, space ||e^(-P_2 t)|| -->0$\
+Возьмем $T>0: space ||e^(P_1 T)||, ||e^(-P_2 T)||<1$. Рассмотрим $phi(t,x)=phi(t,(y_0,z_0)) = (y(t,y_0,z_0), z(t,y_0,z_0)), space f(x) = phi(T,x) = A x+ G(x), space A = e^(P T), space G(0) = 0, space (partial G)/(partial x) (0) = 0$\
+$F(x) = P x+ H(x), space H(0) = 0, space (partial H)/(partial x) (0) = 0$, заметим что 
+$
+  dot(y) = P_1 y + H_1 (y,z), space dot(z) = P_2 y + H_2 (y,z)
+$
+Тогда по лагранжу: $
+  y(t,y_0,z_0) = e^(P_1 t) y(t,y_0,z_0) + H_1 (y(t,y_0,z_0),z(t,y_0,z_0))\
+  y(T,y_0,z_0) =integral_0^T e^(P_1 (T-s)) H_1 (y(s,y_0,z_0),z(s,y_0,z_0))d s, space y_0=0,z_0=0
+$
+Подингтегральную часть обозначим за $G_1(y_0,z_0), space G_1(0,0) = 0$ тогда:
+$
+  (partial G_1)/(partial y_0) (0,0) = integral_0^T e^(P_1 (T-s)) ((partial H_1)/(partial y) dot (partial H_1)/(partial y_0)(...) + (partial H_1)/(partial z) dot (partial H_1)/(partial y_0)(...))d s
+$
+Итого имеем $dot(x) = F(x), space phi(t,x)$ а также $dot(y) = P y, space psi(t,y) = e^(P t)y$ применим теорему Гробмана-Хартмана для $L: y|->e^(P T)y$ полчучим гомеоморфизм $h_0:$\
+$
+  h_0 compose f = e^(P T) h_0, space h(x) = integral_0^T psi(-s,h_0(phi(s,x)))d s
+$
+Ну и хотим $psi(t,h(x)) = h(phi(t,x))$ - действительно:
+$
+  psi(t,h(x)) = psi(t, integral^T_0 psi(-s,h_0(phi(s,x)))d s) = integral^T_0 e^(P (t-s)) h_0(phi(s,x))d s =\
+  = integral^T_0 psi(t-s,h_0[phi(s-t,phi(t,x))])d s = integral_(-t)^(T-t) psi(-sigma, h_0[phi(sigma,omega)])d sigma = integral_(-t)^0 + integral_0^(T-t)\
+  ("обозначим " sigma = s-t, space omega = phi(t,x)) \
+  psi(-sigma,h_0[phi(sigma,omega)]) = psi(-sigma-T, phi[T,h_0(psi(sigma,omega))]) = psi(-sigma-T,h_0 [phi(T, phi(sigma,omega))]) \
+  "Ну а тогда:" integral_(-t)^0 psi(-sigma-T,h_0 [phi(T, phi(sigma,omega))])d sigma = integral_(T-t)^T psi(-tau, h_0[phi(tau,omega)])d tau, space tau = sigma+T\
+  "И " psi(t,h(x)) = h(omega) = h(phi(t,x))" что и требовалось."
+$
+
+#v(2em)
+== Гиперболически замкнутые траектории
+#v(0.5cm)
+
+Пусть $dot(x) = F(x), space x in RR^(n+1), space F in C^1, space p$ - точка покоя ($F(p)=0$), $phi(t,x): space phi(t) eq.triple phi(t+omega)$ на замкнутой траектории $gamma$. $F(0) = (0,0,...,a), space a>0$
+
+#proposition[
+    Существует диффеоморфизм $Pi$ (Пуанкаре), переводящий некоторую окрестность нуля в окрестность нуля, определяется сдвигом по траектории.
+]
+#proof[
+    (в процессе)
+]
+
+#lecture("28.04.20260")
+
+#definition[
+    Замкнутая траектория $gamma$ называется *гиперболической*, если 0 - гиперболическая неподвижная точка $Pi$.
+]
+
+#remark[
+    Для гиперболической траектории не важен выбор площадки для диффеоморфизма $Pi$ - их можно перевести друг в друга диффеоморфизмом между площадками: $Pi_1 = nu compose Pi_2 compose nu^(-1)$
+]
+
+#v(1cm)
+$dot(x) = F(x), x in RR^(n+1), space F in C^1, space psi(t+omega) = psi(t)$ - решение, $F(0) = (0,...,0,a), space a>0$\
+$s in S, space Pi(s) = phi(t(s), (s,0)) inter S, space phi^n$ - $n$-ая координата $phi$ тогда:
+$
+  D Pi(0) = (partial Pi)/(partial S) = (partial phi^n)/(partial S) (omega,0), " распишем систему в вариации:"\
+  dot(y) = (partial F)/(partial x) (psi(t))y, space Phi(t) " - фундаментальная матрица, " Phi(0) = I_(n+1)
+$
+Пусть $xi(t) = dot(psi) (t) = F(psi(t))$ - решение, тогда:
+$
+  dot(xi) =(partial F)/(partial x) (psi(t)) = xi, space xi(t) = Phi(t)xi(0)\
+  xi(0) = F(0), space xi(omega) = F(psi(omega))=F(0) ==> Phi(t) F(0) = F(0)
+$
+И тогда $Phi(omega) = mat((partial phi^n)/(partial S) (omega,0),0; 0,1)$ - ее собственные числа называются *мультипликаторами*, а 1 - *стандартным мультипликатором* $gamma space (psi(t))$ и можно видеть, что $gamma$ - гиперболическая $<==>$ все мультипликаторы отличаются от стандартного.
+
+#definition[
+    Пусть $r in D^s, space D^s in.rev Pi^k (r)  -->0, space k-->oo, space W^s_"loc"$ - *локально устойчивое многообразие*,
+    $W^s = {x: space d(phi(t,x),gamma)-->0, space t -->oo}$ - *устойчивое многообразие* траектории $gamma$.
+]
+#remark[
+    Легко видеть что устойчиво многообразие $gamma$ инвариантно, а также:
+    $
+      x in W^s (gamma) <==> exists tau: space phi(tau, x) in W^s_"loc" (gamma)
+    $
+    Также существуют примеры когда $W^s$ вообще говоря неориентируемо (как подмногообразие).
+]
+
+#v(2cm)
+== Структурная устойчивость
+#v(0.5cm)
+
+#definition[
+    $M$ - замкнутое многообразие, $f,g$ - диффеоморфизмы класса $C^1, space d$ - метрика на $M$. 
+    $
+      rho_0 (f,g) = max_(x in M)(d(f(x),g(x)),d(f^(-1)(x),g^(-1)(x)))\
+      ||D f(x)-D g(x)|| = max_(v in T_x (M),\ |v|=1)|D f(x)v-D g(x) v|\
+      rho_1 (f,g) = rho_0 (f,g) + max_(x in M)||D f(x)-D g(x)|| + max_(x in M)||D f^(-1)(x)-D g^(-1)(x)||
+    $
+    С этой метрикой пространство диффеоморфизмов $M$ будем называть *$"Diff"^1(M)$*
+]
+
+#definition[
+    Пусть есть система $cases(dot(x) = P(x,y) + p(x,y), dot(y) = Q(x,y) + q(x,y))), space P,Q,p,q in C^1$ называется *грубой*, если:
+    $
+      forall epsilon>0, space exists delta>0: space|p|, |q|, |(partial p)/(partial x)|, |(partial p)/(partial y)|, |(partial q)/(partial x)|, |(partial q)/(partial y)| < delta " в " D ==> exists "гомеоморфизм" h:D-->D, \
+      " который переводят траекторию системы без "p,q" в нашу систему и" |h(x)-x|<epsilon
+    $ 
+    И $f$ - *структурно устойчиво*, если 
+    $
+      exists delta > 0, space forall g in "Diff"^1 (M), space rho_1 (f,g)<delta, " и" exists h:M-->M - " гомеоморфизм: "f compose h = h compose g
+    $
+    А также $f$ - *сильно структурно устойчиво*, если есть структурная устойчивость и:
+    $
+      forall epsilon>0, space d(x,h(x))<epsilon, space x in M
+    $
+]
+
+#v(1cm)
+
+Приведем без доказательства условия строгой устойчивости, эквивалентные обычной:
+#theorem[
+    Диффеоморфизм $f$ структурно устойчив тогда и только тогда, когда:
+    + $Omega(f)$ - гиперболическое, 
+    + $overline("Per"(f)) = Omega(f)$ 
+    + $forall y in W^u (p) inter W^s (q), space p,q in Omega(f), space T_y W^u (p) + T_y W^s (q) = T_y M$
+]
+Первые два условие называются *аксиомой А*, третье - *строгим условием трансвенсальности*.
+
+#v(2cm)
+== Инвариантные меры
+#v(0.5cm)
+
+Напоминание:
+#definition[
+    Пусть $X$ - топологическое пространство, $tilde(U)$ - *$sigma$-алгебра*, если:
+    + $emptyset, X in tilde(U)$
+    + замкнуто относительно дополнения и счётного объединения
+    $U in tilde(U)$ называется *измеримым*, \
+    *Мера* $mu:tilde(U)-->RR^+_0$:
+    $
+      forall {U_i} subset tilde(U), space U_i inter U_j = emptyset, space i eq.not j ==> mu(union U_i) = union mu(U_i)
+    $   
+    *Вероятностная мера:* $mu(X)=1$,\ *борелевская $sigma$-алгебра* - минимальная содержащая открытые.
+]
+
+#definition[
+    Пусть $f:X-->X$ - измеримая (прообраз имзеримого измерим), мера $mu$ называется *инвариантной*, если:
+    $
+      forall A in tilde(U), space mu(f^(-1) (A)) = mu(A)
+    $
+]
+
+#v(1cm)
+
+#definition[
+    $(X,d)$ - компактное метрическое пространство, $f:X-->X$\
+    $C(X) = {phi:X-->RR, space phi in C}, space rho(phi,psi) = max_X |phi(x)-psi(x)|$\
+    Пусть: $
+     exists x in X, space forall phi in C(X): space exists lim_(n-->oo) 1/n sum_(k=0)^(n-1)phi(f^k (x))
+    $ 
+    Такие пределы будем называть *средние Биргхофа по траектории*.
+]
+
+#theorem[(характеристическая теорема Рисса)\
+    Пусть $I_X:C(X)-->RR$ - функционал, тогда если:
+    + $I_X$ - линейно, $forall phi,psi in C(X), space a,b in RR: space I_X(a phi+ b psi) = a I_X(phi) + b I_X(psi)$
+    + $|I_X (phi)|<=max_(y in X)|phi(y)|$
+    + $phi(y)>=0, space forall y in X ==> I_x(phi)>=0$
+    + $phi eq.triple 1 ==> I_x (phi)=1$
+    Тогда существует единственная борелевская мера $mu$, что:
+    $
+      I_X (phi) = integral_X phi d mu, space forall phi in C(X)
+    $
 ]
