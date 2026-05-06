@@ -1139,3 +1139,111 @@ $
       omega = x and y+v and e_n = x and y + alpha x and e_n + beta y and e_n = (x- beta e_n)and(y+alpha e_n) - " искомое разложение."
     $
 ]
+
+#lecture("06.05.2026")
+
+== Проективные пространства.
+#v(1em)
+
+Рассмотрим $V, space dim V = n, space U subset V, space dim U = k$ и пусть $u_1,...,u_k$ - базис $U$, тогда можно считать $u_1 and...and u_k in and^k (V)$
+
+#definition[
+    Пусть $W$ - векторное пространство над полем $k,$ введем отношение эквивалентности: $ space 0 eq.not w_1,w_2 in W: space w_1 tilde w_2 <==> exists alpha in k^*, space w_2 = alpha w_1$ и тогда *$PP(W)$* - множество классов эквивалентности. \
+    Пусть $e_0,...e_n$ - базис $W, space dim W = n+1$, будем представлять элементы $w in W$ через координаты на этом базисе, и в $PP(W)=PP^n_k$ - *проективном пространстве размерности $n$* элементу $w in W$ как раз сопоставляется класс элемента $(x_0,...,x_n)$ где $w = sum x_i e_i$   
+]
+
+Таким образом, элементу $u in U$ сопоставляется $[u_1 and ... and u_k]in PP(and^k V)$
+
+#definition[
+    Пусть имеется $PP^n_k, space f_i$ - однородные многочлены от переменных $x_0,...,x_n$, тогда $x_0,...,x_n in PP^n_k$ называется *нулем системы* ${f_i=0}$, если $forall i: space f_i (x_0,...,x_n)=0$.\
+    *Замкнутым множеством* в $PP^n_k$ будем называть множество нулей какой-то системы многочленов. Это порождает *топологию Зарисского*.
+]
+
+#remark[
+    Проверим что замкнутые множества в проективном пространстве удовлетворяют топологическим свойствам замкнутости: пустая система и система ${x_i=0}$ пораждают пустое и все множество, для пересечения можем просто объединить системы. С объединением чуть сложней.
+]
+
+#proposition[
+    Объединение замкнутых - замкнуто.
+]
+#proof[
+    $
+      F_1 = {(x_0,...,x_n): space forall i in I, space f_i (x_0,...,x_n)=0}\ 
+      F_2 = {(x_0,...,x_n): space forall j in J, space g_j (x_0,...,x_n)=0}
+    $
+    Тогда определим:
+    $
+      F_1 union F_2 = {(x_0,...,x_n): forall i in I space space forall j in J: space f_i g_j (x_0,...,x_n) = 0}
+    $
+    Очевидно, если $f_i (x_0,...,x_n)eq.not 0$ для какого-то $i$, то из $forall j in J space f_i g_j (x_0,...,x_n)=0 ==> g_j (x_0,...,x_n)=0, space forall j in J$. 
+]
+
+#remark[
+    Как и в геометрическом определении проективных пространств, мы можем мыслить проективное пространство как гиперплоскость в пространстве большей размерности, не проходящую через ноль:
+    $
+      {(0:x_1:x_2:...:x_n), space exists x_i eq.not 0} <--> (x_1:x_2:...:x_n) in PP^(n-1)
+    $
+]
+
+#v(1cm)
+
+#definition[
+    Отображение которые уже обсуждалось $f:u in U |->[u_1 and ... and u_k] in PP(and^k V)$ - называется *вложением Плюккера*
+]
+
+#proposition[
+    Вложение Плюккера - инъективно.
+]
+#proof[
+    Возьмем некоторое подпространство $W eq.not U, space dim U = dim W = k$ и допустим, что $u_1 and ... and u_n = lambda w_1 and ... and w_n$\
+    Пусть $w_1,...,w_k$ - базис $W$, поймем что есть $w_i$ образующее с $u_1,...,u_k,w_i$ линейно независимую систему - действительно, иначе $W$ порождалось бы базисом $U$. А тогда:
+    $
+      0 eq.not u_1 and ...and u_k and w_i = lambda w_1 and ... and w_k and w_i = 0 ?!!
+    $
+]
+
+#lemma[
+    Пусть $V$ - векторное пространство, $omega in and^k V$ тогда для отображения 
+    $
+      phi: v in V |-> v and omega in and^(k+1) V
+    $
+    $dim ker phi<=k$ и $dim ker phi=k <==> omega$ - разложим. 
+]
+#proof[
+    Пусть  $dim ker phi=r, space e_1,...,e_n$ - базис $V, space e_1,...,e_r$ - базис  $ker phi$.\
+    Пусть $omega = sum a_I e_I, space I = (i_1<...<i_k), space e_I = e_i_1 and ... and e_i_k, space e_i and w = 0 = sum a_I (e_i and e_I), space forall i<=r$\
+    Тогда $forall 1<=i<=r, space forall I: space i in I ==> r<=k$. 
+    Докажем вторую часть:
+    + $==>:$ пусть  $dim ker phi=k$, тогда $omega = a_I e_i + a_(I^prime) e_(I^prime)+ ...$ а тогда $k = r <=|I inter I^prime|$
+    + $<==:$ пусть $w = v_1 and ... and v_k, space v_i in ker phi ==>  dim ker phi=k$
+]
+
+#v(1cm)
+
+Имеем точную последовательность:
+#align(center, diagram({
+	node((-2, 0), [$0$])
+	node((-1, 0), [$ker phi$])
+	node((0, 0), [$V$])
+	node((1, 0), [$"Im" phi$])
+	node((2, 0), [$0$])
+	edge((-2, 0), (-1, 0), "->")
+	edge((-1, 0), (0, 0), "->")
+	edge((0, 0), (1, 0), [$phi$], label-side: left, "->")
+	edge((1, 0), (2, 0), "->")
+}))
+Так как $dim ker phi = k <==>dim "Im" phi = n-k <==> "rang" phi<=n-k$ имеем систему условий на обнуление миноров размера $n-k+1$ матрицы $phi$, которые можно записать в виде системы полиномальных уравнений, то есть $ker phi$ - замкнут.
+
+#remark[
+    $k$-мерные подпространтсва взаимооднозначно соотносятся с отображениям проективизации через точки, полученных разложением по замкнутому ядру.
+]
+
+#v(1cm)
+
+#definition[
+    $k plus.o V plus.o V times.o V plus.o times.o^3 V plus.o ... = S(V)$ - *симметрическая алгебра*, $S(V) = S^0(V)plus.o S^1(V) plus.o ...$ 
+]
+
+#problem[
+    $dim V = n, space e_1,...,e_n$ - базис, доказать что $S(V) tilde.eq k[x_1,...,x_n]: space e_i->x_i$
+]
