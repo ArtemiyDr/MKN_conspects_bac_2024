@@ -1285,19 +1285,136 @@ $
     $(X,d)$ - компактное метрическое пространство, $f:X-->X$\
     $C(X) = {phi:X-->RR, space phi in C}, space rho(phi,psi) = max_X |phi(x)-psi(x)|$\
     Пусть: $
-     exists x in X, space forall phi in C(X): space exists lim_(n-->oo) 1/n sum_(k=0)^(n-1)phi(f^k (x))
+     exists x in X, space forall phi in C(X): space exists I_x = lim_(n-->oo) 1/n sum_(k=0)^(n-1)phi(f^k (x))
     $ 
     Такие пределы будем называть *средние Биргхофа по траектории*.
 ]
 
 #theorem[(характеристическая теорема Рисса)\
-    Пусть $I_X:C(X)-->RR$ - функционал, тогда если:
-    + $I_X$ - линейно, $forall phi,psi in C(X), space a,b in RR: space I_X(a phi+ b psi) = a I_X(phi) + b I_X(psi)$
-    + $|I_X (phi)|<=max_(y in X)|phi(y)|$
-    + $phi(y)>=0, space forall y in X ==> I_x(phi)>=0$
+    Пусть $I_x:C(X)-->RR$ - функционал, тогда если:
+    + $I_x$ - линейно, $forall phi,psi in C(X), space a,b in RR: space I_x (a phi+ b psi) = a I_x (phi) + b I_x (psi)$
+    + $|I_x (phi)|<=max_(y in X)|phi(y)|$
+    + $phi(y)>=0, space forall y in X ==> I_x (phi)>=0$
     + $phi eq.triple 1 ==> I_x (phi)=1$
     Тогда существует единственная борелевская мера $mu$, что:
     $
-      I_X (phi) = integral_X phi d mu, space forall phi in C(X)
+      I_x (phi) = integral_X phi d mu, space forall phi in C(X)
     $
+]
+
+#lecture("05.05.2026")
+#proposition[
+    Мера из теоремы Риса - инвариантна.
+]
+#proof[ \
+    Пусть $y = f(x)$, тогда $I_y (phi) = I_x (phi), space forall phi in C(X) ==> integral_X (phi compose f)d mu = integral_X phi d mu $ \
+    $nu(A) = mu(f^(-1)(A)), space integral_X (phi compose f)d mu = integral_X phi d nu ?$ \
+    Возьмём простую функцию $psi = sum psi_i chi_(A_i), space B_i = f^(-1)(A_i)$. Тогда очевидно:
+    $
+      integral_X (psi compose f)d mu = integral_X psi d nu
+    $
+    Ну и приблизим любую функцию простыми: $phi_k arrows.rr phi$.\
+    Рассмотрим замкнутое $A subset X$, будем рассматривать $chi_A$, поймем что из условий:
+    + $phi_k in C(X)$
+    + $phi_(k+1) (x) <= phi_k (x)$
+    + $0<= phi_k<=1$
+    + $phi_k$ поточечно сходятся к $chi_(A)$
+    По теореме Леви следует что $integral_X phi_k (x)d mu --> integral_X chi_A d mu = mu(A)$\
+    Ну и $integral_X phi_k (x)d mu = integral_X (phi_k compose f) (x)d mu = integral_X phi_k (x)d nu --> integral_X chi_A d nu = nu(A) ==> nu eq.triple mu$
+]
+
+#theorem[(Крылова-Боголобова)\
+    У непрерывного отображения компактного метрического пространства есть инвариантная мера. 
+]
+#proof[
+    Фиксируем $phi in C(X), space epsilon>0, space exists phi_m: space max_X |(phi(x)-phi_m)|<epsilon$\
+    $
+      1/n_k sum_(i=0)^(n_k-1) phi(f_i (x)) = 1/n_k sum_(i=0)^(n_k-1) phi_m (f_i (x)) + 1/n_k sum_(i=0)^(n_k-1) (phi(f_i (x)) -  phi_m (f_i (x)))\
+    $
+    Так как все предельные точки суммы лежат в интервале длины $2epsilon$, существует 
+    $
+     J(phi) = lim_(k-->oo) 1/n_k sum_(i=0)^(n_k-1) phi(f_i (x)) 
+    $
+    Ну а тогда есть инвариантная мера $mu$:
+    $
+      J(phi) = integral_X phi d mu
+    $
+
+]
+
+#v(1cm)
+
+#theorem[(Пуанкаре о возвращении)\
+    Пусть $(X,mu)$ - пространство с инвариантной мерой, $f$ - гомеоморфизм $X,$ \ 
+    $D subset X$ - инвариантно, $mu(D)<oo$
+    тогда $forall A subset D$ - измеримо: $exists B subset A, space mu(B)= mu(A)$ а также:
+    $
+      forall x in B, space forall N space exists n>=N, space f^n (x) in A
+    $
+]
+#proof[
+    Фиксируем $N in NN, space C_N = A inter inter.big_(k=0)^oo f^(-N-k) (D \\ A), space C_N subset A$, заметим что:
+    $
+      x in f^(-N-k) (D\\ A) <==> f^(N+k) (x) in D\\A \
+    $
+    Так как $D$ - инвариантно, все $f^(-k N) (C_N) subset D, space k>=0$ - не пересекаются при разных $k$. Пусть не так, тогда:
+    $
+      exists l>k: space f^(-k N) (C_N) inter f^(-l N) (C_N) eq.not emptyset ==> f^(m N) (C_N)inter C_N eq.not emptyset, space m = l-k, space m N>=N 
+    $
+    Тогда:
+    $
+      C_N subset f^(-m N) (D\\ A) ==> f^(m N) subset D\\ A ==> C_N subset A ==>f^(m N) inter C_N = emptyset?!!
+    $
+    Тогда $B = A \\ union_(N>=1) C_N$ и так как $f^(-k N) subset D, space mu(C_N) = mu(f^(-k N) (C_n)) = 0$ имеем требуемое.
+]
+
+#v(2cm)
+== Гамильтоновы системы
+#v(0.5cm)
+
+#definition[
+    Рассмотрим $RR^(2N), space (p_1,...,p_N,q_1,..,q_N), space  H: RR^(2N) --> RR, space H in C^2$ *Гамильтоновой системой* называют:
+    $
+      dot(p_i) = - (partial H)/(partial q_i), space dot(q_i) = (partial H)/(partial p_i) 
+    $ 
+    И $H$ соответственно - *гамильтониан*
+]
+
+#proposition[
+    $H$ - интеграл гамильтоновой системы.
+]
+#proof[
+    $
+      dot(H) = sum_(i=1)^N (partial H)/(partial p_i)dot(p_i) + sum_(i=1)^N (partial H)/(partial q_i)dot(q_i) = sum_(i=1)^N (partial H)/(partial p_i) dot (-(partial H)/(partial q_i)) + sum_(i=1)^N (partial H)/(partial q_i)dot(partial H)/(partial p_i) eq.triple 0
+    $
+]
+
+Рассмотрим систему $dot(x) = f(x)$ с потоком $phi(t,x)$ - ограничена измеримым $G subset RR^(2N)$
+
+#definition[
+    $p(x)>=0$ - *функция плотности интегрального инварианта*, если:
+    $
+      integral_phi(t,G) p(x) d x = integral_G p(x) d x
+    $
+]
+
+#theorem[(Луивилля о плотности интегрального инварианта)\
+    $rho$ - функция плотности $<==> sum (partial (rho f_i))/(partial x_i) eq.triple 0$
+]
+#proof[\
+    $R(t) = integral_(phi(t,G)) rho d x, space t in [0,T), space h>0, space t+h<T:$
+    $
+      R(t+h) = integral_(y in phi(t+h,G)) rho(y) d y = integral_(x in phi(t,G)) rho(phi(h,x)) d phi(h,x) 
+    $
+    Заметим что $phi(h,x) = x + F(x)h + o(h), space rho(phi(h,x)) = rho(x) + h sum (partial rho)/(partial x_i)(x) f_i (x) + o(h)$,\
+    $d(phi(h,x)) = det((partial phi(h,x))/(partial x)) d x =det W(h,x) d x$, по формуле остроградского: 
+    $
+      partial/(partial t) (det W(h,x)) = tr (partial F)/(partial x) (phi(t,x)) dot det W(t,x) = sum (partial f_i)/(partial x_i) dot det W(t,x)\
+      det W(t,x) = 1 + 
+    $
+    А тогда:
+    $
+      R(t+h) = integral_(phi(t,G)) rho(x)d x + h integral_(phi(t,G)) sum_(i=1)^n (partial)/(partial x_i) (rho f_i) d x + o(h)
+    $
+    А тогда $(partial R)/(partial t) (t) = integral_(phi(t,G)) sum_() (partial)/(partial x_i) (rho f_i) d x = 0 ==> R(t) eq.triple C$ 
 ]
