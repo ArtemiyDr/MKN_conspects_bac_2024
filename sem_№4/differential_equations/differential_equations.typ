@@ -1410,7 +1410,7 @@ $
     $d(phi(h,x)) = det((partial phi(h,x))/(partial x)) d x =det W(h,x) d x$, по формуле остроградского: 
     $
       partial/(partial t) (det W(h,x)) = tr (partial F)/(partial x) (phi(t,x)) dot det W(t,x) = sum (partial f_i)/(partial x_i) dot det W(t,x)\
-      det W(t,x) = 1 + 
+      det W(t,x) = 1 + h sum_(i=1)^n (partial f_i)/(partial x_i) (x) + o(h)
     $
     А тогда:
     $
@@ -1418,3 +1418,52 @@ $
     $
     А тогда $(partial R)/(partial t) (t) = integral_(phi(t,G)) sum_() (partial)/(partial x_i) (rho f_i) d x = 0 ==> R(t) eq.triple C$ 
 ]
+
+#lecture("12.05.2026")
+
+#example[
+    Рассмотрим систему материальных точек в $RR^3$:
+    $
+      x_i = (x_(i,1), x_(i,2), x_(i,3)), space 1<=i<=n, space dot(x_i) - " вектор скорости точки", space m_i - " масса точки"
+    $
+    Существует потенциал $U:RR^(3n) --> RR$, что:
+    $
+      F_i (x) = (partial U)/(partial x_i)
+    $
+    Импульсы - $p_i = m_i dot(x_i)$, координаты - $q_i$\
+    Теперь определим гамильтониан $H$:
+    $
+      H(p,q) = sum_(i=1)^n (m_i (dot(x_i))^2)/2 - U(x) = sum_(i=1)^n (p_i^2)/(2m_i) - U(q) \
+      (partial H)/(partial q_i) = -(partial U)/(partial x_i) = -F_i \
+      dot(p_i) = m_i dot.double(x_i) = F_i = -(partial H)/(partial q_i)\
+      dot(q_i) = dot(x_i) = p_i/m_i = (partial H)/(partial p_i)
+    $
+    Таким образом перешли к $H$ и соответственно гамильтоновой системе.
+]
+
+#pagebreak()
+
+#align(center)[#text(size: 20pt)[= Дополнительные материалы.]]
+#v(2em)
+
+== Эргодические теоремы
+#v(0.5cm)
+
+#theorem[(фон Неймана)\
+    Пусть $(X,mu)$ - пространство с конечной мерой, инваиантной относительно $f$, тогда $H = L^2(X,mu), space phi in H$ и 
+    $
+      exists lim_(n-->oo) 1/n sum_(i=0)^(n-1) phi(f^i (x)) " в " L^2(X,mu)
+    $
+]
+
+#theorem[(эргодическая Биргхофа)\
+    Пусть $(X,mu)$ - пространство с конечной мерой, инваиантной относительно $f$, для $phi in L^1 (X,mu)$ почти всюду:
+    $
+      exists phi_f (x) = lim_(n-->oo) 1/n sum_(i=0)^(n-1) phi(f^i (x)), space phi_f in L^1\
+      "а также "integral_X phi_f d x = integral_X phi d x
+    $
+]
+
+#v(2cm)
+
+#align(center)[#text(size: 20pt)[ На этом все, и спасибо за рыбу]]
