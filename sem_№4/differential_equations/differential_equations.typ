@@ -1001,7 +1001,7 @@ $
     + $h(f^k (x)) = g^k (h(x)), space x in U, space k in K(x,U) = {n>0: space f^k (x) in U, space 0<=k<=n} union {n<=0: space f^k (x) in U, space n<=k<=0}$
 ]
 
-Пусть $L$ - гиперболический лин. автоморфизм $RR^n, space L: x|->A x, space A = mat(B,0;0,C), space ||B||,||C||<1$\
+Пусть $L$ - гиперболический лин. автоморфизм $RR^n, space L: x|->A x, space A = mat(B,0;0,C), space ||B||,||C^(-1)||<1$\
 возьмем такое $delta>0, space |A x|>=delta|x|$ и рассмотрим $f(x) = A x+F(x)$:
 + $F(0)=0$
 + $exists epsilon>0, space "Lip"F<=epsilon$
@@ -1037,7 +1037,7 @@ $
 Также видим что $|f(x)|-->oo, space |x|-->oo$ а тогда по лемме $f$ - гомеоморфизм.\
 Пусть $H$ - множество непрерывных $g:RR-->RR^n$, что: 
 $
-  g(0)=0, space |g(x)|-->oo, space x-->oo
+  g(0)=0, space |g(x)|-->0, space x-->oo
 $ 
 Найдем $h$ в виде $h = x+g, space g in H$: введем норму:
 $
