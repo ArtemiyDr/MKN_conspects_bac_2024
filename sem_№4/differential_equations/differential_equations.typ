@@ -4,10 +4,33 @@
 #set document(
     title: "Конспект по дифференциальным уравнениям и динамическим системам",
 )
-#set page("a4")
-#set page(margin: 1.5cm)
+#set page(
+  paper: "a4",
+  margin: (left: 1cm, right: 1cm, top: 1.5cm, bottom: 3.3cm),
+)
+
+#set page(footer: context [
+  #let heading-text
+
+  #let headings = query(selector(heading.where(level: 1)).before(here()))
+  #if counter(page).get().first() > 1{
+    if headings.len() > 0 {
+        let current-heading = headings.last() 
+        heading-text = current-heading.body
+    }
+
+    align(center)[
+      #set text(size: 9pt)
+      #v(1cm)
+      #line(length: 100%, stroke: 0.3pt + black)
+      #heading-text #h(1fr) #counter(page).display()
+      #v(0.15em)
+      #line(length: 100%, stroke: 0.3pt + black)
+    ]
+  }
+])
+
 #set text(12pt)
-#set heading(numbering: "1.")
 
 #show: great-theorems-init
 
@@ -99,6 +122,9 @@
 
 #pagebreak()
 
+#outline()
+
+#pagebreak()
 
 #v(2em)
 #align(center)[#text(size: 20pt)[= Продолжение общей теории дифференциальных уравнений.]]
@@ -588,8 +614,6 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
 - $omega(x)$ - множество предельных точек $O^+(x,f)$
 - $alpha(x)$ - множество предельных точек $O^-(x,f)$
 
-#pagebreak()
-
 #lemma[
     Для $omega(x)$ выполнено следующее:
     $
@@ -679,8 +703,6 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
        f^k (W_j) inter W_j = y_j " что невозможно по предположению"
     $
 ]
-
-#pagebreak()
 
 #example[
     Рассмотрим следующую систему:
@@ -914,7 +936,7 @@ $
     $I = inter.big_(tau>=T) overline(Phi_tau)$ - аттрактор.
 ]
 #proof[
-    Доказывается аналогично, кроме инвариантности: пусть $x in I$ тогда $x = lim phi(tau_k,y_k), space y_k in overline(U), space tau_k -->oo$. Пусть $x^prime = phi(theta,x), space x^prime = lim phi(theta + tau_k,y_k) in I$;\ обратное включение очевидно.
+    Доказывается аналогично, кроме инвариантности: пусть $x in I$ тогда $x = lim phi(tau_k,y_k), space y_k in overline(U), space tau_k -->oo$. Пусть $x^prime = phi(theta,x), space x^prime = lim phi(theta + tau_k,y_k) in I$; обратное включение очевидно.
 ]
 
 #definition[
@@ -942,8 +964,6 @@ $
       B(|phi(t,y_0)|)<=V(phi(t,y_0))<=V(y_0)<=a ==> |phi(t,y_0)|<R, space t>=theta " - что и требовалось"
     $
     + $x_0 in.not D_rho$ опять же, интересен только случай $phi(t,x_0) in.not D_rho$. Заметим что $V$ убывает вдоль траектории и следовательно не больше $V(x_0)$, а тогда $B(|phi(t,x_0)|)<=V(phi(t,x_0))<=V(x_0)$, а так как $B(r)-->oo$ при $r-->oo$, то $exists T>0, space B(|phi(T,x_0)|)>V(x_0)$ - противоречие.]
-
-#pagebreak()
 
 #example[\
     *Система Лоуренса*:\
@@ -988,7 +1008,7 @@ $
 ]
 
 #example[
-    Гиперболический автоморфизм тора имеет собственные числа $(3 - sqrt(5))/2, space 2/(3 + sqrt(5))$ и следовательно гиперболичен (действительно, его главное свойство содержится в названии)
+    Гиперболический автоморфизм тора имеет собственные числа $(3 - sqrt(5))/2, space (3 + sqrt(5))/2$ и следовательно гиперболичен (действительно, его главное свойство содержится в названии)
 ]
 
 #v(1cm)
@@ -1089,7 +1109,7 @@ $
     $
       (partial g_delta)/(partial x_i) = (partial g)/(partial x_i) dot nu + g dot nu^prime dot 2x/delta
     $
-    В малой окрестности нуля модуль первого слагаемого меньше $epsilon$ ну и так как $g = O(|x|)$ и $n^prime$ - ограничено:
+    В малой окрестности нуля модуль первого слагаемого меньше $epsilon$ ну и так как $g = O(|x|)$ и $nu^prime$ - ограничено:
     $
       g dot nu^prime dot 2x/delta = O(1) - " в некоторой окрестности меньше "epsilon
     $
@@ -1440,8 +1460,6 @@ $
     $
     Таким образом перешли к $H$ и соответственно гамильтоновой системе.
 ]
-
-#pagebreak()
 
 #align(center)[#text(size: 20pt)[= Дополнительные материалы.]]
 #v(2em)
