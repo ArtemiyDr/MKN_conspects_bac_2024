@@ -285,7 +285,7 @@ $
 #remark[
     Пусть $V tilde.eq V^prime$, причем $F$ - изоморфзим. Тогда:
     $
-        F(g v) = g F(v) = F (chi(g) v) = chi^prime (g) F(v) ==> chi = chi^prime
+        F(g v) = g F(v) => F (chi(g) v) = chi^prime (g) F(v) ==> chi = chi^prime
     $
     Тогда далее будем рассматривать изоморфные классы одномерных представлений. 
     
@@ -735,7 +735,7 @@ $sum_(k=1)^s chi_k (g) chi_k (h^(-1)) = |Z(g)|$
     $
       |G|a_tau =  chi_"reg" (a tau^(-1)) = sum_(i=1)^n beta_i chi_i (tau^(-1)) 
     $
-    Но $|beta_i chi_i (tau^(-1))|=1 ==> |a_tau| <= 1 ==> a_tau = plus.minus 1$, то есть коэфиценты $beta_i chi_i (tau) = a_tau$, а тогда: $
+    Но $|beta_i chi_i (tau^(-1))|=1 ==> |a_tau| <= 1 ==> a_tau = plus.minus 1$, то есть коэфиценты $beta_i chi_i (tau^(-1)) = a_tau$, а тогда: $
     a = a_tau sum_i chi_i (tau) e_i = a_tau tau = plus.minus tau
     $
 ]
@@ -989,7 +989,8 @@ $
 ]
 
 #definition[
-    Если $T(V) supset I = (...v times.o v...)$ то $T(V) slash_I$ называется *внешней алгеброй* или *алгеброй Грассмана*, обозначим ее $Lambda(V): space Lambda(V) = plus.o.big_(n=0)^oo Lambda^n (V), space Lambda^n (V)$ - *внешние степени* $V$.\
+    $T(V) = plus.o.big_(i=0)^oo V^(times.o i)$ - *тензорная алгебра*, тогда
+    если $T(V) supset I = (...v times.o v...)$ то $T(V) slash_I$ называется *внешней алгеброй* или *алгеброй Грассмана*, обозначим ее $Lambda(V): space Lambda(V) = plus.o.big_(n=0)^oo Lambda^n (V), space Lambda^n (V)$ - *внешние степени* $V$.\
     Также обозначим за $v_1 and v_2 and ... and v_n = overline(v_1 times.o v_2 times.o ... times.o v_n)$
 ]
 
@@ -1040,11 +1041,11 @@ $
 ]
 
 #proposition[
-    Если $dim V = n, space m<=n, space  u_1 and...and u_m=0 <==>{u_i}$ - линейно независимый набор.
+    Если $dim V = n, space m<=n, space  u_1 and...and u_m eq.not 0 <==>{u_i}$ - линейно независимый набор.
 ]
 #proof[
     + $==>: space$ Пусть зависимы, тогда $u_i = sum_(j eq.not i) alpha_j u_j$ и $u_1 and...and u_m = sum_(j eq.not i) alpha_j u_j and u_2 and...and u_m = 0$?!!\
-    + $<==: space$ Пусть $u_i$ - линейно независимый набор, у пусть $u_1 and...and u_m eq.not 0$, дополним набор до базиса: $u_1,...,u_n$ порождают $V$ и по предыдущему предложению $u_1 and...and u_n eq.not 0?!!$
+    + $<==: space$ Пусть $u_i$ - линейно независимый набор, у пусть $u_1 and...and u_m eq.not 0$, дополним набор до базиса: $u_1,...,u_n$ порождают $V$ и по предыдущему предложению $u_1 and...and u_n eq.not 0$
 ]
 
 #lemma[
@@ -1060,7 +1061,7 @@ $
 ]
 
 #theorem[(формула Бине-Коши)\
-    Пусть для $B in K^(k times n), space c in K^(n times k):$
+    Пусть для $B in K^(k times n), space С in K^(n times k):$
     $
       det(B C) = cases(0: space k>n, det(B) dot det(С): k=n, sum_(I subset [n], |I|=k) det(B_I) dot det(C^I): space k<n)
     $
@@ -1178,7 +1179,7 @@ $
     Пусть $e_0,...e_n$ - базис $W, space dim W = n+1$, будем представлять элементы $w in W$ через координаты на этом базисе, и в $PP(W)=PP^n_k$ - *проективном пространстве размерности $n$* элементу $w in W$ как раз сопоставляется класс элемента $(x_0,...,x_n)$ где $w = sum x_i e_i$   
 ]
 
-Таким образом, элементу $u in U$ сопоставляется $[u_1 and ... and u_k]in PP(and^k V)$
+Таким образом, $U$ сопоставляется $[u_1 and ... and u_k]in PP(and^k V)$
 
 #definition[
     Пусть имеется $PP^n_k, space f_i$ - однородные многочлены от переменных $x_0,...,x_n$, тогда $x_0,...,x_n in PP^n_k$ называется *нулем системы* ${f_i=0}$, если $forall i: space f_i (x_0,...,x_n)=0$.\
@@ -1214,7 +1215,7 @@ $
 #v(1cm)
 
 #definition[
-    Отображение которые уже обсуждалось $f:u in U |->[u_1 and ... and u_k] in PP(and^k V)$ - называется *вложением Плюккера*
+    Отображение которые уже обсуждалось $f:U |->[u_1 and ... and u_k] in PP(and^k V)$ - называется *вложением Плюккера*
 ]
 
 #proposition[
