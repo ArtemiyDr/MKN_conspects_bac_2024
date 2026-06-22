@@ -122,7 +122,7 @@
 
 #pagebreak()
 
-#outline()
+#outline(title: "Оглавление")
 
 #pagebreak()
 
@@ -153,15 +153,15 @@
     Пусть $u_1(t,x), ..., u_n (t,x)$ - функционально независимые интегралы в $H$, тогда если:\
     $forall (t_0,x_0) in H space "существуют: " (a,b) in.rev t_0, space V$ - открытое в $RR^n$, $x_0 in V$ и $y:(a,b)->RR^n space y in C^1(a,b)$, выполнено:
     + $y(t_0) = x_0$
-    + если $(t,x) in (a,b) times V$, то $U(t,x) = U(t_0,x_0) <==> $ $x = y(t)$
-    + $y(t)$ - решение задачи Коши с начальными условиями в $(t_0,x_0)$
+    + $y$ удовлетворяет системе $U(t,x) = U(t_0,x_0)$ в $(a,b) times V$
+    Тогда $y(t)$ - решение задачи Коши с начальными условиями в $(t_0,x_0)$
 ]
 #proof[
     Рассмотрим функцию $W(t,x) = U(t,x) - U(t_0,x_0)$, тогда $W in C^1$.\
     $
     "det" (partial W)/(partial x) (t_0,x_0) eq.not 0
     $
-    А тогда существует единственная неявная функция $x $ равная $y(t)$ в окрестности точки $(t_0,x_0)$, такая что $W(t,x) = 0$. По определению интеграла $U(t,x(t,t_0,x_0)) = U(t,x)$ ну и по единственности неявной функции $x(t) = x(t, t_0 ,x_0)$.
+    А тогда существует единственная неявная функция $x $ равная $y(t)$ в окрестности точки $(t_0,x_0)$, такая что $W(t,x) = 0$. По определению интеграла $U(t,x(t,t_0,x_0)) = U(t_0,x_0)$ ну и по единственности неявной функции $y(t) = x(t, t_0 ,x_0)$.
 ] 
 
 #theorem[(о существовании системы функционально независимых интегралов) \
@@ -177,7 +177,7 @@
     $
     Тогда заметим, что $h_1(t,x), ..., h_n (t,x)$ - функционально независимые интегралы в $G$ (они интегралы так как переводят интегральные кривые в прямые параллельные $t$). Для этого рассмотрим матрицу $(partial h) / (partial (t,x))$ и поймем что её $"det"$ не ноль (так как якобиан $h$ не ноль). \
     Осталось показать, что любой другой интеграл $u(t,x)$ в $G$ может быть представлен в виде функции от $h_1(t,x), ..., h_n (t,x)$. Покажем что $v(t,y) = u(h^(-1)(t,y))$ не зависит от $t$. Зафиксируем произвольную точку $(t_0,y_0)$ и рассмотрим интегральную кривую проходящую через $(t_0,x_0) = h^(-1)(t_0,y_0)$, заметим что в координатах $y$ эта кривая становится прямой. Тогда по свойству интеграла $v$ постоянна на этой прямой, а значит не завсист от $t$. \
-    $u(t,x) = u(h^(-1)(t,h(t,x))) = v(t, h(t,x))$ - зависит только от $h_i$.
+    $u(t,x) = u(h^(-1)(t,h(t,x))) = v(t, h(t,x)) = g(h_1(t,x), ..., h_n (t,x))$ - зависит только от $h_i$.
 
 ]
 
@@ -287,7 +287,7 @@ $
     Заметим, что если $A_k = A, space forall k gt.eq 0$, то $Phi_k = A^k, space J = S^(-1)A S$  - жорданова форма, $J_m$ - клетка размера $m$ тогда:
     $
        "асимптотическая устойчивость" <==> ||J_m^k|| --> 0 <==>|lambda|<1 "(где "lambda" - собственное число клетки)"\
-       "устойчивость по Ляпунову" <==> ||J_m^k|| " - ограничено" <==>|lambda| = 1, space m = 1
+       "устойчивость по Ляпунову" <==> ||J_m^k|| " - ограничено" <==>|lambda| <= 1 " и если " |lambda| = 1, space m = 1
     $
 ]
 
@@ -328,8 +328,8 @@ $
     Пусть $V$ - дискретная функция Ляпунова для $f$ и $p$. \ Тогда если $exists rho >0, space (forall x in B(rho,p), space x eq.not p ==> V(f(x)) < V(x)) ==> p$ - асимптотичски устойчива (то есть $O^+(p, {f^k})$ - асимптотически устойчиво)
 ]
 #proof[\
-    По предыдущей теореме если выбрать $epsilon < rho, space exists delta>0, space x_0 in B(delta,p), space x_k = f^k (x_0) in B(epsilon,p)$\
-    Рассмотрим последовательность $x_k --> p, space x_k eq.not p,  space v_k = V(x_k)>0, " тогда "space v_k --> a,"пусть" a>0$\
+    По предыдущей теореме если выбрать $epsilon < rho, space exists delta>0, space x_0 in B(delta,p), space x_k = f^k (x_0) in B(epsilon,p)$,
+    пусть $space x_k eq.not p,  space v_k = V(x_k)>0, " тогда "space v_k --> a,"пусть" a>0$\
     Обозначим $X = {y: exists k_m --> oo, space x_(k_m) --> y}$ - оно не пусто по компактности (${x_k} subset B(epsilon,p)$), тогда $V(y) = a, space forall y in X, f(y) in X ==> a = V(f(y)) < V(y) = a$ (неравенство выполнено так как из $a>0$ следует $y eq.not p$) - противоречие.
 ]
 
@@ -337,21 +337,24 @@ $
 
 Теперь выведем условия для неустойчивости:
 #theorem[(о неустойчивости)
-    Пусть $f$ - непрерывна, $p$ - неподвижная точка, \ если $exists S$ - замкнутое, $V$ - непрервына на $S, space r>0$, а также:
+    Пусть $f$ - непрерывна, $p$ - неподвижная точка, \ если $exists S$ - замкнутое, $V$ - непрерывна на $S, space r>0$, а также:
     + $p in S, space V(p) = 0$
-    + $exists rho>0, space x in B(rho,p) inter S ==> f(x) in B(r,p)inter S, space V(f(x)) > f(x)$
+    + $exists rho>0, space x in B(rho,p) inter S, space x eq.not p ==> f(x) in B(r,p)inter S, space V(f(x)) > V(x)$
     + $forall delta >0 space exists x in B(delta, p) inter S, space V(x)>0$
     Тогда $p$ - неустойчива.
 ]
 #proof[
     $
-      "Допустим противное: "epsilon = q, space exists delta >0 space forall x in B(delta, p) space f^k (x) in B(epsilon, p) = B(q, p) "тогда:"\
+      "Допустим противное: "epsilon = rho, space exists delta >0 space forall x in B(delta, p) space f^k (x) in B(epsilon, p) = B(rho, p) "тогда:"\
       exists x_0 in B(delta, p) inter S: space V(x_0)>0\
-      v_k = V(x_k), space x_0 eq.not p, space x_k in B(r,p)inter S, space v_0<v_1< dots ==> exists lim v_k = a, " пусть">0 
+      v_k = V(x_k), space x_0 eq.not p, space x_k in B(r,p)inter S, space 0<v_0<v_1< dots ==> exists lim v_k = a>0
     $ 
     Аналогично предыдущей теореме рассмотрим  $X = {lim x_k_m}, space X eq.not emptyset, space forall y in X space f(y) in X ==> a = V(f(y)) > V(y) = a$ для $f(y)in X$!??
 ]
+
 #v(2em)
+== Устойчивость в первом приближении.
+#v(1em)
 
 Теперь рассмотрим частный случай:
 пусть $f: RR^n -> RR^n, space f in C^1, space f(0)=0$
@@ -359,7 +362,7 @@ $
     $m in NN, space 0$ - устойчива (асимптотичски) для $f <==> 0$ - устойчива (асимптотически) для $f^n$
 ]
 #proof[
-    Очевидно, если последовательность ${f^k (x_0)}$ - ограничена то и ${f^(n k) (x_0)}$ тоже, аналогчино со сходимостью к нулю и наоборот.
+    Очевидно, если последовательность ${f^(n k) (f^r (x_0))}, space forall 0<=r<n$ - ограничена то и ${f^(n k) (x_0)}$ тоже, аналогично со сходимостью к нулю и наоборот.
 ]
 
 #v(1em)
@@ -388,12 +391,7 @@ $
     $|lambda_j|>lambda>1$ для $j = 1,dots,l$, а все остальные $lt.eq 1$\
     Введем две функции $X_1 (x)= |x_1| + dots +|x_l|$ и $X_2 = |x_(l+1)| + dots + |x_n|, space X=X_1+X_2$ - норма,\
     $S= {x: X_2(x)lt.eq X_1(x)}, space V(x) = X_1(x) - X_2(x)$ - непрерывно, $gt.eq 0$ на $S$.\
-    $
-    exists C>0," что "|x|lt.eq c X(x), " а также "exists mu >0, space 2 mu n< lambda-1, "ну и"\
-     exists p> 0 space |x|lt.eq q ==> F(x)lt.eq M/c|x|lt.eq mu X(x) space (f(B(q,0)) subset B(1,0))\
-    x in S inter B(q, 0), space x eq.not 0, space V(x)>0 ==> V(f(x)) > 0 ==> X_1(f(x))-X_2(f(x))>0 ==> f(x) in S
-    $  
-    Возьмем $x in S, space X_1(x)>0:$
+    В $S$ можем взять достаточно малый шар, чтобы $|F_i|<=2mu X_1$ для достаточно малого $mu$. Также очевидно в каждом шаре есть точка с $V(x)>0$ - например с нулевыми координатами после $l$. Докажем последнее свойство из теоремы о неусточивости:
     $
      f(x) = (f_1(x), dots, f_n (x)), space F(x) = (F_1(x), dots, F_n (x)), space f_i (x) = lambda_i x_i + F_i (x) " (из диагонализируемости)"\
      |f_i (x)| gt.eq lambda_i |x_i| - |F_i (x)| gt.eq lambda_i |x_i| - 2mu X_1(x)\
@@ -413,12 +411,10 @@ $
     + $a<0, space x eq.not 0 ==> V(f(x))< V(x)$ - значит есть асимптотическая устойчивость.  
 ]
 
-#v(2em)
-== Устойчивость автономных систем.
-#v(1em)
+
 
 Пусть есть автономная система в $RR^n: space $ $dot(x) = X(x), space X in C^1, space X(0)=0$\
-Также есть $phi(t,x) " - решение с начальным значением "x: space phi(0,x)= x, space I(0)=RR$, по теореме об интегральной непрерывности:
+Также есть $phi(t,x) " - решение с начальным значением "x: space phi(0,x)= x$, по теореме об интегральной непрерывности ($0$ определен всюду):
 $
   exists R>0 space forall x_0, space |x_0|<R, space [0,1] subset I(x_0), space f(x)= phi(1,x), space |x|< R\
   k >= 0, space f^k (x) = phi(k,x), space f^(k+1)(x)=phi(k+1,x) = phi (k,phi(1,x)) \ " (это групповое свойство, доказывали его когда впервые определяли автономные системы)"
@@ -435,7 +431,7 @@ $
         |phi(t,x_0)| = |phi(tau, phi(k,x_0))| = |phi(tau, f^k (x_0))| < epsilon " (по выбору "epsilon_1") "forall t >=0
         $
         А это и означает устойчивость решения. Асимптотическая устойчивость доказываетсяс точностью аналогично.
-    + $==>:$ аналогично, развернем доказательство.
+    + $==>:$ очевидно.
 ]
 
 #definition[
@@ -455,9 +451,13 @@ $
       exists T>0 space |x(t)|<=tau, space t in (0,T)\
       |x(t)|<= k e^(-lambda t)|x(0)|+delta integral_0^t e^(-lambda(t-s)) |x(s)| d s, space phi(t) = |x(t)|e^(lambda t)\
       0<= phi(t)<=k|x(0)|+delta integral phi(s) d s, space phi(t)<=k |x_0| e^(delta t)\
-      |x(t)|<=tau e^((delta - lambda)t) -->0 " (так как "delta - lambda<0") " ==> |x(T)|< tau??!
+      |x(t)|<=tau e^((delta - lambda)t) -->0 " (так как "delta - lambda<0") " ==> "имеем асимтотическую устойчивость"
     $
 ]
+
+#v(2em)
+== Устойчивость через функции Ляпунова.
+#v(1em)
 
 #definition[
     *Функцией Ляпунова в шаре* $|x|< r$ называется такая $V in C^1, space V(x)>=0, V(x)=0<==>x=0$\
@@ -470,14 +470,14 @@ $
 ]
 #proof[
     $exists rho >0, space forall x, |x|<rho space |phi(t,x)|<r, space t in [0,1]$\
-    $V(f(x)) = V(x) + integral_0^1 dot(V)(phi(s,x)) d s, space V(f(x))<=V(x)$ 
+    $V(f(x)) = V(x) + integral_0^1 dot(V)(phi(s,x)) d s, space V(f(x))<=V(x)$ ($f(x)=phi(1,x)$ - по одной из предыдущих теорем достаточно проверить устойчивость для этой функции)
 ]
 
 #theorem[(об асимптотической устойчивости)\
     $|x|<r, space dot(V)<0, space x eq.not 0 ==> x eq.triple 0$ - асимптотически устойчиво.
 ]
 #proof[
-    $phi(t,x) eq.not 0 " на " [0,1] ==> V(f(x))<= V(x), space x eq.not 0$
+    $phi(t,x) eq.not 0 " на " [0,1] ==> V(f(x))< V(x), space x eq.not 0$
 ]
 
 #theorem[(о неустойчивости)\
@@ -493,7 +493,8 @@ $
     $V(phi(t,x_0)) = V(x_0) + integral_0^t dot(V)(phi(s,x_0)) d s > V(x_0)>0, space S^* = S inter {x: V(x)>= V(x_0)}, space x_k = f^k (x_0), space v_k = V(x_k)$, дальше как в дискретном случае.
 ]
 
-#v(2em)
+#pagebreak()
+
 #align(center)[#text(size: 20pt)[= Динамические системы.]]
 #v(2em)
 
@@ -533,7 +534,7 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
 ]
 
 Перечислим виды траекторий:
-+ Тракетория неподвижной точки $f (x) = x$
++ Траектория неподвижной точки $f (x) = x$
 + Периодическая точка: $m>0, space x, f(x), dots , f^(m-1)(x)$ - различны, $f^m (x)=x$ \ (можем сразу заметить, что $O(x,f)$ - конечно $<==> space x$ - периодическая)
 + $f^k (x) eq.not f^n (x)$ при $k eq.not n$
 
@@ -550,7 +551,7 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
 ]
 
 Разберем этот пример подробней, во-первых поймем, что $X$ - секвенциально компактно: действительно, так как множество значений конечно, какое-то значение последовательность будет принмать бесконечно много раз, такие индексы и выделим в качестве сходящейся подпоследовательности.\
-Заметим, что для фиксированного $epsilon$ есть $N(epsilon)$, что из $a_i=b_i$ для $|i|<N(epsilon)$ верно $d(a,b)<epsilon$ и аналогично есть $n(epsilon)$, что $d(a,b) ==> space a_i=b_i" при "|i|<n(epsilon)$.
+Заметим, что для фиксированного $epsilon$ есть $N(epsilon)$, что из $a_i=b_i$ для $|i|<N(epsilon)$ верно $d(a,b)<epsilon$ и аналогично есть $n(epsilon)$, что $d(a,b)<epsilon ==> space a_i=b_i" при "|i|<n(epsilon)$.
 
 #proposition[
     $"cl"("per"f) = X$ 
@@ -623,7 +624,7 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
 #proof[
     Пусть $y in omega(x)$, тогда есть $f^(n_k) --> y$ тогда $y in "cl"(O^+(f^k (x),f)) space forall k$, так как вне орбиты будет только конечное количество членов последовательности.
 
-    Тепреь пусть $y in inter.big_(n=1)^oo"cl"(O^+(f^n(x),f)), space$для любого $k$ есть $n_k>k$, что $d(y,f^n (x))< 1/k$, тогда $f^(n_k) --> y$ а значит $y in omega(x)$
+    Тепреь пусть $y in inter.big_(n=1)^oo"cl"(O^+(f^n (x),f)), space$для любого $k$ есть $n_k>k$, что $d(y,f^n (x))< 1/k$, тогда $f^(n_k) --> y$ а значит $y in omega(x)$
 ]
 
 #theorem[
@@ -678,7 +679,7 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
     Заметим, что множество блуждающих точек открыто, так как определение выполняется в эпсилон окрестности точки, а тогда $Omega(f)$ - замкнуто, из чего сразу следует компактность, а из предыдущей леммы непустота. Осталась инвариантность:
     $
       x in Omega(f) ==> exists y_k --> x, space f^(n_k) (y_k) --> x ==> f^(n_k+s) (y_k) --> f^s (x) ==> f^s (x) in Omega(f) space forall s in ZZ,\
-      " так как для нее подходят последовательности " f^s (y_k), space n_k+s     
+      " так как для нее подходят последовательности " f^s (y_k) " - по непрерывности сходится к "x, space n_k     
     $
 ]
 
@@ -692,14 +693,14 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
 #lecture("17.03.2026")
 
 #proof[
-    Пусть $x in.not U ==> exists V in.rev x, space exists N, space f^k (V) inter V = emptyset, space k >= N$. Так как $X \\ U$ - компактно, покроем $V$ пересечениями с подпокрытием: $V_1,dots, V_n$ тогда для любого $i$: 
+    Пусть $x in.not U ==> exists V in.rev x, space exists N, space f^k (V) inter V = emptyset, space k >= N$. Так как $K = X \\ U$ - компактно, покроем $K$ пересечениями с подпокрытием: $V_1,dots, V_n$ тогда для любого $i$: 
     $
-      f^k (V_i)inter V_i = emptyset, space k >= N
+      f^k (V_i)inter V_i = emptyset, space k >= N_i
     $
-    Обозначим $T = (n+1)t$, пусть это не константа Биргхофа, тогда:
+    Обозначим $T = (n+1)t$, ($t = max N_i$), пусть это не константа Биргхофа, тогда:
     $
       exists x, space l(1)<=dots <=l(m),space m>T, space  f^(l(j)) (x) in.not U, space 1<=j<=m ==> y_j = f^(l(j t)) (x) in.not U, space 1<=j<=n+1 \
-      "Пусть " y_j in W_j, space W_j in {v_1,dots,V_n}," так как индексов больше чем "V_i", последовательность зациклится и "\
+      "Пусть " y_j in W_j, space W_j in {V_1,dots,V_n}," так как индексов больше чем "V_i", последовательность зациклится и "\
        f^k (W_j) inter W_j = y_j " что невозможно по предположению"
     $
 ]
@@ -738,7 +739,7 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
     #proof[
         Пусть не так, $Y inter V = {x_1,dots,x_n}$, выберем для каждого $x_i$ окрестность $V_i subset V, space V_i inter V_j = emptyset, space i eq.not j$ тогда выберем в $X$ точку $x in V_1, space x eq.not x_1$ (она существует по неизолированности $x_1$) для нее выберем окрестность $W in.rev.not x_i$ (выберем по аксиоме отделимости в $V_1$ такую окрестность, не содержащую $x_1$) $==> $ по плотности $Y inter W eq.not emptyset$ - значит в пересечении есть еще точки?!! 
     ]
-    Теперь докажем теорему: по топологической транзитивности существует $x$, что $overline(O^+(x,f))$ плотно в $X$. Пусть $U,V$ - открыты, тогда существует $i$, что $f^i (x) in U$, также по лемме пересечение $overline(O^+(x,f)) inter U$ - бесконечно, аналогично с $V$. Тогда для нашего $i$ возьмем $j, space f^j (x) in V$ (существует по бесконечности), ну а тогда:
+    Теперь докажем теорему: по топологической транзитивности существует $x$, что $O^+(x,f)$ плотно в $X$. Пусть $U,V$ - открыты, тогда существует $i$, что $f^i (x) in U$, также по лемме пересечение $O^+(x,f) inter U$ - бесконечно, аналогично с $V$. Тогда для нашего $i$ возьмем $j>i, space f^j (x) in V$ (существует по бесконечности), ну а тогда:
     $
       f^(i-j) (V) in.rev f^(i-j) (f^j (x)) = f^i (x) in U ==> f^(i-j) (V) inter U eq.not emptyset
     $
@@ -760,7 +761,7 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
     Гиперболический автоморфизм тора топологически перемешивается.
 ]
 #proof[
-    Пусть $p in U inter "per"f, space m$ - период $p$. Рассмотрим прямую, проходящую через эту точку, порожденную собственным вектором числа $1/lambda = (3+sqrt(5)) /2$ линейного отобьражения $F$. Выберем на прямой отрезочек длины $delta$, содержащий $p$. Рассмотрим образ этого отрезка, его длина $delta dot 1/lambda$, проделаем это $m$ раз, получим длину $delta dot 1/(lambda^m)$ - причем $p$ перейдет в $p$. Сделаем так еще много раз, по иррациональности $1/lambda$ получим сколь угодно плотное покрытие отрезка при факторизации, в тогда по теореме имеем топологическую транзитивность, а из нее топологическое перемешивание. 
+    Фиксируем $U,V$ - открытые. Пусть $p in U inter "per"f, space m$ - период $p$. Рассмотрим прямую, проходящую через эту точку, порожденную собственным вектором числа $lambda = (3+sqrt(5)) /2 >1$ линейного отображения $F$. Выберем на прямой отрезочек длины $delta$, содержащий $p$ и лежащий в $U$. Рассмотрим образ этого отрезка, его длина $delta dot lambda$, проделаем это $m$ раз, получим длину $delta dot lambda^m$ - причем $p$ перейдет в $p$. Сделаем так еще много раз, по иррациональности $lambda$ получим сколь угодно плотное покрытие отрезка при факторизации, а тогда и пересечение какого-то из образов с $V$ - что и требовалось для топологического перемешивания. 
 ]
 
 #example[\
@@ -843,9 +844,9 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
 ]
 #proof[\  
     Пусть $f(a)=b, space f(b) = c, space f(c) = a, space a<b<c$, случай другого порядка аналогичен.\
-    Сразу заметим, чте есть неподвижная точка ($f(x)-x$ имеет разные знаки на концах).\
+    Сразу заметим, что есть неподвижная точка ($f(x)-x$ имеет разные знаки на концах).\
     Докажем что есть точка периода 2: $f(b)=c>b$ и $f(c)=a<b$, значит есть точка $q, space f(q)=b$. Рассмотрим 2 случая:
-    + Есть неподвижная минимальная точка $d>q$, тогда заметим что есть неподвижная точка $e in (b,q)$ так как $f(b)>b$ и $f(q)<q$. Теперь заметим, что $f(q)<e, space f(d)>e$ тогда есть $h in (q,d), space f(h)=e$. Тогда заметим, что $f^2(q)>q, space f^2(d)<d$ тогда есть точка $m in (q,d)$, неподвижная при $f^2$, и так как она меньше $d$, она не может быть неподвижной при $f$, значит ее период 2.
+    + Есть неподвижная минимальная точка $d>q$, тогда заметим что есть неподвижная точка $e in (b,q)$ так как $f(b)>b$ и $f(q)<q$. Теперь заметим, что $f(q)<e, space f(d)>e$ тогда есть $h in (q,d), space f(h)=e$. Тогда заметим, что $f^2(q)>q, space f^2(h)<h$ тогда есть точка $m in (q,h)$, неподвижная при $f^2$, и так как она меньше $d$, она не может быть неподвижной при $f$, значит ее период 2.
     + Пусть нет неподвижной минимальной точки $d>q$, тогда $f^2(q)>q, space f^2(1)<=1$ тогда есть корень $f^2(x)=x$, причем эта точка не будет неподвижной по предположению.
     Теперь найдем точку периода $n>3: space A_0 = [b,c] = I_1, space I_0 = [a,b], space f(I_0)supset I_1, space f(I_1) supset I_0  $ построим последовательность $A_(n-1) subset A_(n-2) subset ... subset A_0, space f (A_(k+1)) = A_k, space k>=1$ итеративно ($A_(i+1)$ выберем как часть $A_i$, что $f(A_(i+1))=A_i$) и выберем $A_(n-1) subset A_(n-2), space f^(n-1) (A_(n-1)) = I_0$ - можем так сделать, потому что $f^(n-1) (A_(n-2)) = f(I_1) = [a,c] supset I_0$\
     Заметим, что $f^n (A_(n-1)) = f(I_0)supset I_1 supset A_(n-1)$, у функции $f^n$ по предыдущим рассуждениям есть неподвижная точка $p$ в $A_(n-1)$, причем это точка действительно периода $n$, 
@@ -896,7 +897,7 @@ $f^0 = id$, для $m eq.not 0$ $f^m = f^alpha compose f^alpha compose dots comp
     $ \ Докажем, что $ exists m_0: space f^(m N) (overline(U)) subset V_0, space m>=m_0$ - пусть не так, тогда $exists m_k -->oo, space x_k in f^(m_k N) (overline(U)) \\ V_0 ==> x_k in overline(U) \\ V_0$ - компакт, а тогда у $x_k$ есть точка сгущения $x in overline(U) \\ V_0$ - по вложенности нашей последовательности $f^(m_k N) (overline(U))$ эта точка будет точкой сгущения для любого $m_k$, а тогда по компактности $x in f^(m_k N) (overline(U))$ и $x in I inter overline(U) \\ V_0 = emptyset$ - противоречие.\ Пусть $V = f^(m_0 N) (U), space k>=0, space k = l N + l_1, space 0<=l_1<=N-1$ тогда: $
     f^k (V) = f^(l_1) (f^(l N) (V)) = f^(l_1) (f^((m_0+l)N) (U)) subset Y " - по свойству "V_0
     $
-    + Докажем cвойство аттрактора:\ фиксируем $epsilon>0$ и возьмем $epsilon_1$ (опять же, есть по инвариантности $I$)$: space d(x,I)<epsilon_1 ==>d(f^k (x), I)< epsilon, space 0<=k<=N-1$.\ Пусть $V_1$ -- $epsilon_1$-окрестность $I ==> exists m_0: space f^(m N) (overline(U)) subset V_1, space m>=m_0$ (доказывается аналогично $V_0$)\ Пусть $x in overline(U), space l>=m_0 N, space l = m N+k, space 0<=k<=N-1, space m>=m_0 ==> f^(m N) (x) in V_1, space f^l (x) = f^k (f^(m N) (x))<epsilon$ - значит $U$ подходит как требуемая в определении окрестность.
+    + Докажем cвойство аттрактора:\ фиксируем $epsilon>0$ и возьмем $epsilon_1$ (опять же, есть по инвариантности $I$)$: space d(x,I)<epsilon_1 ==>d(f^k (x), I)< epsilon, space 0<=k<=N-1$.\ Пусть $V_1$ -- $epsilon_1$-окрестность $I ==> exists m_0: space f^(m N) (overline(U)) subset V_1, space m>=m_0$ (доказывается аналогично $V_0$)\ Пусть $x in overline(U), space l>=m_0 N, space l = m N+k, space 0<=k<=N-1, space m>=m_0 ==> f^(m N) (x) in V_1, space f^l (x) = f^k (f^(m N) (x)) " - расстояние до "I space <epsilon$ - значит $U$ подходит как требуемая в определении окрестность.
 ]
 
 #v(1cm)
@@ -1030,7 +1031,7 @@ $
 #theorem[(Гробмана-Хартмана)\
     В наших условиях, если:
     + $epsilon<delta$
-    + $c<=max(||B||,||C^(-1)||)+epsilon+epsilon||C^(-1)||<1$
+    + $max(||B||,||C^(-1)||)+epsilon+epsilon||C^(-1)||<1$
     тогда $L,f$ - топологически сопряженные в $RR^n$.
 ]
 
@@ -1055,9 +1056,9 @@ $
   >= delta|x_1-x_2| - epsilon|x_1-x_2|>0 " (по условию)"
 $
 Также видим что $|f(x)|-->oo, space |x|-->oo$ а тогда по лемме $f$ - гомеоморфизм.\
-Пусть $H$ - множество непрерывных $g:RR-->RR^n$, что: 
+Пусть $H$ - множество непрерывных $g:RR^n-->RR^n$, что: 
 $
-  g(0)=0, space |g(x)|-->0, space x-->oo
+  g(0)=0, space |g(x)|-->0, space |x|-->oo
 $ 
 Найдем $h$ в виде $h = x+g, space g in H$: введем норму:
 $
@@ -1066,13 +1067,13 @@ $
 В котором каждая часть отвечает за подпространства на которых $A$ действует как $mat(B;0), space mat(0;C)$ соответственно.\
 Нужно $g$ такое, что: 
 $
-  (id+g)compose L = f compose (id + g) <==>L + g compose L = (F+L)compose(id+g) <==>\
+  (id+g)compose L = f compose (id + g) <==>L + g compose L = (F+L)compose (id+g) <==>\
   <==> g compose L = L compose g + F compose (id+g) <==> g(A x) = A g(x) + F(x+g(x)) <==>\
   <==> cases(g_1(A x) = B g_1(x) + F(x+g(x)), g_2(A x) = C g_2(x) + F(x+g(x))) <==> 
   cases(g_1(x) = B g_1(A^(-1) x) + F(A^(-1)x+g(A^(-1)x)), g_2(x) = C^(-1) g_2(A x) - C^(-1)F(x+g(x))) 
 $
 Пусть $T:g -->(B g_1(A^(-1) x) + F(A^(-1)x+g(A^(-1)x)), C^(-1) g_2(A x) - C^(-1)F(x+g(x)))$\
-Проверим, что $T$ - сжатие на $H$ - действительно: $T(g)(0)=0, space |T(g)(x)|-->0, space x-->+oo$ и очевидно неперывно. Проверим само сжатие: 
+Проверим, что $T$ - сжатие на $H$ - действительно: $T(g)(0)=0, space |T(g)(x)|-->0, space |x|-->+oo$ и очевидно неперывно. Проверим само сжатие: 
 Пусть $g,g^prime in H$, разность первых компонент:
 $
   (y = A^(-1)x), space B(g_1(y)-g_1^prime (y))+ F_1(y+g(y))-F_2(y+g^prime (y)),<=||B||sup|g_1-g_1^prime| + epsilon sup|g-g^prime|
@@ -1081,7 +1082,7 @@ $
 $
   <=||C^(-1)||sup|g_2-g_2^prime| + epsilon||C^(-1)||sup|g-g^prime|
 $
-Ну и в сумме это $<rho(g,g^prime)$ - значит $T$ - сжимающее и у него есть неподвижная точка $g$ - единственное решение $(id+g)compose L = f compose (id + g)$.\
+Ну и в сумме это $<1$ по условию - значит $T$ - сжимающее и у него есть неподвижная точка $g$ - единственное решение $(id+g)compose L = f compose (id + g)$.\
 Осталось проверить что $h = x+g$ - гомеоморфизм: он непрерывен, $|h(x)|-->oo, space |x|-->oo$, проверим инъективность: пусть $h(x_1)=h(x_2) ==> h compose L^k (x_1) = h compose L^k (x_2):$
 $
   A^k x_1 + g(A^k x_1) = A^k x_2 + g(A^k x_2) <==>A^k (x_1-x_2) = g(A^k x_1) - g(A^k x_2)
@@ -1100,7 +1101,7 @@ $
 ]
 
 #lemma[(о распространении)\
-    Пусть $N_0 subset RR^n$ - окрестность нуля, $g in C^1(N_0), space g(0)=0, space d g = 0$, тогда для любого $epsilon>0$ есть $N subset N_0$ и $tilde(g)in C(RR^n)$, что $g|_N = tilde(g)|_N, space ||d tilde(g)||<=epsilon$ на $RR^n$
+    Пусть $N_0 subset RR^n$ - окрестность нуля, $g in C^1(N_0), space g(0)=0, space d g(0) = 0$, тогда для любого $epsilon>0$ есть $N subset N_0$ и $tilde(g)in C^1(RR^n)$, что $g|_N = tilde(g)|_N, space ||d tilde(g)||<=epsilon$ на $RR^n$
 ]
 #proof[
     Пусть $nu in C^1$ - 0 на $(2,+oo]$, убывает на $(1,2]$ ($|nu^prime|<2$) и 1 на $(-oo,1]$. \
@@ -1180,7 +1181,7 @@ $
   psi(t,h(x)) = psi(t, integral^T_0 psi(-s,h_0(phi(s,x)))d s) = integral^T_0 e^(P (t-s)) h_0(phi(s,x))d s =\
   = integral^T_0 psi(t-s,h_0[phi(s-t,phi(t,x))])d s = integral_(-t)^(T-t) psi(-sigma, h_0[phi(sigma,omega)])d sigma = integral_(-t)^0 + integral_0^(T-t)\
   ("обозначим " sigma = s-t, space omega = phi(t,x)) \
-  psi(-sigma,h_0[phi(sigma,omega)]) = psi(-sigma-T, phi[T,h_0(psi(sigma,omega))]) = psi(-sigma-T,h_0 [phi(T, phi(sigma,omega))]) \
+  psi(-sigma,h_0[phi(sigma,omega)]) = psi(-sigma-T, psi[T,h_0(phi(sigma,omega))]) = psi(-sigma-T,h_0 [phi(T, phi(sigma,omega))]) \
   "Ну а тогда:" integral_(-t)^0 psi(-sigma-T,h_0 [phi(T, phi(sigma,omega))])d sigma = integral_(T-t)^T psi(-tau, h_0[phi(tau,omega)])d tau, space tau = sigma+T\
   "И " psi(t,h(x)) = h(omega) = h(phi(t,x))" что и требовалось."
 $
@@ -1436,7 +1437,7 @@ $
     $
       R(t+h) = integral_(phi(t,G)) rho(x)d x + h integral_(phi(t,G)) sum_(i=1)^n (partial)/(partial x_i) (rho f_i) d x + o(h)
     $
-    А тогда $(partial R)/(partial t) (t) = integral_(phi(t,G)) sum_() (partial)/(partial x_i) (rho f_i) d x = 0 ==> R(t) eq.triple C$ 
+    А тогда $(partial R)/(partial t) (t) = integral_(phi(t,G)) sum_() (partial)/(partial x_i) (rho f_i) d x = 0 <==> R(t) eq.triple C$ 
 ]
 
 #lecture("12.05.2026")
