@@ -1384,9 +1384,9 @@ $
     $
     Тогда:
     $
-      C_N subset f^(-m N) (D\\ A) ==> f^(m N) subset D\\ A ==> C_N subset A ==>f^(m N) inter C_N = emptyset?!!
+      C_N subset f^(-m N) (D\\ A) ==> f^(m N) (C_n) subset D\\ A, space C_N subset A ==>f^(m N) (C_n) inter C_N = emptyset?!!
     $
-    Тогда $B = A \\ union_(N>=1) C_N$ и так как $f^(-k N) subset D, space mu(C_N) = mu(f^(-k N) (C_n)) = 0$ имеем требуемое.
+    Тогда $B = A \\ union_(N>=1) C_N$ и так как $f^(-k N) (C_n) subset D, space mu(C_N) = mu(f^(-k N) (C_n)) = 0$ имеем требуемое.
 ]
 
 #v(2cm)
@@ -1410,7 +1410,7 @@ $
     $
 ]
 
-Рассмотрим систему $dot(x) = f(x)$ с потоком $phi(t,x)$ - ограничена измеримым $G subset RR^(2N)$
+Рассмотрим систему $dot(x) = F(x), space F = (f_1,...,f_n)$ с потоком $phi(t,x)$ - ограничена измеримым $G subset RR^(2N)$
 
 #definition[
     $p(x)>=0$ - *функция плотности интегрального инварианта*, если:
@@ -1449,7 +1449,7 @@ $
     $
     Существует потенциал $U:RR^(3n) --> RR$, что:
     $
-      F_i (x) = (partial U)/(partial x_i)
+      dot(p_i)(x) = F_i (x) = (partial U)/(partial x_i)
     $
     Импульсы - $p_i = m_i dot(x_i)$, координаты - $q_i$\
     Теперь определим гамильтониан $H$:
