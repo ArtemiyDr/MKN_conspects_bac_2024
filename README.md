@@ -10,3 +10,7 @@
   - [Функциональный анализ](sem_№4/functional_alalysis/functional_analysis.pdf) (приостановлено) 
   - [Алгебра](sem_№4/algebra/algebra.pdf)
   - [Комплексный анализ](sem_№4/analysis/analysis.pdf) (приостановлено) 
+
+**Семестр 5**
+  - [Теория вероятности](sem_№5\probability_theory\probability_theory.pdf)
+  
