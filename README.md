@@ -12,5 +12,5 @@
   - [Комплексный анализ](sem_№4/analysis/analysis.pdf) (приостановлено) 
 
 **Семестр 5**
-  - [Теория вероятности](sem_№5\probability_theory\probability_theory.pdf)
+  - [Теория вероятности](sem_№5/probability_theory/probability_theory.pdf)
   
