@@ -93,7 +93,7 @@
 
 #let proof = proofblock(prefix: [_Доказательство_:#h(1cm)], suffix: [#h(1fr) $square$])
 
-#let lecture(date, desc) = [ 
+#let lecture(date) = [ 
   #context {
     v(1em)
     align(center)[
@@ -103,10 +103,6 @@
         [
           #set text(12pt, weight: "bold")
           #text(16pt, weight: "bold")[Лекция от #date]\
-          #if desc != none [
-            #set text(9pt, weight: "regular", style: "italic")
-            #desc
-          ]
         ]
       )
     ]
@@ -133,7 +129,7 @@
 #pagebreak()
 #align(center)[#text(size: 20pt)[= Общая теория вероятности.]]
 
-#lecture("01.09.2026", "")
+#lecture("01.09.2026")
 
 == Основные определения.
 
@@ -151,7 +147,7 @@ $
 
 #definition[
   $(Omega, cal(A), PP)$ - *вероятностное пространство*, где 
-  + $cal(A)$ -- $sigma$-алгебра
+  + $cal(A)$ -- $sigma$-алгебра на $Omega$
   + $PP$ -- единичная мера на $cal(A)$
   Элементы $A in cal(A)$ будем называть собятиями. 
 ]
@@ -196,7 +192,7 @@ $
 ]
 
 #remark[
-  Если $X_1,X_2$ -- случайный величины, $PP(X_1 eq.not X_2) = 0$, тогда будем считать $X_1 = X_2$
+  Если $X_1,X_2$ -- случайный величины, $PP(X_1 eq.not X_2) = PP(omega in Omega, space X_1(omega) eq.not X_2(omega)) = 0$, тогда будем считать $X_1 = X_2$
 ]
 
 #definition[
@@ -225,6 +221,8 @@ $
 
 #pagebreak()
 
+== Характеризация распределений.
+
 Можем определить несколько типов распределений случайных велечин:
 + Дискретное
 + Абсолютно непрерывное
@@ -234,7 +232,7 @@ $
 #definition[
   *Дискретным распределением* называется распределение, такое что:
   $
-    exists x_1,x_2,... in RR, space sum_j PP(X = x_j) = 1 <==> P_X (union.big_j {x_j}) = 1
+    exists x_1,x_2,... in RR, space sum_j PP(X = x_j) = 1, " равносильно " P_X (union.big_j {x_j}) = 1
   $
 ]
 #example[
@@ -250,7 +248,7 @@ $
   $
   А также существует $p_X>=0$ - *функция плотности*, что:
   $
-    P_x (B) = PP(X in B) = integral_B p_X (r) d r, space B in cal(B)^1\
+    P_X (B) = PP(X in B) = integral_B p_X (r) d r, space B in cal(B)^1\
     integral_(-oo)^oo p_x (r) d r = 1 = PP(X in RR)
   $
 ]
