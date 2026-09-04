@@ -1,0 +1,180 @@
+#import "@preview/great-theorems:0.1.2": *
+#import "@preview/fletcher:0.5.8": *
+
+#set document(
+    title: "Конспект по продвинутой мат логике",
+)
+
+#set page(
+  paper: "a4",
+  margin: (left: 1cm, right: 1cm, top: 1.5cm, bottom: 3.3cm),
+)
+
+#set page(footer: context [
+  #let heading-text
+
+  #let headings = query(selector(heading.where(level: 1)).before(here()))
+  #if counter(page).get().first() > 1{
+    if headings.len() > 0 {
+        let current-heading = headings.last() 
+        heading-text = current-heading.body
+    }
+
+    align(center)[
+      #set text(size: 9pt)
+      #v(1cm)
+      #line(length: 100%, stroke: 0.3pt + black)
+      #heading-text #h(1fr) #counter(page).display()
+      #v(0.15em)
+      #line(length: 100%, stroke: 0.3pt + black)
+    ]
+  }
+])
+
+#set text(12pt)
+
+#show heading.where(level: 1): set block(below: 2em)
+
+#show heading.where(level: 2): it => {
+  v(2em)
+  it
+  v(-0.7em)
+  line(length: 30%, stroke: 1pt)
+  v(1em)
+}
+
+#show: great-theorems-init
+
+#let theorem = mathblock(
+    blocktitle: "Теорема",
+    counter: none,
+    fill: color.linear-rgb(100%, 63.76%, 63.76%), 
+    inset: 10pt,
+)
+
+#let corollary = mathblock(
+    blocktitle: "Следствие",
+    counter: none,
+    inset: 10pt
+)
+
+#let lemma = mathblock(
+    blocktitle: "Лемма",
+    counter: none,
+    fill: oklab(95.23%, -0.068, 0.032),
+    inset: 10pt,
+)
+
+#let statement = mathblock(
+    blocktitle: "Утверждение",
+    counter: none,
+    inset: 10pt
+)
+
+#let definition = mathblock(
+    blocktitle: "Определение",
+    counter: none, 
+    fill: blue.lighten(80%),
+    inset: 10pt,
+)
+
+#let remark = mathblock(
+    blocktitle: "Замечание",
+    counter: none, 
+    inset: 10pt
+)
+
+#let example = mathblock(
+    blocktitle: "Пример",
+    counter: none, 
+    fill: oklch(92.26%, 0.114, 100.74deg),
+    inset: 10pt,
+)
+
+#let proof = proofblock(prefix: [_Доказательство_:#h(1cm)], suffix: [#h(1fr) $square$])
+
+#let lecture(date) = [ 
+  #context {
+    v(1em)
+    align(center)[
+      #box(
+        stroke: 0.5pt + black,
+        inset: 10pt,
+        [
+          #set text(12pt, weight: "bold")
+          #text(16pt, weight: "bold")[Лекция от #date]\
+        ]
+      )
+    ]
+  }
+]
+
+#align(center + horizon)[
+    #show title: set text(size: 24pt, weight: "bold")
+    #title()
+    #v(1.5em)
+    #text(18pt)[Лектор: Селиванов Виктор Львович]
+    #v(1.5em)
+    #text(18pt)[Автор: Артемий Дружинин]
+    #v(1em)
+    #text(14pt)[Факультет МКН СПБГУ]
+    #v(1em)
+    #text(12pt)[Осенний семестр 2026]
+]
+
+#pagebreak()
+
+#outline(title: "Оглавление")
+
+#pagebreak()
+
+#align(center)[#text(size: 20pt)[= Логика второго порядка и обратная математика.]]
+
+#lecture("04.09.2026")
+
+== Основные определения и мотивация.
+Зачем же нужна логика кроме логики первого порядка? Обычная логика в рамках $Z F C$ имеет главный недостаток - в ней возникают проблемы неразрешимости из-за её избыточной общности. Возникает идея - построить математику вокруг только счетных и континуальных структур, но тут возникает интересный парадокс - при формализации оказывается, что логики первого порядка недостаточно.\
+С другой стороны совсем отказываться от понятия множества и ограничиватся аксиоматикой Пеано тоже кажется излишним, поэтому какую-то логику на множествах мы всё же оставим.
+
+#definition[
+  Рассмотрим арифметическую сигнатуру 
+  $
+    L = {=,<,+,dot,0,1}
+  $
+  Введем *логику второго порядка* $L_2$, через добавление к обычной логике множественных переменных $X,Y,Z,...$.
+  При этом понятие терма -- по сути числовая формула или атомарная переменная -- не меняется, а к атомным формулам $x = y, space x < y$ добавляется ещё одна: $t in X$.
+]
+
+#definition[
+  Определим *$Z_2$* -- расширение минимальной арифметики $ZZ$ следующими аксимомами индукции и существования множеств:
+  $
+    forall X ((0 in X and forall n(n in X --> n+1 in X))-->forall n(n in X)))\
+    exists X forall n(n in X <--> phi.alt(n))," где "phi.alt" любая формула, содержащая "X" свободно"
+  $
+]
+
+Можно рассматривать модели $Z_2$ следующего вида:
+$
+  (omega, S, <, +, dot, in)
+$
+Где $omega$ - обычные натуральные числа, а $S$ - подмножество $P(omega)$, выполняющее аксиомам индукции и существования. Такие модели называются *$omega$-модели*. Естественно также рассматривать в качестве моделей и большие множества, подробней возможно скажем в разделе о теории моделей.
+
+== Большая пятерка.
+
+Тем не менее, даже так $Z_2$ слишком большая для наших целей, поэтому будем рассматривать более узкую аксиоматику:
+#definition[
+   Определим аксиоматику *$A C A_0$* (Arithmetical Comprehension Axiom) сузив множество формул в аксиоме $Z_2$ до формул без кванторов по множествам (то есть формул не содержащих множеств свободно).
+]
+#remark[
+  Достаточно легко заметить, что такая аксиоматика является просто синтаксическим вариантом аксиоматики Пеано - так как любая формула из $A C A_0$ можно записать в синтаксисе Пеано. Благодаря этому можем доказывать арифметические утверждения в $A C A_0$. 
+]
+
+Среди подсистем $Z_2$ есть пять вложенных систем, особенно интересных:
+$
+  S_1 subset S_2 subset S_3= A C A_0 subset S_4 subset S_5 subset Z_2
+$
+Многие теоремы из теории чисел и даже анализа *экивавлентны* одной из систем, это значит следующее:
+$
+  S_1 tack.rr phi.alt <--> S_n ,space n in {2,3,4,5} "(из формулы вытекают аксиомы и наоборот)"
+$
+Таким образом можно вульгарно сказать, что все теоремы можно свести к одному из 5 типов, такой метод поиска подходящей аксиоматики среди большой пятерки для доказательства теоремы и называется *обратной математикой*.
