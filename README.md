@@ -14,4 +14,5 @@
 **Семестр 5**
   - [Теория вероятности](sem_№5/probability_theory/probability_theory.pdf)
   - [Дополнительные главы мат логики](sem_№5/advanced_logc/advacned_logic.pdf)
+  - [МатФиз](sem_№5/mathematical_phisics/mathematical_phisics.pdf)
   
