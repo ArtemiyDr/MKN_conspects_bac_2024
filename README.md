@@ -7,12 +7,9 @@
 
 **Семестр 4**
   - [ДУДС](/sem_№4/differential_equations/differential_equations.pdf)
-  - [Функциональный анализ](sem_№4/functional_alalysis/functional_analysis.pdf) (приостановлено) 
   - [Алгебра](sem_№4/algebra/algebra.pdf)
-  - [Комплексный анализ](sem_№4/analysis/analysis.pdf) (приостановлено) 
 
 **Семестр 5**
   - [Теория вероятности](sem_№5/probability_theory/probability_theory.pdf)
-  - [Дополнительные главы мат логики](sem_№5/advanced_logc/advacned_logic.pdf)
   - [МатФиз](sem_№5/mathematical_phisics/mathematical_phisics.pdf)
   - [Анализ Фурье](sem_№5/fourier_analysis/fourier_analysis.pdf)
